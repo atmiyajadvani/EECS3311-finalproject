@@ -54,6 +54,23 @@ public class LoginPage extends JFrame {
         String username = usernameField.getText();
         String password = new String(passwordField.getPassword());
         System.out.println("Logging in with Username: " + username + " and Password: " + password);
+
+        // Check login credentials (placeholder logic)
+        boolean isValidLogin = true; // Placeholder for login validation
+        if (isValidLogin) {
+            // If login is valid, close the login page and open the dashboard
+            dispose(); // Close the login page
+            openDashboard(); // Open the dashboard
+        } else {
+            // If login is invalid, display an error message
+            JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void openDashboard() {
+        SwingUtilities.invokeLater(() -> {
+            new Dashboard().setVisible(true); // Open the dashboard
+        });
     }
 
     public static void main(String[] args) {
@@ -64,4 +81,3 @@ public class LoginPage extends JFrame {
         });
     }
 }
-
