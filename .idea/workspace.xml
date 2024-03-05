@@ -5,8 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/UI/Payment.form" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/Payment.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/Payment_info.form" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/Payment_info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,6 +37,8 @@
   "keyToString": {
     "Application.Cart.executor": "Run",
     "Application.LoginPage.executor": "Run",
+    "Application.Payment.executor": "Run",
+    "Application.Payment_info.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "UI_DESIGNER_EDITOR_MODE.UIDesignerToolWindowManager.SHOW": "true",
