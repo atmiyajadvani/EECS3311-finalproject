@@ -28,3 +28,8 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+!**/src/UI/Dashboard.class
+!**/src/UI/LoginPage.class
+!**/src/UI/LoginPage$1.class
+!**/src/UI/LoginPage$2.class

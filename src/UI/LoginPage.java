@@ -31,7 +31,70 @@ public class LoginPage extends JFrame{
     private JPanel panel1;
     private JPasswordField password;
     private JButton loginButton;
-    private JFrame frame;
+
+    public LoginPage() {
+        createUI();
+    }
+
+    private void createUI() {
+        setTitle("Login");
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setLayout(new BorderLayout(5, 5));
+        setSize(350, 200);
+        setLocationRelativeTo(null); // Center the window
+
+        // North panel for title
+        JPanel titlePanel = new JPanel();
+        titlePanel.add(new JLabel("Login to Your Account"));
+        add(titlePanel, BorderLayout.NORTH);
+
+        // Center panel for form
+        JPanel formPanel = new JPanel(new GridLayout(2, 2, 5, 5));
+        formPanel.add(new JLabel("Username:"));
+        usernameField = new JTextField();
+        formPanel.add(usernameField);
+        formPanel.add(new JLabel("Password:"));
+        passwordField = new JPasswordField();
+        formPanel.add(passwordField);
+        add(formPanel, BorderLayout.CENTER);
+
+        // South panel for login button
+        JPanel buttonPanel = new JPanel();
+        loginButton = new JButton("Login");
+        loginButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                login();
+            }
+        });
+        buttonPanel.add(loginButton);
+        add(buttonPanel, BorderLayout.SOUTH);
+
+        setVisible(true);
+    }
+
+    private void login() {
+        // Placeholder for login logic
+        String username = usernameField.getText();
+        String password = new String(passwordField.getPassword());
+        System.out.println("Logging in with Username: " + username + " and Password: " + password);
+
+        // Check login credentials (placeholder logic)
+        boolean isValidLogin = true; // Placeholder for login validation
+        if (isValidLogin) {
+            // If login is valid, close the login page and open the dashboard
+            dispose(); // Close the login page
+            openDashboard(); // Open the dashboard
+        } else {
+            // If login is invalid, display an error message
+            JOptionPane.showMessageDialog(this, "Invalid username or password", "Login Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private void openDashboard() {
+        SwingUtilities.invokeLater(() -> {
+            new Dashboard().setVisible(true); // Open the dashboard
+        });
+    }
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
