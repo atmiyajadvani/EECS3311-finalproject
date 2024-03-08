@@ -3,7 +3,6 @@ package UI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.security.MessageDigest;
@@ -18,66 +17,53 @@ public class UserRegistration extends JFrame {
 
     public UserRegistration() {
         createUI();
+        setTitle("User Registration");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(350, 200); // Adjusted size for better UI appearance
+        setLocationRelativeTo(null); // Center on screen
     }
 
     private void createUI() {
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setTitle("User Registration");
-        setSize(300, 150);
-        setLocationRelativeTo(null);
+        JPanel formPanel = new JPanel(new GridLayout(0, 2, 10, 10)); // Grid layout for form elements
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // Padding
 
-        emailTextField = new JTextField(20);
-        passwordField = new JPasswordField(20);
-        roleComboBox = new JComboBox<>(new String[]{"Student", "Faculty", "Staff"});
+        emailTextField = new JTextField();
+        passwordField = new JPasswordField();
+        roleComboBox = new JComboBox<>(new String[]{"Student", "Faculty", "Staff", "Visitor"});
         registerButton = new JButton("Register");
 
-        registerButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                try {
-                    String email = emailTextField.getText();
-                    String password = new String(passwordField.getPassword());
-                    String role = (String) roleComboBox.getSelectedItem();
+        formPanel.add(new JLabel("Email:"));
+        formPanel.add(emailTextField);
+        formPanel.add(new JLabel("Password:"));
+        formPanel.add(passwordField);
+        formPanel.add(new JLabel("Role:"));
+        formPanel.add(roleComboBox);
 
-                    if (!isValidEmail(email)) {
-                        JOptionPane.showMessageDialog(null, "Enter a valid email address.");
-                        return;
-                    }
+        registerButton.addActionListener(e -> registerUser());
 
-                    if (!isValidPassword(password)) {
-                        JOptionPane.showMessageDialog(null, "Password must contain at least 8 characters, including uppercase, lowercase, and symbols.");
-                        return;
-                    }
+        mainPanel.add(formPanel, BorderLayout.CENTER);
+        mainPanel.add(registerButton, BorderLayout.SOUTH);
 
-                    if (registerUser(email, password, role)) {
-                        JOptionPane.showMessageDialog(null, "User registered successfully!");
-                        // Navigate to UserLogin screen
-                        UserRegistration.this.dispose();
-                        new UserLogin().setVisible(true);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Registration failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
-                    }
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                }
+        add(mainPanel);
+    }
+
+    private void registerUser() {
+        try {
+            String email = emailTextField.getText();
+            String password = new String(passwordField.getPassword());
+            String role = (String) roleComboBox.getSelectedItem();
+
+            if (registerUser(email, password, role)) {
+                JOptionPane.showMessageDialog(this, "User registered successfully!");
+                this.dispose(); // Close the registration window
+                new UserLogin().setVisible(true); // Open the login screen
+            } else {
+                JOptionPane.showMessageDialog(this, "Registration failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
             }
-        });
-
-        setLayout(new GridLayout(4, 1));
-        add(new JLabel("Email address"));
-        add(emailTextField);
-        add(new JLabel("Password"));
-        add(passwordField);
-        add(new JLabel("Role"));
-        add(roleComboBox);
-        add(registerButton);
-    }
-
-    private boolean isValidEmail(String email) {
-        return email.contains("@");
-    }
-
-    private boolean isValidPassword(String password) {
-        return password.length() >= 4;
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
     }
 
     private boolean registerUser(String email, String password, String role) throws NoSuchAlgorithmException, IOException {
@@ -103,10 +89,6 @@ public class UserRegistration extends JFrame {
     }
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new UserRegistration().setVisible(true);
-            }
-        });
+        SwingUtilities.invokeLater(() -> new UserRegistration().setVisible(true));
     }
 }
