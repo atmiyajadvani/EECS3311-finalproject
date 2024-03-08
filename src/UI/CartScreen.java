@@ -3,101 +3,112 @@ package UI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.Arrays;
-import java.util.List;
-import java.util.stream.Collectors;
 
 public class CartScreen extends JFrame {
-    private List<String> cartItems;
     private DefaultListModel<String> cartListModel;
-    private JTextField promoCodeTextField;
+    private JList<String> cartList;
+    private JTextField promoCodeField;
     private JLabel totalAmountLabel;
+    private float totalAmount = 45.0f; // Example starting amount
 
-
-    public CartScreen(List<String> cartItems) {
-        this.cartItems = cartItems;
-        initializeUI();
-    }
-
-    private void initializeUI() {
+    public CartScreen(DefaultListModel<String> cartListModel) {
+        this.cartListModel = cartListModel;
         setTitle("YorkU Library Management App - Cart");
-        setSize(800, 600);
+        setSize(600, 400);
         setLocationRelativeTo(null);
         setLayout(new BorderLayout());
+        setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 
-        cartListModel = new DefaultListModel<>();
-        cartItems.forEach(cartListModel::addElement);
+        cartList = new JList<>(this.cartListModel);
+        cartList.setFixedCellHeight(70); // Increased cell height
+        cartList.setCellRenderer(new CartListCellRenderer(cartListModel, this));
 
-        JList<String> cartList = new JList<>(cartListModel);
-        cartList.setFixedCellHeight(52);
-        add(new JScrollPane(cartList), BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(cartList);
+        add(scrollPane, BorderLayout.CENTER);
 
-        JPanel bottomPanel = new JPanel(new GridLayout(3, 1));
-        JPanel promoPanel = new JPanel(new FlowLayout());
-        promoCodeTextField = new JTextField(10);
-        JButton applyButton = new JButton("Apply");
+        promoCodeField = new JTextField(10);
+        JButton applyPromoButton = new JButton("APPLY");
+        applyPromoButton.addActionListener(this::applyPromoCode);
+
+        JPanel promoPanel = new JPanel();
         promoPanel.add(new JLabel("Promo code"));
-        promoPanel.add(promoCodeTextField);
-        promoPanel.add(applyButton);
+        promoPanel.add(promoCodeField);
+        promoPanel.add(applyPromoButton);
+        add(promoPanel, BorderLayout.NORTH);
 
-        JPanel totalPanel = new JPanel(new FlowLayout());
-        totalAmountLabel = new JLabel("Current amount: $" + calculateTotalAmount());
-        totalPanel.add(totalAmountLabel);
+        totalAmountLabel = new JLabel("Current amount: $" + String.format("%.2f", totalAmount));
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> goBack());
 
-        JButton paymentButton = new JButton("Continue to payment");
-        paymentButton.addActionListener(this::onPaymentClicked);
-
-        bottomPanel.add(promoPanel);
-        bottomPanel.add(totalPanel);
-        bottomPanel.add(paymentButton);
-
+        JPanel bottomPanel = new JPanel();
+        bottomPanel.add(backButton);
+        bottomPanel.add(totalAmountLabel);
         add(bottomPanel, BorderLayout.SOUTH);
-
-        // Action listeners for the cart buttons
-        applyButton.addActionListener(e -> applyPromoCode());
-        // More action listeners for other buttons would go here
     }
 
-    private void onPaymentClicked(ActionEvent e) {
-        // Here you would handle the transition to the payment process
-        JOptionPane.showMessageDialog(this, "Proceeding to payment");
+    private void goBack() {
+        this.dispose();
+        // Assuming StudentPhysicalItemScreen is accessible and has a public constructor.
+        new StudentPhysicalItemScreen().setVisible(true);
     }
 
-    private void applyPromoCode() {
-        // Apply the promo code to the cart
-        String promoCode = promoCodeTextField.getText();
-        // You would have some logic here to adjust the price and recalculate the total amount
-        // For demonstration, let's just print the entered promo code
-        JOptionPane.showMessageDialog(this, "Promo code applied: " + promoCode);
-        // Assuming a promo discount, update the total amount label
-        totalAmountLabel.setText("Current amount: $" + calculateTotalAmountWithDiscount(promoCode));
-    }
-
-    private String calculateTotalAmount() {
-        // Replace with real calculation logic
-        return "45";
-    }
-
-    private String calculateTotalAmountWithDiscount(String promoCode) {
-        // Replace with real calculation logic with promo code
-        // Dummy discount logic for example
-        if (promoCode.equalsIgnoreCase("SAVE10")) {
-            return "40";  // Apply a $5 discount for this example
+    private void applyPromoCode(ActionEvent event) {
+        // Example logic to apply a promo code
+        if ("DISCOUNT10".equals(promoCodeField.getText())) {
+            totalAmount *= 0.9; // Apply a 10% discount
+            updateTotalAmount();
+        } else {
+            JOptionPane.showMessageDialog(this, "Invalid promo code.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        return calculateTotalAmount();
+    }
+
+    private void removeFromCart(String item) {
+        cartListModel.removeElement(item);
+        updateTotalAmount();
+    }
+
+    private void updateTotalAmount() {
+        // Update the total amount label; replace this with real calculation logic
+        totalAmountLabel.setText("Current amount: $" + String.format("%.2f", totalAmount));
+    }
+
+    private static class CartListCellRenderer extends JPanel implements ListCellRenderer<String> {
+        private final DefaultListModel<String> model;
+        private final JFrame frame;
+
+        CartListCellRenderer(DefaultListModel<String> model, JFrame frame) {
+            this.model = model;
+            this.frame = frame;
+        }
+
+        @Override
+        public Component getListCellRendererComponent(JList<? extends String> list, String value, int index, boolean isSelected, boolean cellHasFocus) {
+            setLayout(new BorderLayout(10, 10));
+            setBackground(isSelected ? Color.LIGHT_GRAY : Color.WHITE);
+
+            JTextArea itemLabel = new JTextArea(value);
+            itemLabel.setWrapStyleWord(true);
+            itemLabel.setLineWrap(true);
+            itemLabel.setEditable(false);
+            JButton removeButton = new JButton("Remove");
+            removeButton.addActionListener(e -> {
+                model.removeElementAt(index);
+                ((CartScreen)frame).updateTotalAmount();
+            });
+
+            add(itemLabel, BorderLayout.CENTER);
+            add(removeButton, BorderLayout.EAST);
+            return this;
+        }
     }
 
     public static void main(String[] args) {
+        // For demonstration, create a model with some items
+        DefaultListModel<String> model = new DefaultListModel<>();
+        model.addElement("Atomic Habits by James Clear | Book");
+        model.addElement("Tech Crunch Magazine | Magazine");
+        model.addElement("Demon Slayer - A Mega Saga | CD");
 
-        List<String> myList = Arrays.asList("String1", "String2", "String3", "String4", "String5");
-
-        EventQueue.invokeLater(() -> {
-            List<String> dummyCartItems = List.of(
-                    "[book] Atomic Habits - $20",
-                    "[magazine-9892] Tech Crunch Magazine - $15",
-                    "[CD-1928] Demon Slayer Soundtrack - $10"
-            ); // Dummy items for the cart
-            new CartScreen(dummyCartItems).setVisible(true);
-        });
+        EventQueue.invokeLater(() -> new CartScreen(model).setVisible(true));
     }
 }

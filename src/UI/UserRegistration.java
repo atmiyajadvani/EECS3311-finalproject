@@ -9,97 +9,84 @@ import java.io.IOException;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
-public class UserRegistration {
+public class UserRegistration extends JFrame {
 
-    public static void main(String[] args) {
-        UserRegistrationView view = new UserRegistrationView();
-        UserRegistrationModel model = new UserRegistrationModel();
-        new UserRegistrationController(view, model);
+    private JTextField emailTextField;
+    private JPasswordField passwordField;
+    private JComboBox<String> roleComboBox;
+    private JButton registerButton;
+
+    public UserRegistration() {
+        createUI();
     }
-}
 
-class UserRegistrationView extends JFrame {
-    JTextField emailTextField;
-    JPasswordField passwordField;
-    JComboBox<String> roleComboBox;
-    JButton registerButton;
+    private void createUI() {
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setTitle("User Registration");
+        setSize(300, 150);
+        setLocationRelativeTo(null);
 
-    public UserRegistrationView() {
         emailTextField = new JTextField(20);
         passwordField = new JPasswordField(20);
         roleComboBox = new JComboBox<>(new String[]{"Student", "Faculty", "Staff"});
         registerButton = new JButton("Register");
 
-        JPanel panel = new JPanel(new GridLayout(0, 1));
-        panel.add(new JLabel("Email address"));
-        panel.add(emailTextField);
-        panel.add(new JLabel("Password"));
-        panel.add(passwordField);
-        panel.add(new JLabel("Role"));
-        panel.add(roleComboBox);
-        panel.add(registerButton);
+        registerButton.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                try {
+                    String email = emailTextField.getText();
+                    String password = new String(passwordField.getPassword());
+                    String role = (String) roleComboBox.getSelectedItem();
 
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setTitle("User Registration");
-        this.add(panel);
-        this.pack();
-        this.setVisible(true);
-    }
+                    if (!isValidEmail(email)) {
+                        JOptionPane.showMessageDialog(null, "Enter a valid email address.");
+                        return;
+                    }
 
-    public String getEmail() {
-        return emailTextField.getText();
-    }
+                    if (!isValidPassword(password)) {
+                        JOptionPane.showMessageDialog(null, "Password must contain at least 8 characters, including uppercase, lowercase, and symbols.");
+                        return;
+                    }
 
-    public String getPassword() {
-        return new String(passwordField.getPassword());
-    }
-
-    public String getRole() {
-        return (String) roleComboBox.getSelectedItem();
-    }
-
-    public void addRegisterListener(ActionListener actionListener) {
-        registerButton.addActionListener(actionListener);
-    }
-}
-
-class UserRegistrationController {
-    UserRegistrationView view;
-    UserRegistrationModel model;
-
-    public UserRegistrationController(UserRegistrationView view, UserRegistrationModel model) {
-        this.view = view;
-        this.model = model;
-        view.addRegisterListener(new RegisterListener());
-    }
-
-    class RegisterListener implements ActionListener {
-        public void actionPerformed(ActionEvent e) {
-            String email = view.getEmail();
-            String password = view.getPassword();
-            String role = view.getRole();
-
-            if (model.registerUser(email, password, role)) {
-                JOptionPane.showMessageDialog(null, "User registered successfully!");
-            } else {
-                JOptionPane.showMessageDialog(null, "Registration failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                    if (registerUser(email, password, role)) {
+                        JOptionPane.showMessageDialog(null, "User registered successfully!");
+                        // Navigate to UserLogin screen
+                        UserRegistration.this.dispose();
+                        new UserLogin().setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Registration failed. Please try again.", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
             }
-        }
-    }
-}
+        });
 
-class UserRegistrationModel {
-    public boolean registerUser(String email, String password, String role) {
-        try {
-            String hashedPassword = hashPassword(password);
-            FileWriter writer = new FileWriter("users.csv", true);
+        setLayout(new GridLayout(4, 1));
+        add(new JLabel("Email address"));
+        add(emailTextField);
+        add(new JLabel("Password"));
+        add(passwordField);
+        add(new JLabel("Role"));
+        add(roleComboBox);
+        add(registerButton);
+    }
+
+    private boolean isValidEmail(String email) {
+        return email.contains("@");
+    }
+
+    private boolean isValidPassword(String password) {
+        return password.length() >= 4;
+    }
+
+    private boolean registerUser(String email, String password, String role) throws NoSuchAlgorithmException, IOException {
+        String hashedPassword = hashPassword(password);
+        try (FileWriter writer = new FileWriter("users.csv", true)) {
             writer.append(email).append(",").append(hashedPassword).append(",").append(role).append("\n");
-            writer.flush();
-            writer.close();
             return true;
-        } catch (IOException | NoSuchAlgorithmException ex) {
-            ex.printStackTrace();
-            return false;
+        } catch (IOException e) {
+            throw new IOException("Error writing to the CSV file", e);
         }
     }
 
@@ -113,5 +100,13 @@ class UserRegistrationModel {
             hexString.append(hex);
         }
         return hexString.toString();
+    }
+
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                new UserRegistration().setVisible(true);
+            }
+        });
     }
 }

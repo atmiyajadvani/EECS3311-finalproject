@@ -93,11 +93,9 @@ public class UserLogin extends JFrame {
     }
 }
 
-class StudentDashboard extends JFrame {
-    public StudentDashboard() {
-        // Setup the student dashboard UI here
-        setTitle("Student Dashboard");
-        setSize(400, 300);
-        setLocationRelativeTo(null);
+class Dashboard extends JFrame {
+    public Dashboard() {
+        dispose();
+        new StudentDashboard().setVisible(true);
     }
 }
