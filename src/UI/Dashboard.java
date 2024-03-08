@@ -4,68 +4,92 @@ import javax.swing.*;
 import java.awt.*;
 
 public class Dashboard extends JFrame {
-    private JList<String> itemList;
 
     public Dashboard() {
-        setTitle("Dashboard App");
+        // Setup the UI
+        setTitle("YorkU Library Management App - Student Dashboard");
         setSize(600, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setLayout(new BorderLayout());
 
-        // Create and add components
-        JPanel panel = new JPanel();
-        JLabel titleLabel = new JLabel("Student Dashboard");
-        JButton button1 = new JButton("Request a Book");
-        JButton button2 = new JButton("Request a Newsletter");
+        // North panel with the title
+        JPanel northPanel = new JPanel();
+        northPanel.add(new JLabel("Student Dashboard"));
+        add(northPanel, BorderLayout.NORTH);
 
-        // Create the list with items
-        itemList = new JList<>(new String[]{"Atomic Habits", "Rich Dad Poor Dad", "Atomic Habits"});
-        itemList.setCellRenderer(new CenteredListItemRenderer()); // Set custom cell renderer
+        // Center panel with the buttons
+        JPanel centerPanel = new JPanel(new GridLayout(3, 1));
 
-        JButton button3 = new JButton("Sign Out");
+        JButton physicalRentalsButton = new JButton("Physical Rentals");
+        physicalRentalsButton.addActionListener(e -> goToPhysicalItemSearch());
+        centerPanel.add(physicalRentalsButton);
 
-        GroupLayout layout = new GroupLayout(panel);
-        panel.setLayout(layout);
+        JButton requestBookButton = new JButton("Request a book");
+        requestBookButton.addActionListener(e -> goToRequestBookScreen());
+        centerPanel.add(requestBookButton);
 
-        layout.setAutoCreateGaps(true);
-        layout.setAutoCreateContainerGaps(true);
+        JButton newsletterButton = new JButton("Newsletter");
+        newsletterButton.addActionListener(e -> goToNewsletterScreen());
+        centerPanel.add(newsletterButton);
 
-        layout.setHorizontalGroup(
-                layout.createParallelGroup(GroupLayout.Alignment.CENTER)
-                        .addComponent(titleLabel)
-                        .addGroup(layout.createSequentialGroup()
-                                .addComponent(button1)
-                                .addComponent(button2))
-                        .addComponent(itemList, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(button3)
-        );
+        add(centerPanel, BorderLayout.CENTER);
 
-        layout.setVerticalGroup(
-                layout.createSequentialGroup()
-                        .addComponent(titleLabel)
-                        .addGroup(layout.createParallelGroup(GroupLayout.Alignment.BASELINE)
-                                .addComponent(button1)
-                                .addComponent(button2))
-                        .addComponent(itemList, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(button3)
-        );
+        // South panel with the book list and sign out
+        JPanel southPanel = new JPanel(new BorderLayout());
+        String[] bookData = { // This data would actually come from your data source
+                "Atomic Habits - Due: 24th April 2024",
+                "Rich Dad Poor Dad - Due: 20th May 2024",
+                "Atomic Habits - Due: 24th April 2024"
+        };
+        JList<String> bookList = new JList<>(bookData);
+        southPanel.add(new JScrollPane(bookList), BorderLayout.CENTER);
 
-        add(panel);
+        JButton signOutButton = new JButton("Sign out");
+        signOutButton.addActionListener(e -> signOut());
+        southPanel.add(signOutButton, BorderLayout.SOUTH);
+
+        add(southPanel, BorderLayout.SOUTH);
     }
 
-    // Custom cell renderer to center align list items
-    private class CenteredListItemRenderer extends DefaultListCellRenderer {
-        @Override
-        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
-            JLabel label = (JLabel) super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
-            label.setHorizontalAlignment(JLabel.CENTER); // Center align list items
-            return label;
-        }
+    private void goToPhysicalItemSearch() {
+        // Implement navigation to PhysicalItemSearch
+        System.out.println("Go to PhysicalItemSearch");
+    }
+
+    private void goToRequestBookScreen() {
+        // Implement navigation to RequestBookScreen
+        System.out.println("Go to RequestBookScreen");
+    }
+
+    private void goToNewsletterScreen() {
+        // Implement navigation to NewsletterScreen
+        System.out.println("Go to NewsletterScreen");
+    }
+
+    private void signOut() {
+        // Implement sign out functionality
+        System.out.println("Signing out");
+        dispose();
+        new UserLogin().setVisible(true); // This would show the login screen again
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            Dashboard dashboard = new Dashboard();
-            dashboard.setVisible(true);
-        });
+        SwingUtilities.invokeLater(() -> new Dashboard().setVisible(true));
     }
+}
+
+// Below you would have the classes PhysicalItemSearch, RequestBookScreen, and NewsletterScreen.
+// Each class would open a new window (JFrame) with the appropriate UI for the given task.
+
+// Placeholder classes, they need to be implemented
+class PhysicalItemSearch extends JFrame {
+    // Code to initialize the UI for physical item search
+}
+
+class RequestBookScreen extends JFrame {
+    // Code to initialize the UI for requesting a book
+}
+
+class NewsletterScreen extends JFrame {
+    // Code to initialize the UI for the newsletter
 }
