@@ -35,6 +35,8 @@ public class StudentDashboard extends JFrame {
         physicalRentalsButton.addActionListener(e -> navigateToPhysicalRentals());
         // Navigate to Request Book screen
         requestBookButton.addActionListener(e -> navigateToRequestBookScreen());
+        // Navigate to Request Book screen
+        newsletterButton.addActionListener(e -> navigateToNewsletterScreen());
 
         // Buttons panel
         JPanel buttonsPanel = new JPanel(new GridLayout(1, 3));
@@ -66,6 +68,12 @@ public class StudentDashboard extends JFrame {
         dispose(); // Dispose the current dashboard
         RequestBookScreen requestBookScreen = new RequestBookScreen(); // Open the physical item screen
         requestBookScreen.setVisible(true);
+    }
+
+    private void navigateToNewsletterScreen() {
+        dispose(); // Dispose the current dashboard
+        NewsletterScreen newsletterScreen = new NewsletterScreen(); // Open the physical item screen
+        newsletterScreen.setVisible(true);
     }
 
     public static void main(String[] args) {
