@@ -7,14 +7,14 @@ import java.awt.event.ActionListener;
 //Payment_info
 
 
-public class Payment_info extends JFrame {
+public class PayWithDebitScreen extends JFrame {
     private JLabel totalPriceLabel;
     private JTextField cardholderNameField;
     private JTextField cardNumberField;
     private JTextField cvvField;
     private JTextField expirationDateField;
 
-    public Payment_info() {
+    public PayWithDebitScreen() {
         setTitle("Checkout");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
@@ -85,7 +85,7 @@ public class Payment_info extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Payment_info().setVisible(true);
+                new PayWithDebitScreen().setVisible(true);
             }
         });
     }

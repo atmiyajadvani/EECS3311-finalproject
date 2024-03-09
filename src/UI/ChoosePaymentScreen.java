@@ -5,13 +5,13 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Payment extends JFrame {
+public class ChoosePaymentScreen extends JFrame {
     private JLabel cartLabel;
     private JRadioButton creditCardRadio;
     private JRadioButton debitCardRadio;
     private JRadioButton paypalRadio;
 
-    public Payment() {
+    public ChoosePaymentScreen() {
         setTitle("Payment GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 400);
@@ -73,7 +73,7 @@ public class Payment extends JFrame {
         SwingUtilities.invokeLater(new Runnable() {
             @Override
             public void run() {
-                new Payment().setVisible(true);
+                new ChoosePaymentScreen().setVisible(true);
             }
         });
     }

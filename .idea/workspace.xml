@@ -5,12 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/UI/NewsletterScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/CartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/CartScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/RequestBookScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/RequestBookScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/StudentDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Payment.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/ChoosePaymentScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/Payment_info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/PayWithDebitScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,9 +50,11 @@
     "Application.BookSearchStudent.executor": "Run",
     "Application.Cart.executor": "Run",
     "Application.CartScreen.executor": "Run",
+    "Application.ChoosePaymentScreen.executor": "Run",
     "Application.Dashboard.executor": "Run",
     "Application.LoginPage.executor": "Run",
     "Application.NewsletterScreen.executor": "Run",
+    "Application.PayWithDebitScreen.executor": "Run",
     "Application.Payment.executor": "Run",
     "Application.Payment_info.executor": "Run",
     "Application.RegistrationView.executor": "Run",
@@ -99,7 +99,7 @@
       <workItem from="1709166332745" duration="2000" />
       <workItem from="1709172765429" duration="31000" />
       <workItem from="1709778171146" duration="188000" />
-      <workItem from="1709929247136" duration="17398000" />
+      <workItem from="1709929247136" duration="19182000" />
     </task>
     <servers />
   </component>
