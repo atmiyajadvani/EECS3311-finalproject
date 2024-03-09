@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class RequestBook extends JFrame {
+public class RequestBookScreen extends JFrame {
     private JButton btnCourseTeaching, btnSelfImprovement, btnRequestBook;
     private JTextField txtBookName;
     private boolean isCourseTeachingSelected = false, isSelfImprovementSelected = false;
 
-    public RequestBook() {
+    public RequestBookScreen() {
         setTitle("Request a Book");
         setSize(500, 300);
         setLocationRelativeTo(null);
@@ -64,7 +64,7 @@ public class RequestBook extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Display a JOptionPane message dialog
-                JOptionPane.showMessageDialog(RequestBook.this,
+                JOptionPane.showMessageDialog(RequestBookScreen.this,
                         "Priority is given to books for course teaching purposes.", "Information",
                         JOptionPane.INFORMATION_MESSAGE);
             }
@@ -120,10 +120,10 @@ public class RequestBook extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (isFormValid()) {
-                    JOptionPane.showMessageDialog(RequestBook.this, "Book Requested Successfully!");
+                    JOptionPane.showMessageDialog(RequestBookScreen.this, "Book Requested Successfully!");
                 } else {
                     // Display error message
-                    JOptionPane.showMessageDialog(RequestBook.this,
+                    JOptionPane.showMessageDialog(RequestBookScreen.this,
                             "Please select a category and enter the name of the book.", "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
@@ -149,7 +149,7 @@ public class RequestBook extends JFrame {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new RequestBook().setVisible(true);
+            new RequestBookScreen().setVisible(true);
         });
     }
 }
