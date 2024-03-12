@@ -17,25 +17,25 @@ public class ManagerDashboard extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // Initialize buttons
+        // initialize buttons
         addItemButton = new JButton("Add physical item");
         enableDisableItemButton = new JButton("Enable/disable physical item");
         signOutButton = new JButton("Sign out");
 
-        // Navigate to Add Item screen
+        // navigate to add item screen
         addItemButton.addActionListener(e -> navigateToAddItem());
-        // Navigate to Enable/Disable Item screen
+        // navigate to enable/disable item screen
         enableDisableItemButton.addActionListener(e -> navigateToEnableDisableItem());
 
-        // Sign out action
+        // sign out action
         signOutButton.addActionListener(e -> signOut());
 
-        // Options panel
+        // options panel
         JPanel optionsPanel = new JPanel(new GridLayout(1, 2));
         optionsPanel.add(addItemButton);
         optionsPanel.add(enableDisableItemButton);
 
-        // South panel with Sign out button
+        // south panel with sign out button
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         southPanel.add(signOutButton);
 
