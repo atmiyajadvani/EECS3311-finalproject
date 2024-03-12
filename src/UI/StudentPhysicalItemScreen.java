@@ -9,11 +9,11 @@ public class StudentPhysicalItemScreen extends JFrame {
     private JTextField searchTextField;
     private DefaultListModel<String> itemListModel;
     private JList<String> itemList;
-    private List<String> cart;
+    private static DefaultListModel<String> cartListModel;
     private JButton backButton;
+    private JButton viewCartButton; // Added button to view the cart
 
     public StudentPhysicalItemScreen() {
-        this.cart = cart;
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setTitle("YorkU Library Management App - Search for Physical Items");
         setSize(800, 600);
@@ -26,7 +26,7 @@ public class StudentPhysicalItemScreen extends JFrame {
         itemListModel = new DefaultListModel<>();
         itemList = new JList<>(itemListModel);
         itemList.setCellRenderer(new ItemCellRenderer());
-        itemList.setFixedCellHeight(70); // Increased cell height
+        itemList.setFixedCellHeight(70);
 
         JScrollPane scrollPane = new JScrollPane(itemList);
         add(scrollPane, BorderLayout.CENTER);
@@ -35,20 +35,27 @@ public class StudentPhysicalItemScreen extends JFrame {
         topPanel.add(backButton);
         topPanel.add(new JLabel("Search for Physical Item"));
         topPanel.add(searchTextField);
+
+        // Create a button to view the cart
+        viewCartButton = new JButton("View Cart");
+        viewCartButton.addActionListener(this::viewCart);
+        topPanel.add(viewCartButton);
+
         add(topPanel, BorderLayout.NORTH);
+
+        // Initialize cartListModel
+        cartListModel = new DefaultListModel<>();
 
         // Load items (simulation)
         loadItems("");
     }
 
     private void goBackToDashboard(ActionEvent e) {
-        // Close the current screen and open the StudentDashboard
         this.dispose();
-        new Dashboard().setVisible(true);  // Ensure that StudentDashboard constructor is public
+        new Dashboard().setVisible(true);
     }
 
     private void loadItems(String searchText) {
-        // Simulate item loading. Replace with actual loading logic.
         String[] items = {
                 "Atomic Habits by James Clear | Book | Location: Central Library | Purchase from online store | A supremely practical and useful book.",
                 "Tech Crunch Magazine Issue 2021 | Magazine | Location: Central Library | Purchase from online store | Stay updated with the latest technology trends.",
@@ -85,15 +92,27 @@ public class StudentPhysicalItemScreen extends JFrame {
     }
 
     private void addToCart(String item) {
-        cart.add(item);
-        // Show the CartScreen with the updated cart
-        CartScreen cartScreen = new CartScreen((DefaultListModel<String>) cart);
-        cartScreen.setVisible(true);
+        cartListModel.addElement(item);
+        System.out.println("Item added to cart: " + item);
+    }
+
+    private void viewCart(ActionEvent e) {
+        new CartScreen(cartListModel, new CartUpdateListener() {
+            @Override
+            public void onCartUpdated(List<String> newCart) {
+                // Handle cart updates if needed
+            }
+        }).setVisible(true);
+    }
+
+    public static void setCartListModel(DefaultListModel<String> cartListModel) {
+        StudentPhysicalItemScreen.cartListModel = cartListModel;
     }
 
     public static void main(String[] args) {
-        // For testing purposes, start with an empty cart.
         DefaultListModel<String> cartListModel = new DefaultListModel<>();
+        setCartListModel(cartListModel);
+
         EventQueue.invokeLater(() -> new StudentPhysicalItemScreen().setVisible(true));
     }
 }

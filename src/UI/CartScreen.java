@@ -3,6 +3,7 @@ package UI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.List;
 
 public class CartScreen extends JFrame {
     private DefaultListModel<String> cartListModel;
@@ -10,10 +11,12 @@ public class CartScreen extends JFrame {
     private JTextField promoCodeField;
     private JLabel totalAmountLabel;
     private float totalAmount; // Assuming this value will be computed dynamically
+    private CartUpdateListener cartUpdateListener; // Callback interface
 
-    public CartScreen(DefaultListModel<String> cartListModel) {
+    public CartScreen(DefaultListModel<String> cartListModel, CartUpdateListener cartUpdateListener) {
         this.cartListModel = cartListModel;
-        this.totalAmount = totalAmount;
+        this.cartUpdateListener = cartUpdateListener;
+        this.totalAmount = computeTotalAmount(); // Assuming there is a method to compute the total amount
 
         setTitle("YorkU Library Management App - Cart");
         setSize(600, 400);
@@ -54,12 +57,17 @@ public class CartScreen extends JFrame {
         add(bottomPanel, BorderLayout.SOUTH);
     }
 
+    private float computeTotalAmount() {
+        // Implement logic to compute total amount dynamically
+        return 0.0f;
+    }
+
     private void applyPromoCode(ActionEvent event) {
         // Implement promo code application logic here
     }
 
     private void navigateToPaymentScreen() {
-        // Implement navigation to payment screen logic here
+        new ChoosePaymentScreen(cartListModel).setVisible(true);
     }
 
     private class CartListCellRenderer extends JPanel implements ListCellRenderer<String> {
@@ -90,7 +98,20 @@ public class CartScreen extends JFrame {
         model.addElement("[magazine-9892] Tech Crunch Magazine | ID: 1233 | Location: Scott Library | Purchase from online store");
         model.addElement("[CD-1928] Demon Slayer - A Mega Saga | ID: 1233 | Location: Scott Library | Purchase from online store");
 
+        // Create a callback listener
+        CartUpdateListener cartUpdateListener = new CartUpdateListener() {
+            @Override
+            public void onCartUpdated(List<String> newCart) {
+                // Handle the cart update in the listener
+                // For example, you can update another component or perform additional actions
+            }
+        };
+
         // Example usage
-        SwingUtilities.invokeLater(() -> new CartScreen(model).setVisible(true));
+        SwingUtilities.invokeLater(() -> new CartScreen(model, cartUpdateListener).setVisible(true));
     }
+}
+
+interface CartUpdateListener {
+    void onCartUpdated(List<String> newCart);
 }
