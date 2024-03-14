@@ -1,3 +1,1 @@
-EECS 3311 Project 2:
-
-Aahish(ME)
+EECS 3311 Final Project
