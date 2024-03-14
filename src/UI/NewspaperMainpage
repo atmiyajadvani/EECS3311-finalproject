@@ -1,0 +1,58 @@
+package UI;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JSeparator;
+import javax.swing.SwingConstants;
+import java.awt.BorderLayout;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+
+public class NewspaperMainpage extends JFrame {
+    public NewspaperMainpage() {
+        setTitle("Newspapers");
+        setSize(400, 200); // Set the size of the frame
+        setLocationRelativeTo(null); // Center the frame
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        initUI();
+    }
+
+    private void initUI() {
+        // Main panel with BorderLayout to manage components
+        JPanel panel = new JPanel(new BorderLayout(10, 10));
+
+        // Label at the top
+        JLabel titleLabel = new JLabel("Newspapers", JLabel.CENTER);
+        panel.add(titleLabel, BorderLayout.NORTH);
+
+        // Panel for buttons and separator
+        JPanel buttonPanel = new JPanel(new FlowLayout());
+
+        // Button "Subscribe to new papers"
+        JButton subscribeButton = new JButton("Subscribe to new papers");
+        buttonPanel.add(subscribeButton);
+
+        // Separator
+        JSeparator separator = new JSeparator(SwingConstants.VERTICAL);
+        separator.setPreferredSize(new Dimension(2, 50)); // Set the size of the separator
+        buttonPanel.add(separator);
+
+        // Button "I'm already subscribed"
+        JButton alreadySubscribedButton = new JButton("I'm already subscribed");
+        buttonPanel.add(alreadySubscribedButton);
+
+        panel.add(buttonPanel, BorderLayout.CENTER);
+
+        // Adding the main panel to the frame
+        add(panel);
+    }
+
+    public static void main(String[] args) {
+        javax.swing.SwingUtilities.invokeLater(() -> {
+            NewspaperMainpage frame = new NewspaperMainpage();
+            frame.setVisible(true);
+        });
+    }
+}
