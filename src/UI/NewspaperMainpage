@@ -1,10 +1,14 @@
 package UI;
-
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 public class NewspaperMainpage extends JFrame {
 
@@ -93,31 +97,87 @@ public class NewspaperMainpage extends JFrame {
 
         JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
 
-        if(userData[num] == 1){
-
-            JButton button1 = new JButton("Unsubscribe");
-            JButton button2 = new JButton("View");
-            button1.setPreferredSize(new Dimension(150, 30));
-            button2.setPreferredSize(new Dimension(150, 30));
-            buttonsPanel.add(button1);
-            buttonsPanel.add(button2);
-            panel.add(buttonsPanel, BorderLayout.SOUTH);
-
+        JButton button1;
+        if (userData[num] == 1) {
+            button1 = new JButton("Unsubscribe");
+        } else {
+            button1 = new JButton("  Subscribe  ");
         }
-        else if (userData[num] == 0){
+        JButton button2 = new JButton("View");
+        button1.setPreferredSize(new Dimension(150, 30));
+        button2.setPreferredSize(new Dimension(150, 30));
+        buttonsPanel.add(button1);
+        buttonsPanel.add(button2);
+        panel.add(buttonsPanel, BorderLayout.SOUTH);
 
-            JButton button1 = new JButton("  Subscribe  ");
-            JButton button2 = new JButton("View");
-            button1.setPreferredSize(new Dimension(150, 30));
-            button2.setPreferredSize(new Dimension(150, 30));
-            buttonsPanel.add(button1);
-            buttonsPanel.add(button2);
-            panel.add(buttonsPanel, BorderLayout.SOUTH);
+        // Add action listener to the "Subscribe" button
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (button1.getText().equals("  Subscribe  ")) {
+                    // Show input dialog for payment information
+                    String paymentInfo = JOptionPane.showInputDialog(null, "Please enter your payment information:");
+                    // Show payment accepted message
+                    JOptionPane.showMessageDialog(null, "Payment Accepted!");
+                    userData[num] = 1;
+                    // Enable the "View" button
+                    button2.setEnabled(true);
+                    // Change the button text to "Unsubscribe"
+                    button1.setText("Unsubscribe");
+                } else {
+                    // Show confirmation dialog
+                    int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to unsubscribe?", "Unsubscribe", JOptionPane.YES_NO_OPTION);
+                    if (choice == JOptionPane.YES_OPTION) {
+                        // Update userData array
+                        userData[num] = 0;
+                        // Change the button text to "Subscribe"
+                        button1.setText("  Subscribe  ");
+                        // Disable the "View" button
+                        button2.setEnabled(false);
+                    }
+                }
+            }
+        });
 
+        if (userData[num] == 0) {
+            button2.setEnabled(false);
         }
-        
+
+        // Add action listener to the "View" button
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (userData[num] == 1) {
+                    openImage(num);
+                }
+            }
+        });
+
         return panel;
     }
+
+    // Method to open the image corresponding to the section
+    private void openImage(int num) {
+        String imagePath = "src/UI/newspaperPhotos/" + num + ".png";
+        try {
+            ImageIcon imageIcon = new ImageIcon(imagePath);
+            JLabel imageLabel = new JLabel(imageIcon);
+            JScrollPane scrollPane = new JScrollPane(imageLabel);
+
+            // Set preferred size of the scroll pane to fit width and set a fixed height
+            int width = imageIcon.getIconWidth();
+            int fixedHeight = 600; // You can adjust this as needed
+            scrollPane.setPreferredSize(new Dimension(width, fixedHeight));
+
+            // Show the scrollable window
+            JOptionPane.showMessageDialog(null, scrollPane, "Image", JOptionPane.PLAIN_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error opening image: " + e.getMessage());
+        }
+    }
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new NewspaperMainpage());
