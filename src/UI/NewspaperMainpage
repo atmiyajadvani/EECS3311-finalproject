@@ -1,58 +1,72 @@
 package UI;
 
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JPanel;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import java.awt.BorderLayout;
-import java.awt.Dimension;
-import java.awt.FlowLayout;
+import javax.swing.*;
+import java.awt.*;
 
 public class NewspaperMainpage extends JFrame {
+
     public NewspaperMainpage() {
         setTitle("Newspapers");
-        setSize(400, 200); // Set the size of the frame
-        setLocationRelativeTo(null); // Center the frame
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        initUI();
+        setSize(600, 450);
+        setLayout(new BorderLayout());
+
+        JLabel titleLabel = new JLabel("Newspapers");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Increase font size
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(titleLabel, BorderLayout.NORTH);
+
+        JLabel subtitleLabel = new JLabel("<html><i>Only subscribed users are able to preview papers</i></html>"); // Italics
+        subtitleLabel.setFont(new Font("Arial", Font.ITALIC, 14)); // Decrease font size
+        subtitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(subtitleLabel, BorderLayout.CENTER);
+
+        JPanel sectionsPanel = new JPanel(new GridLayout(4, 1));
+
+        // Section 1
+        JPanel section1Panel = createSectionPanel("New York's Time", "New York's Time delivers bite-sized insights into NYC's culture, events, and hidden gems.");
+        sectionsPanel.add(section1Panel);
+
+        // Section 2
+        JPanel section2Panel = createSectionPanel("The Mail and Globe", "\"The Mail and Globe\" is your weekly briefing. Stay informed on the latest news and trends shaping our world.");
+        sectionsPanel.add(section2Panel);
+
+        // Section 3
+        JPanel section3Panel = createSectionPanel("Toronto Moon", "\"Toronto Moon\" is your essential weekly digest of all things Toronto, featuring the latest events and gems.");
+        sectionsPanel.add(section3Panel);
+
+        // Section 4
+        JPanel section4Panel = createSectionPanel("The DC Post", "\"The DC Post\" delivers weekly updates on all things Washington D.C., from politics and culture to events and local news.");
+        sectionsPanel.add(section4Panel);
+
+        add(sectionsPanel, BorderLayout.SOUTH);
+
+        setVisible(true);
     }
 
-    private void initUI() {
-        // Main panel with BorderLayout to manage components
-        JPanel panel = new JPanel(new BorderLayout(10, 10));
-
-        // Label at the top
-        JLabel titleLabel = new JLabel("Newspapers", JLabel.CENTER);
+    private JPanel createSectionPanel(String title, String description) {
+        JPanel panel = new JPanel(new BorderLayout());
+        JLabel titleLabel = new JLabel(title);
+        titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
         panel.add(titleLabel, BorderLayout.NORTH);
 
-        // Panel for buttons and separator
-        JPanel buttonPanel = new JPanel(new FlowLayout());
+        JTextArea descriptionArea = new JTextArea(description);
+        descriptionArea.setLineWrap(true);
+        descriptionArea.setWrapStyleWord(true);
+        descriptionArea.setEditable(false);
+        panel.add(descriptionArea, BorderLayout.CENTER);
 
-        // Button "Subscribe to new papers"
-        JButton subscribeButton = new JButton("Subscribe to new papers");
-        buttonPanel.add(subscribeButton);
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        JButton button1 = new JButton("Button 1");
+        JButton button2 = new JButton("Button 2");
+        buttonsPanel.add(button1);
+        buttonsPanel.add(button2);
+        panel.add(buttonsPanel, BorderLayout.SOUTH);
 
-        // Separator
-        JSeparator separator = new JSeparator(SwingConstants.VERTICAL);
-        separator.setPreferredSize(new Dimension(2, 50)); // Set the size of the separator
-        buttonPanel.add(separator);
-
-        // Button "I'm already subscribed"
-        JButton alreadySubscribedButton = new JButton("I'm already subscribed");
-        buttonPanel.add(alreadySubscribedButton);
-
-        panel.add(buttonPanel, BorderLayout.CENTER);
-
-        // Adding the main panel to the frame
-        add(panel);
+        return panel;
     }
 
     public static void main(String[] args) {
-        javax.swing.SwingUtilities.invokeLater(() -> {
-            NewspaperMainpage frame = new NewspaperMainpage();
-            frame.setVisible(true);
-        });
+        SwingUtilities.invokeLater(() -> new NewspaperMainpage());
     }
 }
