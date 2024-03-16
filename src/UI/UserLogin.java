@@ -95,7 +95,6 @@ public class UserLogin extends JFrame {
 
 class Dashboard extends JFrame {
     public Dashboard() {
-        dispose();
         new StudentDashboard().setVisible(true);
     }
 }

@@ -44,7 +44,7 @@ public class StudentPhysicalItemScreen extends JFrame {
     private void goBackToDashboard(ActionEvent e) {
         // Close the current screen and open the StudentDashboard
         this.dispose();
-        new Dashboard().setVisible(true);  // Ensure that StudentDashboard constructor is public
+        new Dashboard();  // Ensure that StudentDashboard constructor is public
     }
 
     private void loadItems(String searchText) {
