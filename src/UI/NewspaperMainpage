@@ -1,0 +1,185 @@
+package UI;
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.net.URI;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+
+public class NewspaperMainpage extends JFrame {
+
+    public NewspaperMainpage() {
+
+        int id = 1000; //temp id because user class not ready
+        int[] userData = new int[4];
+
+        String csvFile = "src/UI/userSubs.csv";
+
+        // Try-with-resources to automatically close the BufferedReader
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            // Read each line from the CSV file
+            while ((line = br.readLine()) != null) {
+                // Split the line by comma (assuming CSV format)
+                String[] data = line.split(",");
+
+                // Extract the user ID (assuming it's the first column)
+                int userId = Integer.parseInt(data[0].trim());
+
+                // Check if the user ID matches the target user ID
+                if (userId == id) {
+                    // Extract the next four values (assuming they are 0s and 1s)
+                    for (int i = 0; i < 4; i++) {
+                        userData[i] = Integer.parseInt(data[i+1].trim()); // Assuming the values start from the second column
+                        System.out.println(userData[i]);
+                    }
+                    break; // Stop reading further once the target user is found
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        setTitle("Newspapers");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(600, 450);
+        setLayout(new BorderLayout());
+
+        JLabel titleLabel = new JLabel("Newspapers");
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 24)); // Increase font size
+        titleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(titleLabel, BorderLayout.NORTH);
+
+        JLabel subtitleLabel = new JLabel("<html><i>Only subscribed users are able to preview papers</i></html>"); // Italics
+        subtitleLabel.setFont(new Font("Arial", Font.ITALIC, 14)); // Decrease font size
+        subtitleLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        add(subtitleLabel, BorderLayout.CENTER);
+
+        JPanel sectionsPanel = new JPanel(new GridLayout(4, 1));
+
+        // Section 1
+        JPanel section1Panel = createSectionPanel("New York's Time", "New York's Time delivers bite-sized insights into NYC's culture, events, and hidden gems.", 0, userData);
+        sectionsPanel.add(section1Panel);
+
+        // Section 2
+        JPanel section2Panel = createSectionPanel("The Mail and Globe", "\"The Mail and Globe\" is your weekly briefing. Stay informed on the latest news and trends shaping our world.", 1, userData);
+        sectionsPanel.add(section2Panel);
+
+        // Section 3
+        JPanel section3Panel = createSectionPanel("Toronto Moon", "\"Toronto Moon\" is your essential weekly digest of all things Toronto, featuring the latest events and gems.", 2, userData);
+        sectionsPanel.add(section3Panel);
+
+        // Section 4
+        JPanel section4Panel = createSectionPanel("The DC Post", "\"The DC Post\" delivers weekly updates on all things Washington D.C., from politics and culture to events and local news.", 3, userData);
+        sectionsPanel.add(section4Panel);
+
+        add(sectionsPanel, BorderLayout.SOUTH);
+
+        setVisible(true);
+    }
+
+    private JPanel createSectionPanel(String title, String description, int num, int[] userData) {
+        JPanel panel = new JPanel(new BorderLayout());
+        JLabel titleLabel = new JLabel(title);
+        titleLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        panel.add(titleLabel, BorderLayout.NORTH);
+
+        JTextArea descriptionArea = new JTextArea(description);
+        descriptionArea.setLineWrap(true);
+        descriptionArea.setWrapStyleWord(true);
+        descriptionArea.setEditable(false);
+        panel.add(descriptionArea, BorderLayout.CENTER);
+
+        JPanel buttonsPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+
+        JButton button1;
+        if (userData[num] == 1) {
+            button1 = new JButton("Unsubscribe");
+        } else {
+            button1 = new JButton("  Subscribe  ");
+        }
+        JButton button2 = new JButton("View");
+        button1.setPreferredSize(new Dimension(150, 30));
+        button2.setPreferredSize(new Dimension(150, 30));
+        buttonsPanel.add(button1);
+        buttonsPanel.add(button2);
+        panel.add(buttonsPanel, BorderLayout.SOUTH);
+
+        // Add action listener to the "Subscribe" button
+        button1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (button1.getText().equals("  Subscribe  ")) {
+                    // Show input dialog for payment information
+                    String paymentInfo = JOptionPane.showInputDialog(null, "Please enter your payment information:");
+                    // Show payment accepted message
+                    JOptionPane.showMessageDialog(null, "Payment Accepted!");
+                    userData[num] = 1;
+                    // Enable the "View" button
+                    button2.setEnabled(true);
+                    // Change the button text to "Unsubscribe"
+                    button1.setText("Unsubscribe");
+                } else {
+                    // Show confirmation dialog
+                    int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to unsubscribe?", "Unsubscribe", JOptionPane.YES_NO_OPTION);
+                    if (choice == JOptionPane.YES_OPTION) {
+                        // Update userData array
+                        userData[num] = 0;
+                        // Change the button text to "Subscribe"
+                        button1.setText("  Subscribe  ");
+                        // Disable the "View" button
+                        button2.setEnabled(false);
+                    }
+                }
+            }
+        });
+
+        if (userData[num] == 0) {
+            button2.setEnabled(false);
+        }
+
+        // Add action listener to the "View" button
+        button2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (userData[num] == 1) {
+                    openImage(num);
+                }
+            }
+        });
+
+        return panel;
+    }
+
+    // Method to open the image corresponding to the section
+    private void openImage(int num) {
+        String imagePath = "src/UI/newspaperPhotos/" + num + ".png";
+        try {
+            ImageIcon imageIcon = new ImageIcon(imagePath);
+            JLabel imageLabel = new JLabel(imageIcon);
+            JScrollPane scrollPane = new JScrollPane(imageLabel);
+
+            // Set preferred size of the scroll pane to fit width and set a fixed height
+            int width = imageIcon.getIconWidth();
+            int fixedHeight = 600; // You can adjust this as needed
+            scrollPane.setPreferredSize(new Dimension(width, fixedHeight));
+
+            // Show the scrollable window
+            JOptionPane.showMessageDialog(null, scrollPane, "Image", JOptionPane.PLAIN_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error opening image: " + e.getMessage());
+        }
+    }
+
+
+
+    public static void main(String[] args) {
+        SwingUtilities.invokeLater(() -> new NewspaperMainpage());
+    }
+}
