@@ -12,6 +12,7 @@ public class AddItem extends JFrame {
     private JTextField purchaseFromField;
     private JTextField descriptionField;
     private JButton addItemButton;
+    private JButton backButton;
 
     public AddItem() { initializeUI(); }
 
@@ -24,8 +25,10 @@ public class AddItem extends JFrame {
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel formPanel = new JPanel(new GridLayout(0, 2, 20, 20));
+        JPanel bottomPanel = new JPanel();
         formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // padding
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // padding
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // padding
 
         // initialize form elements
         titleField = new JTextField();
@@ -35,6 +38,8 @@ public class AddItem extends JFrame {
         descriptionField = new JTextField();
         addItemButton = new JButton("Add Item");
         addItemButton.addActionListener(e -> addItem());
+        backButton = new JButton("Back");
+        backButton.addActionListener(e -> goBack());
 
         // add elements to form panel
         formPanel.add(new JLabel("Title:"));
@@ -48,8 +53,11 @@ public class AddItem extends JFrame {
         formPanel.add(new JLabel("Description:"));
         formPanel.add(descriptionField);
 
+        bottomPanel.add(backButton);
+        bottomPanel.add(addItemButton);
+
         mainPanel.add(formPanel, BorderLayout.CENTER);
-        mainPanel.add(addItemButton, BorderLayout.SOUTH);
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         add(mainPanel);
     }
@@ -74,8 +82,7 @@ public class AddItem extends JFrame {
             JOptionPane.showMessageDialog(this, "Item added successfully!");
 
             // return to manager dashboard
-            this.dispose();
-            new ManagerDashboard().setVisible(true);
+            goBack();
         } catch (IOException e) {
             System.err.println("Error appending data to CSV file: " + e.getMessage());
         } finally {
@@ -87,6 +94,11 @@ public class AddItem extends JFrame {
                 System.err.println("Error closing FileWriter: " + e.getMessage());
             }
         }
+    }
+
+    private void goBack() {
+        this.dispose();
+        new ManagerDashboard().setVisible(true);
     }
 
     public static void main(String[] args) {
