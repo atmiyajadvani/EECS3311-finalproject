@@ -2,86 +2,92 @@ package UI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class StudentPhysicalItemScreen extends JFrame {
-    private List<Item> items;
-    private int userId; // Changed to an instance variable, not static
+    private DefaultListModel<String> itemListModel;
+    private List<String[]> csvData;
+    private JTextField searchTextField;
 
     public StudentPhysicalItemScreen(int id) {
-        this.userId = id; // Properly set the userId for this instance
         setTitle("Item Search");
         setSize(600, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        items = readItemsFromCSV("ItemSpreadsheet.csv");
-        JPanel itemsPanel = new JPanel();
-        itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
-        JScrollPane scrollPane = new JScrollPane(itemsPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        itemListModel = new DefaultListModel<>();
+        JList<String> itemList = new JList<>(itemListModel);
+        JScrollPane scrollPane = new JScrollPane(itemList);
         add(scrollPane, BorderLayout.CENTER);
 
-        for (Item item : items) {
-            JPanel itemPanel = new JPanel();
-            itemPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-            JLabel itemLabel = new JLabel(item.toString());
-            JButton addButton = new JButton("Add to Cart");
-            addButton.addActionListener(e -> {
-                // Implement your add to cart logic here, potentially involving `userId`
-                System.out.println("User " + userId + " added to cart: " + item.getName());
-            });
-            itemPanel.add(itemLabel);
-            itemPanel.add(addButton);
-            itemsPanel.add(itemPanel);
-        }
+        JPanel searchPanel = new JPanel();
+        searchTextField = new JTextField(20);
+        JButton searchButton = new JButton("Search");
+        searchPanel.add(new JLabel("Search:"));
+        searchPanel.add(searchTextField);
+        searchPanel.add(searchButton);
+        add(searchPanel, BorderLayout.NORTH);
+
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                searchItem(e);
+            }
+        });
+
+        loadCSVData("src/UI/ItemSpreadsheet.csv");
     }
 
-    private List<Item> readItemsFromCSV(String filePath) {
-        List<Item> itemList = new ArrayList<>();
+    private void loadCSVData(String filePath) {
+        csvData = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
-            br.readLine(); // Skip the header line
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                Item item = new Item(values[1], values[2], values[3], values[4]);
-                itemList.add(item);
+                csvData.add(values);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return itemList;
+    }
+
+    private void searchItem(ActionEvent e) {
+        String searchText = searchTextField.getText().trim().toLowerCase();
+        itemListModel.clear();
+
+        // Keep track of added items to avoid duplicates
+        Set<String> addedItems = new HashSet<>();
+
+        for (String[] item : csvData) {
+            if (item.length >= 4) { // Ensure the item has at least 4 parts (ID, name, author, type)
+                String itemName = item[1].trim().toLowerCase();
+                String author = item[2].trim().toLowerCase();
+                String itemType = item[3].trim().toLowerCase();
+
+                // Check if any part of the item matches the search text
+                if (itemName.contains(searchText) || author.contains(searchText) || itemType.contains(searchText)) {
+                    String itemInfo = "Item Name: " + item[1] + "\nAuthor: " + item[2] + "\nItem Type: " + item[3] + "\n";
+
+                    // Check if the item info is already added to avoid duplicates
+                    if (!addedItems.contains(itemInfo.toLowerCase())) {
+                        itemListModel.addElement(itemInfo);
+                        addedItems.add(itemInfo.toLowerCase());
+                    }
+                }
+            } else {
+                System.out.println("Invalid item format: " + String.join(", ", item));
+            }
+        }
     }
 
     public static void main(String[] args) {
-        // The userId needs to be passed in some way. This example will set it manually
-        // for demonstration.
-        int sampleUserId = 1; // This should be replaced with actual logic to obtain a user's ID
+        int sampleUserId = 1;
         EventQueue.invokeLater(() -> new StudentPhysicalItemScreen(sampleUserId).setVisible(true));
-    }
-
-    static class Item {
-        private String name;
-        private String author;
-        private String itemType;
-        private String amountLeft;
-
-        public Item(String name, String author, String itemType, String amountLeft) {
-            this.name = name;
-            this.author = author;
-            this.itemType = itemType;
-            this.amountLeft = amountLeft;
-        }
-
-        @Override
-        public String toString() {
-            return name + " | " + author + " | " + itemType + " | " + amountLeft;
-        }
-
-        public String getName() {
-            return this.name;
-        }
     }
 }
