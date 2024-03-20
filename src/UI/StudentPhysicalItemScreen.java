@@ -2,110 +2,86 @@ package UI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class StudentPhysicalItemScreen extends JFrame {
-    private DefaultListModel<String> model;
-    private JList<String> itemList;
-    private JTextField searchTextField;
-    private JButton backButton;
-    private static int userId;
+    private List<Item> items;
+    private int userId; // Changed to an instance variable, not static
 
     public StudentPhysicalItemScreen(int id) {
-        this.userId = id;
-        setTitle("Library Management Application");
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.userId = id; // Properly set the userId for this instance
+        setTitle("Item Search");
         setSize(600, 400);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Initialize components
-        model = new DefaultListModel<>();
-        itemList = new JList<>(model);
-        itemList.setCellRenderer(new ItemCellRenderer());
-        JScrollPane scrollPane = new JScrollPane(itemList);
-        JPanel topPanel = new JPanel(new FlowLayout());
-        searchTextField = new JTextField(20);
-        JButton searchButton = new JButton("Search");
-        backButton = new JButton("Back");
-
-        // Add components to the top panel
-        topPanel.add(backButton);
-        topPanel.add(new JLabel("Search:"));
-        topPanel.add(searchTextField);
-        topPanel.add(searchButton);
-
-        // Add action listeners
-        backButton.addActionListener(this::goBackToDashboard);
-        searchButton.addActionListener(e -> loadItems(searchTextField.getText()));
-
-        // Set layout
-        setLayout(new BorderLayout());
-        add(topPanel, BorderLayout.NORTH);
+        items = readItemsFromCSV("ItemSpreadsheet.csv");
+        JPanel itemsPanel = new JPanel();
+        itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(itemsPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
         add(scrollPane, BorderLayout.CENTER);
+
+        for (Item item : items) {
+            JPanel itemPanel = new JPanel();
+            itemPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+            JLabel itemLabel = new JLabel(item.toString());
+            JButton addButton = new JButton("Add to Cart");
+            addButton.addActionListener(e -> {
+                // Implement your add to cart logic here, potentially involving `userId`
+                System.out.println("User " + userId + " added to cart: " + item.getName());
+            });
+            itemPanel.add(itemLabel);
+            itemPanel.add(addButton);
+            itemsPanel.add(itemPanel);
+        }
     }
 
-    private void loadItems(String searchText) {
-        model.clear(); // Clear the existing items before loading new ones
-
-        String csvFile = "src/UI/ItemSpreadsheet.csv";
-        String line;
-        String csvSplitBy = ",";
-
-        ArrayList<String> itemList = new ArrayList<>(); // ArrayList to hold formatted items
-
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+    private List<Item> readItemsFromCSV(String filePath) {
+        List<Item> itemList = new ArrayList<>();
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            br.readLine(); // Skip the header line
             while ((line = br.readLine()) != null) {
-                System.out.println("Read line: " + line); // Debugging output
-                String[] columns = line.split(csvSplitBy);
-
-                String formattedItem = columns[1].trim() + " | " + columns[2].trim() + " | " + columns[3].trim();
-                System.out.println(formattedItem);
-                itemList.add(formattedItem); // Adding formatted item to ArrayList
+                String[] values = line.split(",");
+                Item item = new Item(values[1], values[2], values[3], values[4]);
+                itemList.add(item);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        // Convert ArrayList to array
-        String[] itemsArray = new String[itemList.size()];
-        itemsArray = itemList.toArray(itemsArray);
-
-        // Assuming itemListModel is an existing array list model
-        for (String item : itemsArray) {
-            model.addElement(item); // Adding items from array to itemListModel
-        }
-    }
-
-    private void goBackToDashboard(ActionEvent e) {
-        // Code to go back to the dashboard
-        // For now, let's just close this window
-        dispose();
-    }
-
-    private class ItemCellRenderer extends JPanel implements ListCellRenderer<String> {
-        private JButton addButton;
-
-        public ItemCellRenderer() {
-            setLayout(new BorderLayout());
-            addButton = new JButton("Add to Cart");
-            add(addButton, BorderLayout.EAST);
-        }
-
-        @Override
-        public Component getListCellRendererComponent(JList<? extends String> list, String value, int index, boolean isSelected, boolean cellHasFocus) {
-            JLabel label = new JLabel(value);
-            add(label, BorderLayout.CENTER);
-            return this;
-        }
+        return itemList;
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> {
-            StudentPhysicalItemScreen app = new StudentPhysicalItemScreen(userId);
-            app.setVisible(true);
-        });
+        // The userId needs to be passed in some way. This example will set it manually
+        // for demonstration.
+        int sampleUserId = 1; // This should be replaced with actual logic to obtain a user's ID
+        EventQueue.invokeLater(() -> new StudentPhysicalItemScreen(sampleUserId).setVisible(true));
+    }
+
+    static class Item {
+        private String name;
+        private String author;
+        private String itemType;
+        private String amountLeft;
+
+        public Item(String name, String author, String itemType, String amountLeft) {
+            this.name = name;
+            this.author = author;
+            this.itemType = itemType;
+            this.amountLeft = amountLeft;
+        }
+
+        @Override
+        public String toString() {
+            return name + " | " + author + " | " + itemType + " | " + amountLeft;
+        }
+
+        public String getName() {
+            return this.name;
+        }
     }
 }
