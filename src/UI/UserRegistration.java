@@ -150,18 +150,23 @@ public class UserRegistration extends JFrame {
     }
 
     private static int getNextUserId(String filePath) {
-        int lastUserId = 0;
+        int maxUserId = 0;
         String line = "";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             while ((line = br.readLine()) != null) {
-                lastUserId = line.split(",")[0].equalsIgnoreCase("UserID") ? 0 : Integer.parseInt(line.split(",")[0]);
+                if (!line.trim().isEmpty() && !line.split(",")[0].equalsIgnoreCase("UserID")) {
+                    int userId = Integer.parseInt(line.split(",")[0]);
+                    if (userId > maxUserId) {
+                        maxUserId = userId;
+                    }
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         } catch (NumberFormatException e) {
             System.out.println("Error parsing UserID from the file: " + e.getMessage());
         }
-        return lastUserId + 1;
+        return maxUserId + 1;
     }
 
     private void clearFields() {
