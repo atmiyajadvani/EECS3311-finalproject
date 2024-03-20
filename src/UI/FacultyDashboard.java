@@ -11,6 +11,18 @@ public class FacultyDashboard extends JFrame {
     private JTextField inputTextField;
     private JTextArea userListTextArea;
 
+    private int userId;
+
+    public FacultyDashboard(int userId) { // Modify the constructor to accept the user ID
+        this.userId = userId; // Store the user ID
+        setTitle("Student Dashboard");
+        setSize(400, 250);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        initializeUI();
+    }
+
     public FacultyDashboard() {
         initializeUI();
     }
@@ -37,7 +49,8 @@ public class FacultyDashboard extends JFrame {
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         searchPanel.add(searchLabel);
         inputTextField = new JTextField(15); // Adjust the size here
-        inputTextField.setPreferredSize(new Dimension(150, inputTextField.getPreferredSize().height)); // Set preferred size
+        inputTextField.setPreferredSize(new Dimension(150, inputTextField.getPreferredSize().height)); // Set preferred
+                                                                                                       // size
         searchPanel.add(inputTextField);
 
         // Create a text area for displaying user list and textbooks
@@ -56,7 +69,8 @@ public class FacultyDashboard extends JFrame {
         centerPanel.add(searchPanel, BorderLayout.NORTH);
         centerPanel.add(scrollPane, BorderLayout.CENTER);
 
-        // Add titlePanel, centerPanel, and southPanel to the NORTH, CENTER, and SOUTH regions respectively
+        // Add titlePanel, centerPanel, and southPanel to the NORTH, CENTER, and SOUTH
+        // regions respectively
         add(titlePanel, BorderLayout.NORTH);
         add(centerPanel, BorderLayout.CENTER);
         add(southPanel, BorderLayout.SOUTH);
@@ -64,7 +78,6 @@ public class FacultyDashboard extends JFrame {
         // Populate user list and textbooks
         populateUserList();
     }
-
 
     private void signOut() {
         dispose(); // Dispose the current dashboard
@@ -75,8 +88,8 @@ public class FacultyDashboard extends JFrame {
     private void populateUserList() {
         // Sample data: Two users with their textbooks
         ArrayList<User> users = new ArrayList<>();
-        users.add(new User("John Doe", "Mathematics", new String[]{"Book 1", "Book 2"}));
-        users.add(new User("Jane Smith", "Physics", new String[]{"Book 3", "Book 4"}));
+        users.add(new User("John Doe", "Mathematics", new String[] { "Book 1", "Book 2" }));
+        users.add(new User("Jane Smith", "Physics", new String[] { "Book 3", "Book 4" }));
 
         // Populate the text area with user list and textbooks
         for (User user : users) {

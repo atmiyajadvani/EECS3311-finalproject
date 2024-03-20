@@ -6,7 +6,6 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 //Payment_info
 
-
 public class PayWithDebitScreen extends JFrame {
     private JLabel totalPriceLabel;
     private JTextField cardholderNameField;
@@ -65,7 +64,8 @@ public class PayWithDebitScreen extends JFrame {
         String cvv = cvvField.getText();
         String expirationDate = expirationDateField.getText();
 
-        // Replace this with the actual calculation of the total price based on items in the cart
+        // Replace this with the actual calculation of the total price based on items in
+        // the cart
         double totalPrice = calculateTotalPrice();
 
         // Display a message with the total price and card details
@@ -76,7 +76,8 @@ public class PayWithDebitScreen extends JFrame {
     }
 
     private double calculateTotalPrice() {
-        // Replace this with the actual calculation of the total price based on items in the cart
+        // Replace this with the actual calculation of the total price based on items in
+        // the cart
         // For simplicity, let's assume the total price is $100.00
         return 100.00;
     }

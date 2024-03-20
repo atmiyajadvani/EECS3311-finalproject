@@ -7,8 +7,21 @@ public class ManagerDashboard extends JFrame {
     private JButton addItemButton;
     private JButton enableDisableItemButton;
     private JButton signOutButton;
+    private int userId;
 
-    public ManagerDashboard() { initializeUI(); }
+    public ManagerDashboard(int userId) { // Modify the constructor to accept the user ID
+        this.userId = userId; // Store the user ID
+        setTitle("Student Dashboard");
+        setSize(400, 250);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        initializeUI();
+    }
+
+    public ManagerDashboard() {
+        initializeUI();
+    }
 
     private void initializeUI() {
         setTitle("YorkU Library Management App - Manager Dashboard");

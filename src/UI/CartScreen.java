@@ -64,7 +64,8 @@ public class CartScreen extends JFrame {
 
     private class CartListCellRenderer extends JPanel implements ListCellRenderer<String> {
         @Override
-        public Component getListCellRendererComponent(JList<? extends String> list, String value, int index, boolean isSelected, boolean cellHasFocus) {
+        public Component getListCellRendererComponent(JList<? extends String> list, String value, int index,
+                boolean isSelected, boolean cellHasFocus) {
             setLayout(new BorderLayout(10, 10));
             setBackground(Color.WHITE);
 
@@ -87,8 +88,10 @@ public class CartScreen extends JFrame {
     public static void main(String[] args) {
         // For demonstration, create a model with some items
         DefaultListModel<String> model = new DefaultListModel<>();
-        model.addElement("[magazine-9892] Tech Crunch Magazine | ID: 1233 | Location: Scott Library | Purchase from online store");
-        model.addElement("[CD-1928] Demon Slayer - A Mega Saga | ID: 1233 | Location: Scott Library | Purchase from online store");
+        model.addElement(
+                "[magazine-9892] Tech Crunch Magazine | ID: 1233 | Location: Scott Library | Purchase from online store");
+        model.addElement(
+                "[CD-1928] Demon Slayer - A Mega Saga | ID: 1233 | Location: Scott Library | Purchase from online store");
 
         // Example usage
         SwingUtilities.invokeLater(() -> new CartScreen(model).setVisible(true));

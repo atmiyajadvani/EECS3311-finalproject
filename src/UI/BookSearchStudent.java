@@ -24,7 +24,7 @@ public class BookSearchStudent extends JFrame {
         headerPanel.add(new Button("Back"));
         headerPanel.add(new JLabel("Search for a book"));
         add(headerPanel);
-        //headerPanel.setBorder(new EmptyBorder(100,50,10,50));
+        // headerPanel.setBorder(new EmptyBorder(100,50,10,50));
 
         // search bar
         JPanel searchPanel = new JPanel(new FlowLayout());
@@ -36,7 +36,7 @@ public class BookSearchStudent extends JFrame {
         // search results
         JPanel resultsPanel = new JPanel();
         resultsPanel.setLayout(new BoxLayout(resultsPanel, BoxLayout.Y_AXIS));
-        resultsPanel.setBorder(new EmptyBorder(25,150,25,150));
+        resultsPanel.setBorder(new EmptyBorder(25, 150, 25, 150));
         for (int i = 1; i <= 5; i++) { // example results
             resultsPanel.add(new JLabel("book " + i));
             resultsPanel.add(new Button("Add to cart"));
