@@ -6,19 +6,19 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.*;
+import java.awt.event.*;
 
 public class NewspaperMainpage extends JFrame {
 
-    public NewspaperMainpage() {
+    static private int userId;
+    int[] userData = new int[4];
 
-        int id = 1000; //temp id because user class not ready
-        int[] userData = new int[4];
+    public NewspaperMainpage(int temp) {
 
+        this.userId = temp;
+        //int id = 1000; //temp id because user class not ready
         String csvFile = "src/UI/userSubs.csv";
-
         // Try-with-resources to automatically close the BufferedReader
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             String line;
@@ -28,14 +28,20 @@ public class NewspaperMainpage extends JFrame {
                 String[] data = line.split(",");
 
                 // Extract the user ID (assuming it's the first column)
-                int userId = Integer.parseInt(data[0].trim());
+                int userId1 = Integer.parseInt(data[0].trim());
 
                 // Check if the user ID matches the target user ID
-                if (userId == id) {
+                if (userId1 == this.userId) {
                     // Extract the next four values (assuming they are 0s and 1s)
-                    for (int i = 0; i < 4; i++) {
-                        userData[i] = Integer.parseInt(data[i+1].trim()); // Assuming the values start from the second column
-                        System.out.println(userData[i]);
+                    if (data[1].trim().isEmpty()) {
+                        for (int i = 0; i < 4; i++) {
+                            userData[i] = 0;
+                        }
+                    } else {
+                        for (int i = 0; i < 4; i++) {
+                            userData[i] = Integer.parseInt(data[i + 1].trim()); // Assuming the values start from the second column
+                            System.out.println(userData[i]);
+                        }
                     }
                     break; // Stop reading further once the target user is found
                 }
@@ -78,7 +84,126 @@ public class NewspaperMainpage extends JFrame {
         JPanel section4Panel = createSectionPanel("The DC Post", "\"The DC Post\" delivers weekly updates on all things Washington D.C., from politics and culture to events and local news.", 3, userData);
         sectionsPanel.add(section4Panel);
 
-        add(sectionsPanel, BorderLayout.SOUTH);
+        add(sectionsPanel, BorderLayout.CENTER);
+
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                // Perform actions when the window is closing
+                // For example, save user data before closing
+                //UpdateUserInfo();
+            }
+        });
+
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> {
+
+            String redirecterDashboardRole = "";
+            String temp1 = "";
+
+            for(int i=0; i<4; i++){
+                System.out.println(userData[i]);
+                temp1 += userData[i]+",";
+            }
+
+            //open the UserInfoSpreadsheet.csv, look through the rows and find matching row.
+            //after the first comma, add/replace the following values with the temp1 string
+            try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+                String line;
+                StringBuilder updatedContent = new StringBuilder();
+                // Read each line from the CSV file
+                while ((line = br.readLine()) != null) {
+                    // Split the line by comma (assuming CSV format)
+                    String[] data = line.split(",");
+
+                    // Extract the user ID (assuming it's the first column)
+                    int userId1 = Integer.parseInt(data[0].trim());
+
+                    // Check if the user ID matches the target user ID
+                    if (userId1 == this.userId) {
+                        // Change the following values
+                        StringBuilder modifiedLine = new StringBuilder();
+                        modifiedLine.append(data[0]); // Add the first column
+
+                        // Add the temp1 string after the first column
+                        modifiedLine.append(",").append(temp1);
+
+                        // Append the rest of the columns
+                        for (int i = 1; i < data.length; i++) {
+                            modifiedLine.append(",").append(data[i]);
+                        }
+                        updatedContent.append(modifiedLine.toString()).append("\n");
+                    } else {
+                        // If the user ID doesn't match, keep the original line
+                        updatedContent.append(line).append("\n");
+                    }
+                }
+
+                //System.out.println("This works1");
+                // Write the updated content back to the CSV file
+                try (FileWriter writer = new FileWriter(csvFile)) {
+                    writer.write(updatedContent.toString());
+
+                    //System.out.println("This works2");
+                }
+            } catch (IOException g) {
+                g.printStackTrace();
+            }
+            //System.out.println("This works2");
+            try (BufferedReader br = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"))) {
+                String line;
+                boolean firstLine = true; // Flag to indicate the first line
+                // Read each line from the CSV file
+                while ((line = br.readLine()) != null) {
+                    if (firstLine) {
+                        firstLine = false;
+                        continue; // Skip processing the first line
+                    }
+                    // Split the line by comma (assuming CSV format)
+                    String[] data = line.split(",");
+
+                    // Extract the user ID (assuming it's the first column)
+                    int userId2 = Integer.parseInt(data[0].trim());
+
+                    // Check if the user ID matches the target user ID
+                    if (userId2 == this.userId) {
+                        // Change the following values
+                        redirecterDashboardRole = data[3].trim();
+                        break; // Stop reading further once the target user is found
+                    }
+                }
+            } catch (IOException g) {
+                g.printStackTrace();
+            }
+
+            switch (redirecterDashboardRole) {
+                case "Student":
+                case "Visitor":
+                    new StudentDashboard(userId).setVisible(true);
+                    break;
+                case "Faculty":
+                case "Staff":
+                    new FacultyDashboard(userId).setVisible(true);
+                    break;
+                case "Manager":
+                    new ManagerDashboard(userId).setVisible(true);
+                    break;
+                case "":
+                    System.out.println("Dashboard not accessible.");
+            }
+
+
+            //Organize Classes, correct dashboard
+            StudentDashboard dashboard = new StudentDashboard(userId); // Assuming this class exists
+            dashboard.setVisible(true);
+            dispose(); // Close the current frame
+        });
+
+        JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        bottomPanel.add(backButton);
+        add(bottomPanel, BorderLayout.SOUTH);
+
+
 
         setVisible(true);
     }
@@ -180,6 +305,6 @@ public class NewspaperMainpage extends JFrame {
 
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(() -> new NewspaperMainpage());
+        SwingUtilities.invokeLater(() -> new NewspaperMainpage(userId));
     }
 }
