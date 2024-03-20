@@ -171,6 +171,28 @@ public class UserRegistration extends JFrame {
         passwordField.setText("");
         retypePasswordField.setText("");
     }
+    /**
+    private Boolean addToRoleCSV() throws IOException {
+        String role = (String) roleComboBox.getSelectedItem();
+        if (role == "Faculty") {
+            try (FileWriter writer = new FileWriter("facultyusers.csv", true)) {
+                writer.append(email).append(",").append(hashedPassword).append(",").append(role).append("\n");
+                return true;
+            } catch (IOException e) {
+                throw new IOException("Error writing to the CSV file", e);
+            }
+        }
+
+        if (role == "Student") {
+            try (FileWriter writer = new FileWriter("facultyusers.csv", true)) {
+                writer.append(email).append(",").append(hashedPassword).append(",").append(role).append("\n");
+                return true;
+            } catch (IOException e) {
+                throw new IOException("Error writing to the CSV file", e);
+            }
+        }
+    }
+     */
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
