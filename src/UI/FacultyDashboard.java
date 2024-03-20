@@ -11,6 +11,17 @@ public class FacultyDashboard extends JFrame {
     private JTextField inputTextField;
     private JTextArea userListTextArea;
 
+    private int userId;
+
+    public FacultyDashboard(int userId) { // Modify the constructor to accept the user ID
+        this.userId = userId; // Store the user ID
+        setTitle("Student Dashboard");
+        setSize(400, 250);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        initializeUI();
+    }
     public FacultyDashboard() {
         initializeUI();
     }
