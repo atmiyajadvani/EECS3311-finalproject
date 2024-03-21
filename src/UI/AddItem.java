@@ -7,11 +7,10 @@ import java.io.IOException;
 
 public class AddItem extends JFrame {
     private JTextField titleField;
+    private JTextField authorField;
     private JComboBox<String> itemTypeDropdown;
-    private JTextField locationField;
-    private JTextField purchaseFromField;
-    private JTextField descriptionField;
     private JButton addItemButton;
+    private JButton backButton;
 
     public AddItem() { initializeUI(); }
 
@@ -24,32 +23,33 @@ public class AddItem extends JFrame {
 
         JPanel mainPanel = new JPanel(new BorderLayout());
         JPanel formPanel = new JPanel(new GridLayout(0, 2, 20, 20));
+        JPanel bottomPanel = new JPanel();
         formPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10)); // padding
         mainPanel.setBorder(BorderFactory.createEmptyBorder(20, 20, 20, 20)); // padding
+        bottomPanel.setBorder(BorderFactory.createEmptyBorder(10, 20, 10, 20)); // padding
 
         // initialize form elements
         titleField = new JTextField();
         itemTypeDropdown = new JComboBox<>(new String[]{"Book", "Magazine", "CD"});
-        locationField = new JTextField();
-        purchaseFromField = new JTextField();
-        descriptionField = new JTextField();
+        authorField = new JTextField();
         addItemButton = new JButton("Add Item");
         addItemButton.addActionListener(e -> addItem());
+        backButton = new JButton("Back");
+        backButton.addActionListener(e -> goBack());
 
         // add elements to form panel
         formPanel.add(new JLabel("Title:"));
         formPanel.add(titleField);
+        formPanel.add(new JLabel("Author:"));
+        formPanel.add(authorField);
         formPanel.add(new JLabel("Item Type:"));
         formPanel.add(itemTypeDropdown);
-        formPanel.add(new JLabel("Location:"));
-        formPanel.add(locationField);
-        formPanel.add(new JLabel("Purchase From:"));
-        formPanel.add(purchaseFromField);
-        formPanel.add(new JLabel("Description:"));
-        formPanel.add(descriptionField);
+
+        bottomPanel.add(backButton);
+        bottomPanel.add(addItemButton);
 
         mainPanel.add(formPanel, BorderLayout.CENTER);
-        mainPanel.add(addItemButton, BorderLayout.SOUTH);
+        mainPanel.add(bottomPanel, BorderLayout.SOUTH);
 
         add(mainPanel);
     }
@@ -57,25 +57,20 @@ public class AddItem extends JFrame {
     private void addItem() {
         String id = "7"; // will be static id instance var of item class
         String title = titleField.getText();
+        String author = authorField.getText();
         String itemType = (String) itemTypeDropdown.getSelectedItem();
-        String location = locationField.getText();
-        String purchaseFrom = purchaseFromField.getText();
-        String description = descriptionField.getText();
 
         FileWriter writer = null;
         try {
-            writer = new FileWriter("items.csv", true);
+            writer = new FileWriter("physicalitems.csv", true);
             writer.append(id).append(",")
                     .append(title).append(",")
-                    .append(itemType).append(",")
-                    .append(location).append(",")
-                    .append(purchaseFrom).append(",")
-                    .append(description).append("\n");
+                    .append(author).append(",")
+                    .append(itemType).append("\n");
             JOptionPane.showMessageDialog(this, "Item added successfully!");
 
             // return to manager dashboard
-            this.dispose();
-            new ManagerDashboard().setVisible(true);
+            goBack();
         } catch (IOException e) {
             System.err.println("Error appending data to CSV file: " + e.getMessage());
         } finally {
@@ -87,6 +82,11 @@ public class AddItem extends JFrame {
                 System.err.println("Error closing FileWriter: " + e.getMessage());
             }
         }
+    }
+
+    private void goBack() {
+        this.dispose();
+        new ManagerDashboard().setVisible(true);
     }
 
     public static void main(String[] args) {
