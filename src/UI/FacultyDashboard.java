@@ -34,11 +34,12 @@ public class FacultyDashboard extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titlePanel.add(titleLabel);
 
+        /**
         // Title label for the input box
         JLabel searchLabel = new JLabel("Search for a user:");
         searchLabel.setFont(new Font("Arial", Font.BOLD, 14));
         searchLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        /**
+
         // Panel for search components
         JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         searchPanel.add(searchLabel);
