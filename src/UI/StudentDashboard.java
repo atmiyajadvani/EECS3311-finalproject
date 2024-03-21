@@ -108,7 +108,7 @@ public class StudentDashboard extends JFrame {
 
     private void navigateToCartScreen() {
         dispose(); // Dispose the current dashboard
-        CartScreenRM cartScreenRM = new CartScreenRM(userId); // Open the physical item screen
+        CartScreen cartScreenRM = new CartScreen(userId); // Open the physical item screen
         cartScreenRM.setVisible(true);
     }
 
