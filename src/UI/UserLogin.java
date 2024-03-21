@@ -7,14 +7,65 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
+
+// Strategy Pattern for Authentication
+interface AuthenticationStrategy {
+    boolean authenticate(String username, String password);
+}
+
+class CsvAuthenticationStrategy implements AuthenticationStrategy {
+    private final String csvFile = "src/UI/UserInfoSpreadsheet.csv";
+
+    @Override
+    public boolean authenticate(String username, String password) {
+        try (BufferedReader reader = new BufferedReader(new FileReader(csvFile))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] userInfo = line.split(",");
+                if (userInfo.length >= 4 && userInfo[1].equals(username) && userInfo[2].equals(password)) {
+                    UserLogin.setId(Integer.parseInt(userInfo[0]));
+                    UserLogin.setUserType(userInfo[3]);
+                    return true;
+                }
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+        return false;
+    }
+}
+
+// Factory Pattern for Dashboard Creation
+abstract class DashboardFactory {
+    abstract JFrame createDashboard(String userType, int userId);
+}
+
+class DashboardFactoryImpl extends DashboardFactory {
+    @Override
+    public JFrame createDashboard(String userType, int userId) {
+        switch (userType) {
+            case "Visitor":
+            case "Student":
+                return new StudentDashboard(userId);
+            case "Faculty":
+            case "Staff":
+                return new FacultyDashboard(userId);
+            case "Manager":
+                return new ManagerDashboard();
+            default:
+                throw new IllegalArgumentException("Invalid user type: " + userType);
+        }
+    }
+}
 
 public class UserLogin extends JFrame {
     private JTextField emailTextField;
     private JPasswordField passwordField;
     private JButton loginButton;
-    static private int id;
+    private static int id;
+    private static String userType;
+    private AuthenticationStrategy authenticationStrategy = new CsvAuthenticationStrategy();
+    private DashboardFactory dashboardFactory = new DashboardFactoryImpl();
 
     public UserLogin() {
         createUI();
@@ -77,7 +128,7 @@ public class UserLogin extends JFrame {
                                     setVisible(false);
                                     dispose();
                                     // Open the Manager Dashboard
-                                    new ManagerDashboard(id).setVisible(true);
+                                    new ManagerDashboard().setVisible(true);
                                     break;
                             }
                             break;
@@ -121,16 +172,36 @@ public class UserLogin extends JFrame {
         add(buttonPanel); // Adding buttons panel
     }
 
+    private void onLogin(ActionEvent e) {
+        String username = emailTextField.getText().trim();
+        String password = new String(passwordField.getPassword()).trim();
+
+        if (username.isEmpty() || password.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Email and password are required!", "Error", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (authenticationStrategy.authenticate(username, password)) {
+            setVisible(false);
+            dispose();
+            dashboardFactory.createDashboard(userType, id).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Username or password is incorrect!", "Error", JOptionPane.ERROR_MESSAGE);
+            // Clear fields
+            emailTextField.setText("");
+            passwordField.setText("");
+        }
+    }
+
+    public static void setId(int userId) {
+        id = userId;
+    }
+
+    public static void setUserType(String type) {
+        userType = type;
+    }
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> {
-            new UserLogin().setVisible(true);
-        });
-    }
-}
-
-class Dashboard extends JFrame {
-    public Dashboard(int id) {
-        new StudentDashboard(id).setVisible(true);
+        EventQueue.invokeLater(() -> new UserLogin().setVisible(true));
     }
 }

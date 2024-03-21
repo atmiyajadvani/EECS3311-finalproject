@@ -1,7 +1,15 @@
+import UI.UserRegistration;
+import javax.swing.SwingUtilities;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println("Hello world!");
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                // Initialize and display the UserRegistration form
+                UserRegistration registrationForm = new UserRegistration();
+                registrationForm.setVisible(true);
+            }
+        });
     }
-
 }
-

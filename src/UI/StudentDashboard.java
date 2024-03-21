@@ -3,7 +3,46 @@ package UI;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+
+// Command interface
+interface Command {
+    void execute();
+}
+
+// Concrete Command to navigate to different screens
+class NavigateCommand implements Command {
+    private JFrame currentScreen;
+    private JFrame nextScreen;
+
+    public NavigateCommand(JFrame currentScreen, JFrame nextScreen) {
+        this.currentScreen = currentScreen;
+        this.nextScreen = nextScreen;
+    }
+
+    @Override
+    public void execute() {
+        currentScreen.dispose(); // Dispose the current dashboard
+        nextScreen.setVisible(true); // Show the next screen
+    }
+}
+
+// Invoker class that triggers the command
+class ButtonInvoker extends JButton {
+    private Command command;
+
+    public ButtonInvoker(String text) {
+        super(text);
+    }
+
+    public void setCommand(Command command) {
+        this.command = command;
+        this.addActionListener((ActionEvent e) -> {
+            if (this.command != null) {
+                this.command.execute();
+            }
+        });
+    }
+}
 
 public class StudentDashboard extends JFrame {
     static private int userId;
@@ -12,20 +51,8 @@ public class StudentDashboard extends JFrame {
     private JButton requestBookButton;
     private JButton newsletterButton;
 
-    //public StudentDashboard() {
-      //  initializeUI();
-    //}
-
-    public StudentDashboard(int userId) { // Modify the constructor to accept the user ID
-        this.userId = userId; // Store the user ID
-        setTitle("Student Dashboard");
-        setSize(400, 250);
-        setLocationRelativeTo(null);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        // Add your dashboard components here
-
-        //setVisible(true);
+    public StudentDashboard(int userId) {
+        this.userId = userId;
         initializeUI();
     }
 
@@ -75,7 +102,6 @@ public class StudentDashboard extends JFrame {
         add(southPanel, BorderLayout.SOUTH);
     }
 
-
     private void signOut() {
         dispose(); // Dispose the current dashboard
         UserLogin loginScreen = new UserLogin(); // Open the login screen
@@ -113,6 +139,7 @@ public class StudentDashboard extends JFrame {
     }
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> new StudentDashboard(userId).setVisible(true));
+        EventQueue.invokeLater(() -> new StudentDashboard(120).setVisible(true)); // Example userID
     }
+
 }

@@ -2,8 +2,6 @@ package UI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class ChoosePaymentScreen extends JFrame {
     private JLabel cartLabel;
@@ -29,12 +27,7 @@ public class ChoosePaymentScreen extends JFrame {
         paymentGroup.add(paypalRadio);
 
         JButton payButton = new JButton("Proceed to Pay");
-        payButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                proceedToPay();
-            }
-        });
+        payButton.addActionListener(e -> proceedToPay());
 
         JPanel mainPanel = new JPanel(new GridLayout(4, 1));
         mainPanel.add(cartLabel);
@@ -47,17 +40,19 @@ public class ChoosePaymentScreen extends JFrame {
     }
 
     private void proceedToPay() {
-        int itemsInCart = 5;
-
+        // The selected payment method determines the payment strategy.
         String selectedPaymentMethod = getSelectedPaymentMethod();
-
+        // Strategy chosen based on the selected payment method
+        // Each payment method could have different processing logic encapsulated in its strategy
+        // For simplification, displaying the chosen method:
         JOptionPane.showMessageDialog(this,
-                "Items in Cart: " + itemsInCart + "\nSelected Payment Method: " + selectedPaymentMethod,
+                "Items in Cart: " + "5" + "\nSelected Payment Method: " + selectedPaymentMethod,
                 "Payment Details",
                 JOptionPane.INFORMATION_MESSAGE);
     }
 
     private String getSelectedPaymentMethod() {
+        // This method essentially acts as a strategy selector based on the user's choice
         if (creditCardRadio.isSelected()) {
             return "Credit Card";
         } else if (debitCardRadio.isSelected()) {
@@ -70,11 +65,6 @@ public class ChoosePaymentScreen extends JFrame {
     }
 
     public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ChoosePaymentScreen().setVisible(true);
-            }
-        });
+        SwingUtilities.invokeLater(() -> new ChoosePaymentScreen().setVisible(true));
     }
 }

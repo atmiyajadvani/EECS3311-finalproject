@@ -7,9 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
-import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 public class StudentPhysicalItemScreen extends JFrame {
     private DefaultListModel<Item> itemListModel;
@@ -17,6 +17,25 @@ public class StudentPhysicalItemScreen extends JFrame {
     private JTextField searchTextField;
     private List<Item> cart;
     private int userID;
+
+    // Strategy Interface for item searching
+    interface ItemSearchStrategy {
+        boolean match(Item item, String searchText);
+    }
+
+    // Concrete Strategy for search by name, author, or type
+    static class BasicSearchStrategy implements ItemSearchStrategy {
+        @Override
+        public boolean match(Item item, String searchText) {
+            String itemName = item.getName().toLowerCase();
+            String author = item.getAuthor().toLowerCase();
+            String itemType = item.getItemType().toLowerCase();
+            return itemName.contains(searchText) || author.contains(searchText) || itemType.contains(searchText);
+        }
+    }
+
+    // Add a search strategy field
+    private ItemSearchStrategy searchStrategy;
 
     public StudentPhysicalItemScreen(int id) {
         this.userID = id;

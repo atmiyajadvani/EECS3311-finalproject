@@ -4,10 +4,11 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CartScreenRM extends JFrame {
+    private static CartScreenRM instance; // Singleton instance
     static private int userId;
 
-    public CartScreenRM(int userId) {
-        this.userId = userId;
+    CartScreenRM(int userId) {
+        CartScreenRM.userId = userId;
         setTitle("Cart");
         setSize(400, 300);
         setLocationRelativeTo(null);
@@ -17,10 +18,19 @@ public class CartScreenRM extends JFrame {
         add(label, BorderLayout.CENTER);
     }
 
+    // Static method to get the singleton instance
+    public static CartScreenRM getInstance(int userId) {
+        if (instance == null) {
+            instance = new CartScreenRM(userId);
+        }
+        return instance;
+    }
+
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            CartScreenRM cartScreenRM = new CartScreenRM(userId); // Pass any dummy userId for testing
-            cartScreenRM.setVisible(true);
+            // Instead of directly creating a new instance, use getInstance() method
+            CartScreenRM cartScreen = CartScreenRM.getInstance(userId); // Pass any dummy userId for testing
+            cartScreen.setVisible(true);
         });
     }
 }

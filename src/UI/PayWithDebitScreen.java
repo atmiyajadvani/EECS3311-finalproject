@@ -4,8 +4,25 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//Payment_info
 
+// Command interface for executing actions
+interface Commanddd {
+    void execute();
+}
+
+// Concrete command for processing payment
+class ProcessPaymentCommand implements Command {
+    private PayWithDebitScreen payScreen;
+
+    public ProcessPaymentCommand(PayWithDebitScreen payScreen) {
+        this.payScreen = payScreen;
+    }
+
+    @Override
+    public void execute() {
+        payScreen.processPayment();
+    }
+}
 
 public class PayWithDebitScreen extends JFrame {
     private JLabel totalPriceLabel;
@@ -58,7 +75,7 @@ public class PayWithDebitScreen extends JFrame {
         add(processButton, BorderLayout.SOUTH);
     }
 
-    private void processPayment() {
+    void processPayment() {
         // Get the entered card details
         String cardholderName = cardholderNameField.getText();
         String cardNumber = cardNumberField.getText();

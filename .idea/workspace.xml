@@ -5,11 +5,22 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/UI/FacultyUsers.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/facultyusers.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/FacultyDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FacultyDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/AddItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/AddItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/BookSearchStudent.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/BookSearchStudent.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/CartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/CartScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/CartScreenRM.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/CartScreenRM.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/ChoosePaymentScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/ChoosePaymentScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/EnableDisableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/EnableDisableItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/ManagerDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/ManagerDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/NewspaperMainpage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/NewspaperMainpage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/PayWithDebitScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/PayWithDebitScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/RequestBookScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/RequestBookScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/StudentDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentDashboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/StudentTextbooksScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentTextbooksScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UserLogin.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UserRegistration.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" afterDir="false" />
     </list>
@@ -44,7 +55,19 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager" selected="Application.UserLogin">
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.AddItem.executor": "Run",
+    "Application.BookSearchStudent.executor": "Run",
+    "Application.EnableDisableItem.executor": "Run",
+    "Application.ManagerDashboard.executor": "Run",
+    "Application.UserLogin.executor": "Run",
+    "Application.UserRegistration.executor": "Run",
+    "git-widget-placeholder": "designpatterns",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
+  <component name="RunManager">
     <configuration name="CartScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="UI.CartScreen" />
       <module name="EECS3311-finalproject" />
@@ -150,6 +173,21 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -167,21 +205,6 @@
                 </map>
               </option>
             </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
           </value>
         </entry>
       </map>

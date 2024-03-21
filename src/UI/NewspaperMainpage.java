@@ -186,7 +186,7 @@ public class NewspaperMainpage extends JFrame {
                     new FacultyDashboard(userId).setVisible(true);
                     break;
                 case "Manager":
-                    new ManagerDashboard(userId).setVisible(true);
+                    new ManagerDashboard().setVisible(true);
                     break;
                 case "":
                     System.out.println("Dashboard not accessible.");

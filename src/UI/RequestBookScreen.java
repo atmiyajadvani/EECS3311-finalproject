@@ -7,9 +7,44 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+
+// Command interface for action execution
+interface Commandd {
+    void execute();
+}
+
+// Concrete command for going back to the dashboard
+class GoBackCommand implements Commandd {
+    private JFrame currentScreen;
+    private int userId;
+
+    public GoBackCommand(JFrame currentScreen, int userId) {
+        this.currentScreen = currentScreen;
+        this.userId = userId;
+    }
+
+    @Override
+    public void execute() {
+        currentScreen.dispose(); // Close the current screen
+        new StudentDashboard(userId).setVisible(true); // Navigate to the dashboard
+    }
+}
+
+// Concrete command for requesting a book
+class RequestBookCommand implements Command {
+    private RequestBookScreen screen;
+
+    public RequestBookCommand(RequestBookScreen screen) {
+        this.screen = screen;
+    }
+
+    @Override
+    public void execute() {
+        screen.requestBook();
+    }
+}
 
 
 public class RequestBookScreen extends JFrame implements ActionListener {
@@ -74,7 +109,7 @@ public class RequestBookScreen extends JFrame implements ActionListener {
 
         gbc.gridy = 5;
         btnRequestBook = new JButton("Request Book");
-        btnRequestBook.addActionListener(this::requestBook);
+        btnRequestBook.addActionListener(e -> requestBook());
         mainPanel.add(btnRequestBook, gbc);
 
         return mainPanel;
@@ -86,7 +121,7 @@ public class RequestBookScreen extends JFrame implements ActionListener {
         new StudentDashboard(userId).setVisible(true); // Open the student dashboard
     }
 
-    private void requestBook(ActionEvent e) {
+    void requestBook() {
         String bookName = txtBookName.getText().trim();
         if (bookName.isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter the name of the book.", "Error", JOptionPane.ERROR_MESSAGE);

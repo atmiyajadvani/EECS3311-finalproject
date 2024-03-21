@@ -48,7 +48,7 @@ public class CartScreen extends JFrame {
                     FacultyDashboard facultyDashboard = new FacultyDashboard(userId);
                     facultyDashboard.setVisible(true);
                 } else if (role.equalsIgnoreCase("manager")) {
-                    ManagerDashboard managerDashboard = new ManagerDashboard(userId);
+                    ManagerDashboard managerDashboard = new ManagerDashboard();
                     managerDashboard.setVisible(true);
                 }
             }

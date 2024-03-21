@@ -8,11 +8,53 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// Strategy Pattern for validation
+interface ValidationStrategy {
+    boolean validate(String email, String password, String retypePassword);
+}
+
+class BasicValidation implements ValidationStrategy {
+    public boolean validate(String email, String password, String retypePassword) {
+        if (email.isEmpty() || password.isEmpty() || retypePassword.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "All fields are required!", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        if (!password.equals(retypePassword)) {
+            JOptionPane.showMessageDialog(null, "Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
+            return false;
+        }
+        return true;
+    }
+}
+
+
+// Singleton Pattern for file operations
+class FileManager {
+    private static FileManager instance;
+
+    private FileManager() {}
+
+    public static FileManager getInstance() {
+        if (instance == null) {
+            instance = new FileManager();
+        }
+        return instance;
+    }
+
+    // Simplified file writing, extend as needed
+    public void writeUserData(String filePath, String data) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.write(data + "\n");
+        }
+    }
+}
+
 public class UserRegistration extends JFrame {
     private JTextField emailTextField;
     private JPasswordField passwordField;
     private JPasswordField retypePasswordField;
     private JComboBox<String> userTypeComboBox;
+    private ValidationStrategy validationStrategy = new BasicValidation();
 
     public UserRegistration() {
         createUI();
@@ -140,7 +182,7 @@ public class UserRegistration extends JFrame {
                             new FacultyDashboard(id).setVisible(true);
                             break;
                         case "Manager":
-                            new ManagerDashboard(id).setVisible(true);
+                            new ManagerDashboard().setVisible(true);
                             break;
                     }
 
@@ -160,6 +202,33 @@ public class UserRegistration extends JFrame {
         add(panel);
 
         setVisible(true);
+    }
+
+    private void signUp(ActionEvent e) {
+        // Adapted signUp method using Strategy, Factory, and Singleton patterns
+        String email = emailTextField.getText();
+        String password = new String(passwordField.getPassword());
+        String retypePassword = new String(retypePasswordField.getPassword());
+        String userType = (String) userTypeComboBox.getSelectedItem();
+
+        if (!validationStrategy.validate(email, password, retypePassword)) {
+            clearFields();
+            return;
+        }
+
+        // Assume logic to get the next user ID and prepare user data
+        String userData = prepareUserData(email, password, userType);
+        try {
+            FileManager.getInstance().writeUserData("path/to/userData.csv", userData);
+            // Further actions, like redirecting to the appropriate dashboard
+        } catch (IOException ex) {
+            JOptionPane.showMessageDialog(null, "An error occurred while writing the user data.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private String prepareUserData(String email, String password, String userType) {
+        // Simplified user data preparation
+        return String.format("%s,%s,%s", email, password, userType);
     }
 
     private static int getNextUserId(String filePath) {

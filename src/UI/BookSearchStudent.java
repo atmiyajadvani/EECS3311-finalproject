@@ -3,10 +3,14 @@ package UI;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 
 public class BookSearchStudent extends JFrame {
+
+    private JTextField searchBar; // Reference to the search bar for input
+    private JPanel resultsPanel; // Panel to display search results, acting as the "observer" of search
 
     public BookSearchStudent() {
         createUI();
@@ -44,6 +48,20 @@ public class BookSearchStudent extends JFrame {
         add(resultsPanel);
 
         setVisible(true);
+    }
+
+    // Method to perform search and update results
+    private void performSearch(String query) {
+        // Example search operation, updates resultsPanel
+        resultsPanel.removeAll(); // Clear previous results
+        for (int i = 1; i <= 5; i++) { // Simulated search results
+            resultsPanel.add(new JLabel("Result for " + query + ": book " + i));
+            JButton addToCartButton = new JButton("Add to cart");
+            // Action listener for addToCartButton can be added here
+            resultsPanel.add(addToCartButton);
+        }
+        resultsPanel.revalidate();
+        resultsPanel.repaint();
     }
 
     public static void main(String[] args) {

@@ -6,8 +6,8 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class EnableDisableItem extends JFrame {
     private JButton backButton;
@@ -17,7 +17,9 @@ public class EnableDisableItem extends JFrame {
     private JButton enableButton;
     private JButton disableButton;
 
-    public EnableDisableItem() { initializeUI(); }
+    public EnableDisableItem() {
+        initializeUI();
+    }
 
     private void initializeUI() {
         setTitle("Manager Dashboard - Enable/Disable Item");
@@ -26,7 +28,6 @@ public class EnableDisableItem extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        // initialize elements
         searchTextField = new JTextField(20);
         itemListModel = new DefaultListModel<>();
         itemList = new JList<>(itemListModel);
@@ -35,25 +36,27 @@ public class EnableDisableItem extends JFrame {
         disableButton = new JButton("Disable");
         backButton = new JButton("Back");
 
+        // Selection listener for list items
         itemList.getSelectionModel().addListSelectionListener(e -> selectItem());
+
+        // Command pattern applied through ActionListener implementations
         enableButton.addActionListener(e -> enableItem());
-        enableButton.setEnabled(false);
         disableButton.addActionListener(e -> disableItem());
-        disableButton.setEnabled(false);
         backButton.addActionListener(e -> goBack());
 
         JPanel topPanel = new JPanel();
         topPanel.add(backButton);
         topPanel.add(new JLabel("Search for Item"));
         topPanel.add(searchTextField);
-        add(topPanel, BorderLayout.NORTH);
 
         JScrollPane scrollPane = new JScrollPane(itemList);
-        add(scrollPane, BorderLayout.CENTER);
 
         JPanel bottomPanel = new JPanel();
         bottomPanel.add(enableButton);
         bottomPanel.add(disableButton);
+
+        add(topPanel, BorderLayout.NORTH);
+        add(scrollPane, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
 
         loadItems();
@@ -70,10 +73,10 @@ public class EnableDisableItem extends JFrame {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
-                    if (data[4].equals("enabled")) {
+                    if (data[6].equals("enabled")) {
                         enableButton.setEnabled(false);
                         disableButton.setEnabled(true);
-                    } else if (data[4].equals("disabled")) {
+                    } else if (data[6].equals("disabled")) {
                         enableButton.setEnabled(true);
                         disableButton.setEnabled(false);
                     }
@@ -118,16 +121,6 @@ public class EnableDisableItem extends JFrame {
         }
     }
 
-    private void executeSearch(String searchText) {
-        /*
-        itemListModel.clear();
-        for (String item : items) {
-            if (item.toLowerCase().contains(searchText.toLowerCase())) {
-                itemListModel.addElement(item);
-            }
-        }*/
-    }
-
     private void goBack() {
         this.dispose();
         new ManagerDashboard().setVisible(true);
@@ -145,7 +138,7 @@ public class EnableDisableItem extends JFrame {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
-                    data[4] = "enabled";
+                    data[6] = "enabled";
                 }
                 lines.add(data);
             }
@@ -182,7 +175,7 @@ public class EnableDisableItem extends JFrame {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
-                    data[4] = "disabled";
+                    data[6] = "disabled";
                 }
                 lines.add(data);
             }
