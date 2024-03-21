@@ -2,6 +2,12 @@ package UI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.List;
+import java.util.ArrayList;
 
 public class EnableDisableItem extends JFrame {
     private JButton backButton;
@@ -29,8 +35,11 @@ public class EnableDisableItem extends JFrame {
         disableButton = new JButton("Disable");
         backButton = new JButton("Back");
 
+        itemList.getSelectionModel().addListSelectionListener(e -> selectItem());
         enableButton.addActionListener(e -> enableItem());
+        enableButton.setEnabled(false);
         disableButton.addActionListener(e -> disableItem());
+        disableButton.setEnabled(false);
         backButton.addActionListener(e -> goBack());
 
         JPanel topPanel = new JPanel();
@@ -47,22 +56,77 @@ public class EnableDisableItem extends JFrame {
         bottomPanel.add(disableButton);
         add(bottomPanel, BorderLayout.SOUTH);
 
-        loadItems("");
+        loadItems();
     }
 
-    private void loadItems(String searchText) {
-        String[] items = {
-                "Atomic Habits by James Clear | Book | Location: Central Library | Purchase from online store | A supremely practical and useful book.",
-                "Tech Crunch Magazine Issue 2021 | Magazine | Location: Central Library | Purchase from online store | Stay updated with the latest technology trends.",
-                "Demon Slayer - A Mega Saga | CD | Location: Central Library | Purchase from online store | Experience the epic soundtrack."
-        };
+    private void selectItem() {
+        String itemID = String.valueOf(itemList.getSelectedIndex() + 1001);
+        BufferedReader br = null;
+        FileWriter writer = null;
 
+        try {
+            br = new BufferedReader(new FileReader("ItemSpreadsheet.csv"));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split("\\|");
+                if (data[0].equals(itemID)) {
+                    if (data[6].equals("enabled")) {
+                        enableButton.setEnabled(false);
+                        disableButton.setEnabled(true);
+                    } else if (data[6].equals("disabled")) {
+                        enableButton.setEnabled(true);
+                        disableButton.setEnabled(false);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+                if (writer != null) writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private void loadItems() {
+        List<String> items = new ArrayList<>();
+        BufferedReader br = null;
+
+        try {
+            br = new BufferedReader(new FileReader("ItemSpreadsheet.csv"));
+            String line;
+            br.readLine();
+            while ((line = br.readLine()) != null) {
+                line = line.replace("|", " | ");
+                items.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        itemListModel.clear();
+        for (String attribute : items) {
+            itemListModel.addElement(attribute);
+        }
+    }
+
+    private void executeSearch(String searchText) {
+        /*
         itemListModel.clear();
         for (String item : items) {
             if (item.toLowerCase().contains(searchText.toLowerCase())) {
                 itemListModel.addElement(item);
             }
-        }
+        }*/
     }
 
     private void goBack() {
@@ -71,23 +135,75 @@ public class EnableDisableItem extends JFrame {
     }
 
     private void enableItem() {
-        int itemNum = itemList.getSelectedIndex() + 1;
-        if (itemNum == 0) {
-            System.out.println("please select an item");
-            return;
+        String itemID = String.valueOf(itemList.getSelectedIndex() + 1001);
+        BufferedReader br = null;
+        FileWriter writer = null;
+        String line = "";
+        List<String[]> lines = new ArrayList<>();
+
+        try {
+            br = new BufferedReader(new FileReader("ItemSpreadsheet.csv"));
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split("\\|");
+                if (data[0].equals(itemID)) {
+                    data[6] = "enabled";
+                }
+                lines.add(data);
+            }
+
+            writer = new FileWriter("ItemSpreadsheet.csv");
+            for (String[] rowData : lines) {
+                writer.append(String.join("|", rowData));
+                writer.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+                if (writer != null) writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
-        System.out.println("ENABLED ITEM " + itemNum);
+        loadItems();
     }
 
     private void disableItem() {
-        int itemNum = itemList.getSelectedIndex() + 1;
-        if (itemNum == 0) {
-            System.out.println("please select an item");
-            return;
+        String itemID = String.valueOf(itemList.getSelectedIndex() + 1001);
+        BufferedReader br = null;
+        FileWriter writer = null;
+        String line = "";
+        List<String[]> lines = new ArrayList<>();
+
+        try {
+            br = new BufferedReader(new FileReader("ItemSpreadsheet.csv"));
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split("\\|");
+                if (data[0].equals(itemID)) {
+                    data[6] = "disabled";
+                }
+                lines.add(data);
+            }
+
+            writer = new FileWriter("ItemSpreadsheet.csv");
+            for (String[] rowData : lines) {
+                writer.append(String.join("|", rowData));
+                writer.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+                if (writer != null) writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
         }
 
-        System.out.println("disABLED ITEM " + itemNum);
+        loadItems();
     }
 
     public static void main(String[] args) {
