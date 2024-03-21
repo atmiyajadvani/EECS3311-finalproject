@@ -9,55 +9,52 @@ public class ChoosePaymentScreen extends JFrame {
     private JLabel cartLabel;
     private JRadioButton creditCardRadio;
     private JRadioButton debitCardRadio;
-    private DefaultListModel<String> cartListModel;
+    private JRadioButton paypalRadio;
 
-    public ChoosePaymentScreen(DefaultListModel<String> cartListModel) {
-        this.cartListModel = cartListModel;
-
+    public ChoosePaymentScreen() {
         setTitle("Payment GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 400);
         setLocationRelativeTo(null);
 
-        int itemsInCart = cartListModel.size();
-
-        cartLabel = new JLabel("Items in Cart: " + itemsInCart);
+        cartLabel = new JLabel("Items in Cart: 0");
 
         creditCardRadio = new JRadioButton("Credit Card");
         debitCardRadio = new JRadioButton("Debit Card");
+        paypalRadio = new JRadioButton("PayPal");
 
         ButtonGroup paymentGroup = new ButtonGroup();
         paymentGroup.add(creditCardRadio);
         paymentGroup.add(debitCardRadio);
+        paymentGroup.add(paypalRadio);
 
         JButton payButton = new JButton("Proceed to Pay");
-        payButton.addActionListener(e -> proceedToPay(itemsInCart));
+        payButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                proceedToPay();
+            }
+        });
 
         JPanel mainPanel = new JPanel(new GridLayout(4, 1));
         mainPanel.add(cartLabel);
         mainPanel.add(creditCardRadio);
         mainPanel.add(debitCardRadio);
-        mainPanel.add(payButton);
+        mainPanel.add(paypalRadio);
 
         add(mainPanel, BorderLayout.CENTER);
+        add(payButton, BorderLayout.SOUTH);
     }
 
-    private void proceedToPay(int itemsInCart) {
+    private void proceedToPay() {
+        int itemsInCart = 5;
+
         String selectedPaymentMethod = getSelectedPaymentMethod();
 
-        if (itemsInCart == getActualItemsInCart()) {
-            if ("Credit Card".equals(selectedPaymentMethod) || "Debit Card".equals(selectedPaymentMethod)) {
-                openPaymentScreen(selectedPaymentMethod);
-            } else {
-                JOptionPane.showMessageDialog(this, "Invalid payment method selected.", "Payment Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Error: The number of items in the cart has changed.", "Payment Error", JOptionPane.ERROR_MESSAGE);
-        }
-    }
-
-    private int getActualItemsInCart() {
-        return cartListModel.size();
+        JOptionPane.showMessageDialog(this,
+                "Items in Cart: " + itemsInCart + "\nSelected Payment Method: " + selectedPaymentMethod,
+                "Payment Details",
+                JOptionPane.INFORMATION_MESSAGE);
     }
 
     private String getSelectedPaymentMethod() {
@@ -65,34 +62,19 @@ public class ChoosePaymentScreen extends JFrame {
             return "Credit Card";
         } else if (debitCardRadio.isSelected()) {
             return "Debit Card";
+        } else if (paypalRadio.isSelected()) {
+            return "PayPal";
         } else {
             return "No payment method selected";
         }
     }
 
-    private void openPaymentScreen(String paymentMethod) {
-        if ("Credit Card".equals(paymentMethod) || "Debit Card".equals(paymentMethod)) {
-            SwingUtilities.invokeLater(() -> {
-                if ("Credit Card".equals(paymentMethod)) {
-                    new PayWithDebitScreen().setVisible(true);
-                } else {
-                    new PayWithDebitScreen().setVisible(true);
-                }
-                this.dispose();
-            });
-        }
-    }
-
     public static void main(String[] args) {
-        // Example usage
-        SwingUtilities.invokeLater(() -> {
-            // For demonstration, create a model with some items
-            DefaultListModel<String> cartListModel = new DefaultListModel<>();
-            cartListModel.addElement("Item 1");
-            cartListModel.addElement("Item 2");
-            cartListModel.addElement("Item 3");
-
-            new ChoosePaymentScreen(cartListModel).setVisible(true);
+        SwingUtilities.invokeLater(new Runnable() {
+            @Override
+            public void run() {
+                new ChoosePaymentScreen().setVisible(true);
+            }
         });
     }
 }
