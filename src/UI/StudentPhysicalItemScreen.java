@@ -4,64 +4,82 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.*;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 public class StudentPhysicalItemScreen extends JFrame {
-    private DefaultListModel<String> itemListModel;
-    private List<String[]> csvData;
-    private JTextField searchTextField;
+    private List<Item> items;
+    private List<Item> cart; // Cart to hold items
+    static private int userId;
 
     public StudentPhysicalItemScreen(int id) {
+        this.userId = id;
         setTitle("Item Search");
         setSize(600, 400);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        itemListModel = new DefaultListModel<>();
-        JList<String> itemList = new JList<>(itemListModel);
-        JScrollPane scrollPane = new JScrollPane(itemList);
-        add(scrollPane, BorderLayout.CENTER);
-
-        JPanel searchPanel = new JPanel();
-        searchTextField = new JTextField(20);
-        JButton searchButton = new JButton("Search");
-        searchPanel.add(new JLabel("Search:"));
-        searchPanel.add(searchTextField);
-        searchPanel.add(searchButton);
-        add(searchPanel, BorderLayout.NORTH);
-
-        searchButton.addActionListener(new ActionListener() {
+        addWindowListener(new WindowAdapter() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                searchItem(e);
+            public void windowClosing(WindowEvent e) {
+                saveCart(); // Save cart when window is closing
             }
         });
 
-        loadCSVData("src/UI/ItemSpreadsheet.csv");
+        items = readItemsFromCSV("src/UI/ItemSpreadsheet.csv");
+        cart = new ArrayList<>(); // Initialize the cart
+
+        JPanel topPanel = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                saveCart();
+            }
+        });
+        topPanel.add(backButton);
+        add(topPanel, BorderLayout.NORTH);
+
+        JPanel itemsPanel = new JPanel();
+        itemsPanel.setLayout(new BoxLayout(itemsPanel, BoxLayout.Y_AXIS));
+        JScrollPane scrollPane = new JScrollPane(itemsPanel, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
+                JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+        add(scrollPane, BorderLayout.CENTER);
+
+        for (Item item : items) {
+            JPanel itemPanel = new JPanel();
+            itemPanel.setLayout(new FlowLayout(FlowLayout.RIGHT));
+            JLabel itemLabel = new JLabel(item.toString());
+            JButton addButton = new JButton("Add to Cart");
+            addButton.addActionListener(e -> {
+                addToCart(item);
+            });
+            itemPanel.add(itemLabel);
+            itemPanel.add(addButton);
+            itemsPanel.add(itemPanel);
+        }
     }
 
-<<<<<<< Updated upstream
-=======
     // Method to add an item to the cart and print the cart contents
     private void addToCart(Item item) {
-        if (cart.size() == 10){
-            JOptionPane.showMessageDialog(this, "You have reached your max amount of items.", "Limit Reached", JOptionPane.ERROR_MESSAGE);
-        }
-        else {
-            if(cart.contains(item)){
-                JOptionPane.showMessageDialog(this, "You already have this item in your cart!", "Limit Reached", JOptionPane.ERROR_MESSAGE);
-            }
-            else {
+        if (cart.size() == 10) {
+            JOptionPane.showMessageDialog(this, "You have reached your max amount of items.", "Limit Reached",
+                    JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (cart.contains(item)) {
+                JOptionPane.showMessageDialog(this, "You already have this item in your cart!", "Limit Reached",
+                        JOptionPane.ERROR_MESSAGE);
+            } else {
                 cart.add(item);
-                JOptionPane.showMessageDialog(this, item.getName() + " Added to cart!", "Item Added", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(this, item.getName() + " Added to cart!", "Item Added",
+                        JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("User " + userId + " added to cart: " + item.getName());
             }
         }
-        //printCartContents(); // For demonstration, print cart contents
+        // printCartContents(); // For demonstration, print cart contents
     }
 
     private void saveCart() {
@@ -80,51 +98,54 @@ public class StudentPhysicalItemScreen extends JFrame {
         }
     }
 
->>>>>>> Stashed changes
-    private void loadCSVData(String filePath) {
-        csvData = new ArrayList<>();
+    private List<Item> readItemsFromCSV(String filePath) {
+        List<Item> itemList = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
+            br.readLine(); // Skip the header line
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                csvData.add(values);
+                Item item = new Item(values[0], values[1], values[2], values[3], values[4]);
+                itemList.add(item);
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    private void searchItem(ActionEvent e) {
-        String searchText = searchTextField.getText().trim().toLowerCase();
-        itemListModel.clear();
-
-        // Keep track of added items to avoid duplicates
-        Set<String> addedItems = new HashSet<>();
-
-        for (String[] item : csvData) {
-            if (item.length >= 4) { // Ensure the item has at least 4 parts (ID, name, author, type)
-                String itemName = item[1].trim().toLowerCase();
-                String author = item[2].trim().toLowerCase();
-                String itemType = item[3].trim().toLowerCase();
-
-                // Check if any part of the item matches the search text
-                if (itemName.contains(searchText) || author.contains(searchText) || itemType.contains(searchText)) {
-                    String itemInfo = "Item Name: " + item[1] + "\nAuthor: " + item[2] + "\nItem Type: " + item[3] + "\n";
-
-                    // Check if the item info is already added to avoid duplicates
-                    if (!addedItems.contains(itemInfo.toLowerCase())) {
-                        itemListModel.addElement(itemInfo);
-                        addedItems.add(itemInfo.toLowerCase());
-                    }
-                }
-            } else {
-                System.out.println("Invalid item format: " + String.join(", ", item));
-            }
-        }
+        return itemList;
     }
 
     public static void main(String[] args) {
-        int sampleUserId = 1;
-        EventQueue.invokeLater(() -> new StudentPhysicalItemScreen(sampleUserId).setVisible(true));
+        // int sampleUserId = 120; // This should be replaced with actual logic to
+        // obtain a user's ID
+        EventQueue.invokeLater(() -> new StudentPhysicalItemScreen(1002).setVisible(true));
+    }
+
+    static class Item {
+        private String id;
+        private String name;
+        private String author;
+        private String itemType;
+        private String amountLeft;
+
+        public Item(String id, String name, String author, String itemType, String amountLeft) {
+            this.id = id;
+            this.name = name;
+            this.author = author;
+            this.itemType = itemType;
+            this.amountLeft = amountLeft;
+        }
+
+        public String getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        @Override
+        public String toString() {
+            return name + " | " + author + " | " + itemType + " | " + amountLeft + " Available copies.";
+        }
     }
 }
