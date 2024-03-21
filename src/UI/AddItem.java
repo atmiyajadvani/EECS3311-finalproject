@@ -57,7 +57,7 @@ public class AddItem extends JFrame {
     }
 
     private void addItem() {
-        String id = String.valueOf(getNextItemID("physicalitems.csv"));
+        String id = String.valueOf(getNextItemID("src/UI/ItemSpreadsheet.csv"));
         String title = titleField.getText();
         String author = authorField.getText();
         String itemType = (String) itemTypeDropdown.getSelectedItem();
@@ -66,7 +66,7 @@ public class AddItem extends JFrame {
 
         FileWriter writer = null;
         try {
-            writer = new FileWriter("physicalitems.csv", true);
+            writer = new FileWriter("src/UI/ItemSpreadsheet.csv", true);
             writer.append(id).append(",")
                     .append(title).append(",")
                     .append(author).append(",")

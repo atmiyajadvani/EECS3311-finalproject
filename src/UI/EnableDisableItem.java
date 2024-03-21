@@ -34,6 +34,7 @@ public class EnableDisableItem extends JFrame {
         itemListModel = new DefaultListModel<>();
         itemList = new JList<>(itemListModel);
         itemList.setFixedCellHeight(50);
+        itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         enableButton = new JButton("Enable");
         disableButton = new JButton("Disable");
 
@@ -70,7 +71,7 @@ public class EnableDisableItem extends JFrame {
         FileWriter writer = null;
 
         try {
-            br = new BufferedReader(new FileReader("physicalitems.csv"));
+            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
             String line = "";
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
@@ -101,7 +102,7 @@ public class EnableDisableItem extends JFrame {
         BufferedReader br = null;
 
         try {
-            br = new BufferedReader(new FileReader("physicalitems.csv"));
+            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.replace(",", " | ");
@@ -156,7 +157,7 @@ public class EnableDisableItem extends JFrame {
         List<String[]> lines = new ArrayList<>();
 
         try {
-            br = new BufferedReader(new FileReader("physicalitems.csv"));
+            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
@@ -165,7 +166,7 @@ public class EnableDisableItem extends JFrame {
                 lines.add(data);
             }
 
-            writer = new FileWriter("physicalitems.csv");
+            writer = new FileWriter("src/UI/ItemSpreadsheet.csv");
             for (String[] rowData : lines) {
                 writer.append(String.join(",", rowData));
                 writer.append("\n");
@@ -193,7 +194,7 @@ public class EnableDisableItem extends JFrame {
         List<String[]> lines = new ArrayList<>();
 
         try {
-            br = new BufferedReader(new FileReader("physicalitems.csv"));
+            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
@@ -202,7 +203,7 @@ public class EnableDisableItem extends JFrame {
                 lines.add(data);
             }
 
-            writer = new FileWriter("physicalitems.csv");
+            writer = new FileWriter("src/UI/ItemSpreadsheet.csv");
             for (String[] rowData : lines) {
                 writer.append(String.join(",", rowData));
                 writer.append("\n");
