@@ -111,7 +111,23 @@ public class UserRegistration extends JFrame {
                         ex.printStackTrace();
                     }
 
+                    if (userType.equals("Faculty")) {
+                        try (BufferedWriter writerFaculty = new BufferedWriter(new FileWriter("src/UI/FacultyUsers.csv", true))) {
+                            writerFaculty.write(id1);
+                            writerFaculty.newLine(); // Add a newline after writing the ID
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
 
+                    if (userType.equals("Student")) {
+                        try (BufferedWriter writerFaculty = new BufferedWriter(new FileWriter("src/UI/FacultyUsers.csv", true))) {
+                            writerFaculty.write(id1);
+                            writerFaculty.newLine(); // Add a newline after writing the ID
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
 
                     // Redirect to the appropriate dashboard
                     switch (userType) {

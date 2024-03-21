@@ -5,8 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/UI/FacultyUsers.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/facultyusers.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/FacultyDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FacultyDashboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UserRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -39,9 +44,9 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager" selected="Application.StudentPhysicalItemScreen">
-    <configuration name="FacultyDashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UI.FacultyDashboard" />
+  <component name="RunManager" selected="Application.UserLogin">
+    <configuration name="CartScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="UI.CartScreen" />
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
@@ -79,6 +84,19 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="StudentTextbooksScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="UI.StudentTextbooksScreen" />
+      <module name="EECS3311-finalproject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="UI.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="UI.UserLogin" />
       <module name="EECS3311-finalproject" />
@@ -92,26 +110,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserRegistration" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UI.UserRegistration" />
-      <module name="EECS3311-finalproject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="UI.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StudentPhysicalItemScreen" />
-        <item itemvalue="Application.UserRegistration" />
-        <item itemvalue="Application.FacultyDashboard" />
         <item itemvalue="Application.UserLogin" />
+        <item itemvalue="Application.CartScreen" />
         <item itemvalue="Application.StudentDashboard" />
+        <item itemvalue="Application.StudentTextbooksScreen" />
+        <item itemvalue="Application.StudentPhysicalItemScreen" />
       </list>
     </recent_temporary>
   </component>
