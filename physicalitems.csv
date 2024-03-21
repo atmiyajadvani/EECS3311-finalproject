@@ -1,30 +1,30 @@
-1001,Shadows Over Mars,Evelyn Archer,Book,enabled,20,1
-1002,The Last Ember,Marcus Reed,Book,enabled,20,1
-1003,Whispers of the Past,Lila Moreno,Book,enabled,20,1
-1004,Beneath the Silver Sky,Arthus Quinn,Book,disabled,20,1
-1005,The Forgotten Garden,Sienna Blake,Book,enabled,20,1
-1006,Echoes of the Storm,Julian Hawthorne,Book,enabled,20,1
-1007,The Sapphire Heist,Naomi K. Lewis,Book,enabled,20,1
-1008,A Time of Ashes,Connor Easton,Book,enabled,20,1
-1009,The Ninth Oracle,Gabriella Song,Book,enabled,20,1
-1010,Beyond the Horizon,Derek Miles,Book,enabled,20,1
-1011,Whispers in the Dark,Starlight CinemaWorks,Movie,enabled,20,1
-1012,The Last Sunset,Starlight CinemaWorks,Movie,enabled,20,1
-1013,Echoes of Tomorrow,Moonbeam Studios,Movie,enabled,20,1
-1014,Beneath the Crimson Moon,Moonbeam Studios,enabled,Movie,20,1
-1015,Riders of the Storm,Emerald Horizon Films,Movie,enabled,20,1
-1016,The Forgotten Valley,Emerald Horizon Films,Movie,enabled,20,1
-1017,Beyond the Shadows,Silver Screen Dynamics,Movie,enabled,20,1
-1018,The Sapphire Curse,Silver Screen Dynamics,Movie,enabled,20,1
-1019,Guardians of the Light,NovaEcho Productions,Movie,enabled,20,1
-1020,The Quantum Heist,NovaEcho Productions,Movie,enabled,20,1
-1021,Global Explorer,Gloss & Glam Media Co.,Magazine,enabled,20,1
-1022,EcoFuture,Gloss & Glam Media Co.,Magazine,enabled,20,1
-1023,Tech Frontier,Inkwell Publishing House,Magazine,enabled,20,1
-1024,Culinary Art,Inkwell Publishing House,Magazine,enabled,20,1
-1025,Mindful Living,Spectrum Editions Ltd.,Magazine,enabled,20,1
-1026,Trendsetter,Spectrum Editions Ltd.,Magazine,enabled,20,1
-1027,Artisan Craft,Pinnacle Printworks,Magazine,enabled,20,1
-1028,Elite Fitness,Pinnacle Printworks,Magazine,enabled,20,1
-1029,Historical Times,Zenith Magazines Group,Magazine,enabled,20,1
-1030,AstroQuest,Zenith Magazines Group,Magazine,enabled,20,1
+1001,Shadows Over Mars,Evelyn Archer,Book,20,1,enabled
+1002,The Last Ember,Marcus Reed,Book,20,1,disabled
+1003,Whispers of the Past,Lila Moreno,Book,20,1,enabled
+1004,Beneath the Silver Sky,Arthus Quinn,Book,20,1,disabled
+1005,The Forgotten Garden,Sienna Blake,Book,20,1,enabled
+1006,Echoes of the Storm,Julian Hawthorne,Book,20,1,enabled
+1007,The Sapphire Heist,Naomi K. Lewis,Book,20,1,enabled
+1008,A Time of Ashes,Connor Easton,Book,20,1,enabled
+1009,The Ninth Oracle,Gabriella Song,Book,20,1,enabled
+1010,Beyond the Horizon,Derek Miles,Book,20,1,enabled
+1011,Whispers in the Dark,Starlight CinemaWorks,Movie,20,1,enabled
+1012,The Last Sunset,Starlight CinemaWorks,Movie,20,1,enabled
+1013,Echoes of Tomorrow,Moonbeam Studios,Movie,20,1,enabled
+1014,Beneath the Crimson Moon,Moonbeam Studios,Movie,20,1,enabled
+1015,Riders of the Storm,Emerald Horizon Films,Movie,20,1,enabled
+1016,The Forgotten Valley,Emerald Horizon Films,Movie,20,1,enabled
+1017,Beyond the Shadows,Silver Screen Dynamics,Movie,20,1,enabled
+1018,The Sapphire Curse,Silver Screen Dynamics,Movie,20,1,enabled
+1019,Guardians of the Light,NovaEcho Productions,Movie,20,1,enabled
+1020,The Quantum Heist,NovaEcho Productions,Movie,20,1,enabled
+1021,Global Explorer,Gloss & Glam Media Co.,Magazine,20,1,enabled
+1022,EcoFuture,Gloss & Glam Media Co.,Magazine,20,1,enabled
+1023,Tech Frontier,Inkwell Publishing House,Magazine,20,1,enabled
+1024,Culinary Art,Inkwell Publishing House,Magazine,20,1,enabled
+1025,Mindful Living,Spectrum Editions Ltd.,Magazine,20,1,enabled
+1026,Trendsetter,Spectrum Editions Ltd.,Magazine,20,1,enabled
+1027,Artisan Craft,Pinnacle Printworks,Magazine,20,1,enabled
+1028,Elite Fitness,Pinnacle Printworks,Magazine,20,1,enabled
+1029,Historical Times,Zenith Magazines Group,Magazine,20,1,disabled
+1030,AstroQuest,Zenith Magazines Group,Magazine,20,1,enabled

@@ -2,6 +2,8 @@ package UI;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -55,10 +57,12 @@ public class AddItem extends JFrame {
     }
 
     private void addItem() {
-        String id = "7"; // will be static id instance var of item class
+        String id = String.valueOf(getNextItemID("physicalitems.csv"));
         String title = titleField.getText();
         String author = authorField.getText();
         String itemType = (String) itemTypeDropdown.getSelectedItem();
+        String quantity = "20";
+        String status = "enabled";
 
         FileWriter writer = null;
         try {
@@ -66,7 +70,10 @@ public class AddItem extends JFrame {
             writer.append(id).append(",")
                     .append(title).append(",")
                     .append(author).append(",")
-                    .append(itemType).append("\n");
+                    .append(itemType).append(",")
+                    .append(quantity).append(",")
+                    .append("1").append(",")
+                    .append(status).append("\n");
             JOptionPane.showMessageDialog(this, "Item added successfully!");
 
             // return to manager dashboard
@@ -82,6 +89,27 @@ public class AddItem extends JFrame {
                 System.err.println("Error closing FileWriter: " + e.getMessage());
             }
         }
+    }
+
+    private static int getNextItemID(String filePath) {
+        int maxItemID = 0;
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                if (!line.trim().isEmpty()) {
+                    int currItemID = Integer.parseInt(line.split(",")[0]);
+                    if (currItemID > maxItemID) {
+                        maxItemID = currItemID;
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NumberFormatException e) {
+            System.out.println("Error parsing UserID from the file: " + e.getMessage());
+        }
+
+        return maxItemID + 1;
     }
 
     private void goBack() {

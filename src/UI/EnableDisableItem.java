@@ -70,10 +70,10 @@ public class EnableDisableItem extends JFrame {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
-                    if (data[4].equals("enabled")) {
+                    if (data[6].equals("enabled")) {
                         enableButton.setEnabled(false);
                         disableButton.setEnabled(true);
-                    } else if (data[4].equals("disabled")) {
+                    } else if (data[6].equals("disabled")) {
                         enableButton.setEnabled(true);
                         disableButton.setEnabled(false);
                     }
@@ -145,7 +145,7 @@ public class EnableDisableItem extends JFrame {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
-                    data[4] = "enabled";
+                    data[6] = "enabled";
                 }
                 lines.add(data);
             }
@@ -182,7 +182,7 @@ public class EnableDisableItem extends JFrame {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
-                    data[4] = "disabled";
+                    data[6] = "disabled";
                 }
                 lines.add(data);
             }
