@@ -44,6 +44,43 @@ public class StudentPhysicalItemScreen extends JFrame {
         loadCSVData("src/UI/ItemSpreadsheet.csv");
     }
 
+<<<<<<< Updated upstream
+=======
+    // Method to add an item to the cart and print the cart contents
+    private void addToCart(Item item) {
+        if (cart.size() == 10){
+            JOptionPane.showMessageDialog(this, "You have reached your max amount of items.", "Limit Reached", JOptionPane.ERROR_MESSAGE);
+        }
+        else {
+            if(cart.contains(item)){
+                JOptionPane.showMessageDialog(this, "You already have this item in your cart!", "Limit Reached", JOptionPane.ERROR_MESSAGE);
+            }
+            else {
+                cart.add(item);
+                JOptionPane.showMessageDialog(this, item.getName() + " Added to cart!", "Item Added", JOptionPane.INFORMATION_MESSAGE);
+                System.out.println("User " + userId + " added to cart: " + item.getName());
+            }
+        }
+        //printCartContents(); // For demonstration, print cart contents
+    }
+
+    private void saveCart() {
+        String csvFile = "src/UI/userIdtoCart.csv";
+        try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
+            StringBuilder sb = new StringBuilder();
+            sb.append(userId).append(",");
+            for (Item item : cart) {
+                sb.append(item.getId()).append(",").append(item.toString()).append(",");
+            }
+            sb.deleteCharAt(sb.length() - 1); // Remove the trailing comma
+            sb.append("\n"); // Add newline after each cart entry
+            writer.write(sb.toString());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+>>>>>>> Stashed changes
     private void loadCSVData(String filePath) {
         csvData = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {

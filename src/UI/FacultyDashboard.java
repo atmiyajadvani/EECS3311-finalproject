@@ -5,15 +5,11 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 
 public class FacultyDashboard extends JFrame {
     private JButton signOutButton;
     private JTextField inputTextField;
     private JTextArea userListTextArea;
-    private ArrayList<User> users; // Declare the users list
 
     private int userId;
 
@@ -36,9 +32,6 @@ public class FacultyDashboard extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
-
-        // Initialize the users list
-        users = new ArrayList<>();
 
         // Title panel with Faculty Dashboard title
         JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -91,26 +84,18 @@ public class FacultyDashboard extends JFrame {
     }
 
     private void populateUserList() {
-        //facultytextbooks, where the textbooks they pick go into the list
-        // Read from CSV file and populate the user list
-        try (BufferedReader reader = new BufferedReader(new FileReader("textbooks.csv"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length >= 3) { // Check for minimum required parts
-                    String title = parts[1].trim();
-                    String author = parts[3].trim();
+        // Sample data: Two users with their textbooks
+        ArrayList<User> users = new ArrayList<>();
+        users.add(new User("John Doe", "Mathematics", new String[]{"Book 1", "Book 2"}));
+        users.add(new User("Jane Smith", "Physics", new String[]{"Book 3", "Book 4"}));
 
-                    // Create a formatted string for each textbook with title and author only
-                    String textbookInfo = "Title: " + title + "\nAuthor: " + author + "\n";
-
-                    userListTextArea.append(textbookInfo + "\n"); // Append the formatted string
-                } else {
-                    System.out.println("Invalid line format: " + line);
-                }
+        // Populate the text area with user list and textbooks
+        for (User user : users) {
+            userListTextArea.append("Name: " + user.getName() + " - Subject: " + user.getSubject() + "\n");
+            for (String textbook : user.getTextbooks()) {
+                userListTextArea.append("   Textbook: " + textbook + "\n");
             }
-        } catch (IOException e) {
-            e.printStackTrace(); // Handle file reading error
+            userListTextArea.append("\n");
         }
     }
 

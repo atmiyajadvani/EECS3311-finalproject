@@ -4,7 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 
 public class CartScreenRM extends JFrame {
-    private int userId;
+    static private int userId;
 
     public CartScreenRM(int userId) {
         this.userId = userId;
@@ -19,7 +19,7 @@ public class CartScreenRM extends JFrame {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            CartScreenRM cartScreenRM = new CartScreenRM(123); // Pass any dummy userId for testing
+            CartScreenRM cartScreenRM = new CartScreenRM(userId); // Pass any dummy userId for testing
             cartScreenRM.setVisible(true);
         });
     }
