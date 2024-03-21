@@ -12,6 +12,7 @@ import java.util.ArrayList;
 public class EnableDisableItem extends JFrame {
     private JButton backButton;
     private JTextField searchTextField;
+    private JButton searchButton;
     private DefaultListModel<String> itemListModel;
     private JList<String> itemList;
     private JButton enableButton;
@@ -27,25 +28,29 @@ public class EnableDisableItem extends JFrame {
         setLayout(new BorderLayout());
 
         // initialize elements
+        backButton = new JButton("Back");
         searchTextField = new JTextField(20);
+        searchButton = new JButton("Search");
         itemListModel = new DefaultListModel<>();
         itemList = new JList<>(itemListModel);
         itemList.setFixedCellHeight(50);
         enableButton = new JButton("Enable");
         disableButton = new JButton("Disable");
-        backButton = new JButton("Back");
 
-        itemList.getSelectionModel().addListSelectionListener(e -> selectItem());
+        backButton.addActionListener(e -> goBack());
+        searchButton.addActionListener(e -> executeSearch());
         enableButton.addActionListener(e -> enableItem());
         enableButton.setEnabled(false);
         disableButton.addActionListener(e -> disableItem());
         disableButton.setEnabled(false);
-        backButton.addActionListener(e -> goBack());
+
+        itemList.getSelectionModel().addListSelectionListener(e -> selectItem());
 
         JPanel topPanel = new JPanel();
         topPanel.add(backButton);
         topPanel.add(new JLabel("Search for Item"));
         topPanel.add(searchTextField);
+        topPanel.add(searchButton);
         add(topPanel, BorderLayout.NORTH);
 
         JScrollPane scrollPane = new JScrollPane(itemList);
@@ -118,14 +123,24 @@ public class EnableDisableItem extends JFrame {
         }
     }
 
-    private void executeSearch(String searchText) {
-        /*
-        itemListModel.clear();
-        for (String item : items) {
-            if (item.toLowerCase().contains(searchText.toLowerCase())) {
-                itemListModel.addElement(item);
+    private void executeSearch() {
+        loadItems();
+        String searchText = searchTextField.getText().trim().toLowerCase();
+        List<String> searchResult = new ArrayList<>();
+
+        for (int i = 0; i < itemListModel.getSize(); i++) {
+            String originalItem = itemListModel.getElementAt(i);
+            String trimmedItem = originalItem.toLowerCase().substring(7, originalItem.length()-19);
+
+            if (trimmedItem.contains(searchText)) {
+                searchResult.add(originalItem);
             }
-        }*/
+        }
+
+        itemListModel.clear();
+        for (String item : searchResult) {
+            itemListModel.addElement(item);
+        }
     }
 
     private void goBack() {
