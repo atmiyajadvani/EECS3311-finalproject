@@ -38,5 +38,8 @@ UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverd
 140,temp24@gmail.com,pass123!,Student,19/03/24,yes,0,0
 142,onemoretime@gmail.com,temp,Student,20/03/24,yes,0,0
 144,testing123@gmail.com,temp123,Student,20/03/24,yes,0,0
-1002,ignore@gmail.com,ignore,Student,20/03/24,yes,0,0
-1004,aa@123,123,Student,22/03/24,yes,0,0
+146,testnews@gmail.com,123,Student,22/03/24,yes,0,0
+148,testingnews2@gmail.com,qwe,Student,22/03/24,yes,0,0
+150,testingnews3@gmail.com,123,Student,22/03/24,yes,0,0
+152,check@gmail.com,123,Student,22/03/24,yes,0,0
+154,checking@gmail.com,123,Student,22/03/24,yes,0,0

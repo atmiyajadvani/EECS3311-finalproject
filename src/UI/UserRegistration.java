@@ -114,7 +114,9 @@ public class UserRegistration extends JFrame {
                     int id = getNextUserId("src/UI/UserInfoSpreadsheet.csv") + 1; // Increment the last ID from the
                                                                                   // spreadsheet
                     String id1 = String.valueOf(id);
-                    String userData = id1 + "," + email + "," + password + "," + userType + "," + dateRegistered+ "," + canBorrow + "," + itemsBorrowed + "," + itemsOverdue;;
+                    String userData = id1 + "," + email + "," + password + "," + userType + "," + dateRegistered + ","
+                            + canBorrow + "," + itemsBorrowed + "," + itemsOverdue;
+                    ;
                     writer.write("\n" + userData); // Add a newline character before writing the new entry
                     writer.flush();
                     // Write user ID to userToTextbook.csv
@@ -127,7 +129,7 @@ public class UserRegistration extends JFrame {
                     }
                     // Write user ID to userSubs.csv
                     try (BufferedWriter writerSubs = new BufferedWriter(new FileWriter("src/UI/userSubs.csv", true))) {
-                        writerSubs.write(id1);
+                        writerSubs.write(id1 + ",0,0,0,0");
                         writerSubs.newLine(); // Add a newline after writing the ID
                     } catch (IOException ex) {
                         ex.printStackTrace();

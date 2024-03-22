@@ -2,11 +2,6 @@ package UI;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.io.*;
 import java.awt.event.*;
 
@@ -34,15 +29,20 @@ public class NewspaperMainpage extends JFrame {
                 // Check if the user ID matches the target user ID
                 if (userId1 == this.userId) {
                     // Extract the next four values (assuming they are 0s and 1s)
+                    // Extract the next four values (assuming they are 0s and 1s)
                     if (data[1].trim().isEmpty()) {
                         for (int i = 0; i < 4; i++) {
                             userData[i] = 0;
                         }
                     } else {
                         for (int i = 0; i < 4; i++) {
-                            userData[i] = Integer.parseInt(data[i + 1].trim()); // Assuming the values start from the
-                                                                                // second column
-                            System.out.println(userData[i]);
+                            if (i + 1 < data.length && !data[i + 1].trim().isEmpty()) {
+                                userData[i] = Integer.parseInt(data[i + 1].trim()); // Assuming the values start from
+                                                                                    // the second column
+                                System.out.println(userData[i]);
+                            } else {
+                                userData[i] = 0;
+                            }
                         }
                     }
                     break; // Stop reading further once the target user is found
@@ -203,8 +203,9 @@ public class NewspaperMainpage extends JFrame {
             }
 
             // Organize Classes, correct dashboard
-            StudentDashboard dashboard = new StudentDashboard(userId); // Assuming this class exists
-            dashboard.setVisible(true);
+            // StudentDashboard dashboard = new StudentDashboard(userId); // Assuming this
+            // class exists
+            // dashboard.setVisible(true);
             dispose(); // Close the current frame
         });
 
