@@ -4,6 +4,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 
 public class PayWithDebitScreen extends JFrame {
@@ -13,6 +16,7 @@ public class PayWithDebitScreen extends JFrame {
     private JTextField cvvField;
     private JTextField expirationDateField;
     private List<StudentPhysicalItemScreen.Item> cartItems;
+    private double totalPrice;
 
     public PayWithDebitScreen() {
         setTitle("Checkout");
@@ -73,6 +77,9 @@ public class PayWithDebitScreen extends JFrame {
                 cardholderName + "\nCard Number: " + cardNumber + "\nCVV: " + cvv +
                 "\nExpiration Date: " + expirationDate;
         JOptionPane.showMessageDialog(this, message, "Payment Details", JOptionPane.INFORMATION_MESSAGE);
+
+        // Save cart items to CSV after payment is completed
+        saveCart(cartItems, 1002); // Replace 1002 with actual user ID
     }
 
     private double calculateTotalPrice() {
@@ -81,8 +88,24 @@ public class PayWithDebitScreen extends JFrame {
         return 100.00;
     }
 
+    public void setTotalPrice(double totalPrice) {
+        this.totalPrice = totalPrice;
+        totalPriceLabel.setText("Total Price: $" + String.format("%.2f", totalPrice));
+    }
+
     public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
         this.cartItems = cartItems;
+    }
+
+    private void saveCart(List<StudentPhysicalItemScreen.Item> cartItems, int userId) {
+        String csvFile = "src/UI/UserBooksBrought.csv";
+        try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
+            for (StudentPhysicalItemScreen.Item item : cartItems) {
+                writer.println(userId + "," + item.getId() + "," + item.getName() + "," + item.getAuthor() + "," + item.getItemType());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
@@ -94,3 +117,5 @@ public class PayWithDebitScreen extends JFrame {
         });
     }
 }
+
+

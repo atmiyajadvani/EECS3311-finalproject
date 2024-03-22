@@ -6,7 +6,16 @@
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FacultyUsers.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/CartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/CartScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/ChoosePaymentScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/ChoosePaymentScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/ItemSpreadsheet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/PayWithDebitScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/PayWithDebitScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/UserBooksBrought.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UserBooksBrought.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/UserInfoSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UserInfoSpreadsheet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/userSubs.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/userSubs.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/userToTextbook.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/userToTextbook.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -31,6 +40,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2chMv9aD8AhPA9VtynvkfGGkPrU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -39,7 +51,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager" selected="Application.FacultyDashboard">
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.CartScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.ChoosePaymentScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StudentDashboard.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StudentPhysicalItemScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.StudentTextbooksScreen.executor&quot;: &quot;Run&quot;,
+    &quot;Application.UserRegistration.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;aahish&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="UI" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\aahis\Downloads\EECS3311-finalproject\src\UI" />
+    </key>
+  </component>
+  <component name="RunManager">
     <configuration name="CartScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="UI.CartScreen" />
       <module name="EECS3311-finalproject" />
@@ -107,18 +140,17 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.FacultyDashboard" />
+        <item itemvalue="Application.CartScreen" />
         <item itemvalue="Application.StudentTextbooksScreen" />
         <item itemvalue="Application.StudentPhysicalItemScreen" />
         <item itemvalue="Application.UserLogin" />
-        <item itemvalue="Application.CartScreen" />
       </list>
     </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-995e55e7" />
+        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
       </set>
     </attachedChunks>
   </component>

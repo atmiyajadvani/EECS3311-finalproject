@@ -1,107 +1,94 @@
 package UI;
 
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 
 public class ChoosePaymentScreen extends JFrame {
-    private JLabel cartLabel;
-    private JRadioButton creditCardRadio;
-    private JRadioButton debitCardRadio;
-    private JRadioButton paypalRadio;
+    private JLabel totalPriceLabel;
     private List<StudentPhysicalItemScreen.Item> cartItems;
 
     public ChoosePaymentScreen() {
         setTitle("Payment GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 400);
+        setSize(300, 200);
         setLocationRelativeTo(null);
 
-        cartLabel = new JLabel("Items in Cart: ");
+        totalPriceLabel = new JLabel("Total Price: $0.00");
+        totalPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
-        creditCardRadio = new JRadioButton("Credit Card");
-        debitCardRadio = new JRadioButton("Debit Card");
-        paypalRadio = new JRadioButton("PayPal");
+        JButton creditCardButton = new JButton("Credit Card");
+        JButton debitCardButton = new JButton("Debit Card");
+        JButton paypalButton = new JButton("PayPal");
 
-        ButtonGroup paymentGroup = new ButtonGroup();
-        paymentGroup.add(creditCardRadio);
-        paymentGroup.add(debitCardRadio);
-        paymentGroup.add(paypalRadio);
+        JPanel paymentOptionsPanel = new JPanel(new GridLayout(1, 3));
+        paymentOptionsPanel.add(creditCardButton);
+        paymentOptionsPanel.add(debitCardButton);
+        paymentOptionsPanel.add(paypalButton);
 
-        JButton payButton = new JButton("Proceed to Pay");
-        payButton.addActionListener(new ActionListener() {
+        creditCardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                proceedToPay();
+                openDebitCardPayment();
             }
         });
 
-        JPanel mainPanel = new JPanel(new GridLayout(4, 1));
-        mainPanel.add(cartLabel);
-        mainPanel.add(creditCardRadio);
-        mainPanel.add(debitCardRadio);
-        mainPanel.add(paypalRadio);
+        debitCardButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openDebitCardPayment();
+            }
+        });
+
+        paypalButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openDebitCardPayment();
+            }
+        });
+
+        JButton payButton = new JButton("Proceed to Pay");
+        payButton.addActionListener(e -> {
+            // Handle payment processing
+        });
+
+        JPanel mainPanel = new JPanel(new GridLayout(3, 1));
+        mainPanel.add(totalPriceLabel);
+        mainPanel.add(paymentOptionsPanel);
+        mainPanel.add(payButton);
 
         add(mainPanel, BorderLayout.CENTER);
-        add(payButton, BorderLayout.SOUTH);
-    }
-
-    private void proceedToPay() {
-        int itemsInCart = cartItems.size();
-        String selectedPaymentMethod = getSelectedPaymentMethod();
-        JOptionPane.showMessageDialog(this,
-                "Items in Cart: " + itemsInCart + "\nSelected Payment Method: " + selectedPaymentMethod,
-                "Payment Details",
-                JOptionPane.INFORMATION_MESSAGE);
-        if (selectedPaymentMethod.equals("Debit Card")) {
-            PayWithDebitScreen debitScreen = new PayWithDebitScreen();
-            debitScreen.setCartItems(cartItems); // Pass the cart items to the PayWithDebitScreen
-            debitScreen.setVisible(true);
-            saveCart(cartItems, 1002); // Save cart items to CSV after payment is completed, replace 1002 with actual user ID
-            this.setVisible(false); // Hide the ChoosePaymentScreen
-        } else {
-            // Handle other payment methods
-        }
-    }
-
-    private String getSelectedPaymentMethod() {
-        if (creditCardRadio.isSelected()) {
-            return "Credit Card";
-        } else if (debitCardRadio.isSelected()) {
-            return "Debit Card";
-        } else if (paypalRadio.isSelected()) {
-            return "PayPal";
-        } else {
-            return "No payment method selected";
-        }
     }
 
     public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
         this.cartItems = cartItems;
+        updateTotalPriceLabel();
     }
 
-    private void saveCart(List<StudentPhysicalItemScreen.Item> cartItems, int userId) {
-        String csvFile = "src/UI/UserBooksBrought.csv";
-        try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
+    private void updateTotalPriceLabel() {
+        double totalPrice = calculateTotalPrice();
+        totalPriceLabel.setText("Total Price: $" + String.format("%.2f", totalPrice));
+    }
+
+    private double calculateTotalPrice() {
+        double totalPrice = 0.0;
+        if (cartItems != null) {
             for (StudentPhysicalItemScreen.Item item : cartItems) {
-                writer.println(userId + "," + item.getId() + "," + item.getName() + "," + item.getAuthor() + "," + item.getItemType());
+                totalPrice += item.getPrice();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
+        return totalPrice;
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new ChoosePaymentScreen().setVisible(true);
-            }
-        });
+    private void openDebitCardPayment() {
+        PayWithDebitScreen debitScreen = new PayWithDebitScreen();
+        debitScreen.setCartItems(cartItems); // Pass the cart items to the PayWithDebitScreen
+        debitScreen.setTotalPrice(calculateTotalPrice()); // Pass the total price to the payment screen
+        debitScreen.setVisible(true);
+        this.setVisible(false); // Hide the ChoosePaymentScreen
     }
 }

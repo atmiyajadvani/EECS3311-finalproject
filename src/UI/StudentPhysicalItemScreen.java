@@ -68,7 +68,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
         });
 
         loadCSVData("src/UI/ItemSpreadsheet.csv");
-         cartScreen = new CartScreen(userID);
+        cartScreen = new CartScreen(userID);
 
         // Add "See Cart" button
         JButton seeCartButton = new JButton("See Cart");
@@ -95,8 +95,9 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
             String line;
             while ((line = br.readLine()) != null) {
                 String[] values = line.split(",");
-                if (values.length >= 5) {
-                    Item item = new Item(values[0].trim(), values[1].trim(), values[2].trim(), values[3].trim(), values[4].trim());
+                if (values.length >= 6) {
+                    double price = Double.parseDouble(values[5].trim());
+                    Item item = new Item(values[0].trim(), values[1].trim(), values[2].trim(), values[3].trim(), values[4].trim() ,price);
                     csvData.add(item);
                 } else {
                     System.out.println("Invalid item format: " + String.join(", ", values));
@@ -169,20 +170,21 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
         int sampleUserId = 120;
         EventQueue.invokeLater(() -> new StudentPhysicalItemScreen(sampleUserId).setVisible(true));
     }
-
     static class Item {
         private String id;
         private String name;
         private String author;
         private String itemType;
         private String amountLeft;
+        private double price; // New attribute
 
-        public Item(String id, String name, String author, String itemType, String amountLeft) {
+        public Item(String id, String name, String author, String itemType, String amountLeft, double price) {
             this.id = id;
             this.name = name;
             this.author = author;
             this.itemType = itemType;
             this.amountLeft = amountLeft;
+            this.price = price;
         }
 
         public String getId() {
@@ -199,6 +201,22 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
 
         public String getItemType() {
             return itemType;
+        }
+
+        public String getAmountLeft() {
+            return amountLeft;
+        }
+
+        public void setAmountLeft(String amountLeft) {
+            this.amountLeft = amountLeft;
+        }
+
+        public double getPrice() {
+            return price;
+        }
+
+        public void setPrice(double price) {
+            this.price = price;
         }
 
         @Override
@@ -219,6 +237,9 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
             return name + " | " + author + " | " + itemType + " | " + amountLeft + " Available copies.";
         }
     }
+
+
+
 
     static class ItemListCellRenderer extends DefaultListCellRenderer {
         private static final long serialVersionUID = 1L;
