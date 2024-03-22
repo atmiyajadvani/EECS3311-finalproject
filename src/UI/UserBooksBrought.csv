@@ -1,8 +1,9 @@
-1002,1001,Shadows Over Mars,Evelyn Archer,Book
-1002,1004,Beneath the Silver Sky,Arthus Quinn,Book
-1002,1001,Shadows Over Mars,Evelyn Archer,Book
-1002,1001,Shadows Over Mars,Evelyn Archer,Book
-1002,1004,Beneath the Silver Sky,Arthus Quinn,Book
-1002,1001,Shadows Over Mars,Evelyn Archer,Book
-1002,1002,The Last Ember,Marcus Reed,Book
-1002,1001,Shadows Over Mars,Evelyn Archer,Book
+UserID,ItemID,Title,Author,ItemType,DaysBorrowed,IsLost
+1002,1001,Shadows Over Mars,Evelyn Archer,Book,0,no
+1002,1004,Beneath the Silver Sky,Arthus Quinn,Book,0,no
+1002,1001,Shadows Over Mars,Evelyn Archer,Book,0,no
+1002,1001,Shadows Over Mars,Evelyn Archer,Book,0,no
+1002,1004,Beneath the Silver Sky,Arthus Quinn,Book,0,no
+1002,1001,Shadows Over Mars,Evelyn Archer,Book,0,no
+1002,1002,The Last Ember,Marcus Reed,Book,0,no
+1002,1001,Shadows Over Mars,Evelyn Archer,Book,0,no
