@@ -62,6 +62,11 @@ public class StudentTextbooksScreen extends JFrame {
         addCourseButton.addActionListener(e -> addCourse());
         southPanel.add(addCourseButton);
 
+        // Add Back button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> goBackToDashboard());
+        southPanel.add(backButton);
+
         // Add titlePanel, centerPanel, and southPanel to the NORTH, CENTER, and SOUTH regions respectively
         add(titlePanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
@@ -71,6 +76,12 @@ public class StudentTextbooksScreen extends JFrame {
         setVisible(true);
     }
 
+    // Method to handle going back to the Student Dashboard
+    private void goBackToDashboard() {
+        dispose(); // Dispose the current StudentTextbooksScreen frame
+        StudentDashboard studentDashboard = new StudentDashboard(userId); // Open the StudentDashboard
+        studentDashboard.setVisible(true);
+    }
 
     private void signOut() {
         dispose(); // Dispose the current dashboard

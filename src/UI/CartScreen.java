@@ -52,10 +52,10 @@ public class CartScreen extends JFrame implements CartListener {
                 applyPromoCode();
             }
         });
+
         checkoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 goToPaymentScreen();
             }
         });

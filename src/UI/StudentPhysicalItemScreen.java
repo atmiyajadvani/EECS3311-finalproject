@@ -75,6 +75,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         seeCartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
                 openCartScreen();
             }
         });
@@ -82,6 +83,67 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         buttonPanel.add(seeCartButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
+        // Add Back button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> goBackToDashboard());
+        buttonPanel.add(backButton);
+
+    }
+
+    // Method to handle going back to the Student Dashboard
+    private void goBackToDashboard() {
+        // Read user info from CSV file
+        String role = getUserRoleFromCSV(userID);
+
+        if (role != null) {
+            switch (role) {
+                case "Student":
+                    dispose(); // Dispose the current StudentTextbooksScreen frame
+                    StudentDashboard studentDashboard = new StudentDashboard(userID); // Open the StudentDashboard
+                    studentDashboard.setVisible(true);
+                    break;
+                case "Staff":
+                case "Faculty":
+                    dispose(); // Dispose the current StudentTextbooksScreen frame
+                    FacultyDashboard facultyDashboard = new FacultyDashboard(userID); // Open the FacultyDashboard
+                    facultyDashboard.setVisible(true);
+                    break;
+                case "Manager":
+                    dispose();
+                    ManagerDashboard managerDashboard = new ManagerDashboard(userID);
+                    managerDashboard.setVisible(true);
+                    break;
+                default:
+                    JOptionPane.showMessageDialog(this, "Invalid user role.", "Error", JOptionPane.ERROR_MESSAGE);
+                    break;
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "User not found or role not specified.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    private String getUserRoleFromCSV(int userId) {
+        String role = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"))) {
+            String line;
+            boolean firstLineSkipped = false; // Flag to track if the first line has been skipped
+            while ((line = reader.readLine()) != null) {
+                if (!firstLineSkipped) {
+                    firstLineSkipped = true;
+                    continue; // Skip the first line
+                }
+                String[] parts = line.split(",");
+                if (parts.length >= 4 && Integer.parseInt(parts[0].trim()) == userId) {
+                    role = parts[3].trim(); // Assuming role is in the fourth column of UserInfoSpreadsheet.csv
+                    break;
+                }
+            }
+        } catch (IOException | NumberFormatException e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Error reading user information.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        return role;
     }
 
     private void loadCSVData(String filePath) {

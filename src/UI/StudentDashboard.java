@@ -75,7 +75,6 @@ public class StudentDashboard extends JFrame {
         add(southPanel, BorderLayout.SOUTH);
     }
 
-
     private void signOut() {
         dispose(); // Dispose the current dashboard
         UserLogin loginScreen = new UserLogin(); // Open the login screen
