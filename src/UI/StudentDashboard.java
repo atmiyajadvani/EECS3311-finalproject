@@ -146,6 +146,10 @@ public class StudentDashboard extends JFrame {
                         JOptionPane.showMessageDialog(null,
                                 "Your items are over 15 days overdue and now considered lost.",
                                 "Lost book notification.", JOptionPane.INFORMATION_MESSAGE);
+                    } else if (numberOfDaysOverdue == 29) {
+                        JOptionPane.showMessageDialog(null,
+                                "Your items are due within the next 24 hours.", "Overdue Penalty",
+                                JOptionPane.INFORMATION_MESSAGE);
                     }
                     break; // Assuming there is only one entry per user ID
                 }
