@@ -39,3 +39,4 @@ UserID,Email,Password,UserType,RegisteredDate
 142,onemoretime@gmail.com,temp,Student,20/03/24
 144,testing123@gmail.com,temp123,Student,20/03/24
 1002,ignore@gmail.com,ignore,Student,20/03/24
+1004,aa@123,123,Student,22/03/24
