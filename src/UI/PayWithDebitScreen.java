@@ -4,9 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PayWithDebitScreen extends JFrame {
@@ -17,14 +16,17 @@ public class PayWithDebitScreen extends JFrame {
     private JTextField expirationDateField;
     private List<StudentPhysicalItemScreen.Item> cartItems;
     private double totalPrice;
+    private int userID;
 
-    public PayWithDebitScreen() {
+    public PayWithDebitScreen(int userID, double totalPrice) {
+        this.userID = userID;
+        this.totalPrice = totalPrice;
         setTitle("Checkout");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 300);
         setLocationRelativeTo(null);
 
-        totalPriceLabel = new JLabel("Total Price: $0.00");
+        totalPriceLabel = new JLabel("Total Price: $" + String.format("%.2f", totalPrice));
 
         JLabel cardholderNameLabel = new JLabel("Cardholder's Name:");
         cardholderNameField = new JTextField();
@@ -69,31 +71,27 @@ public class PayWithDebitScreen extends JFrame {
         String cvv = cvvField.getText();
         String expirationDate = expirationDateField.getText();
 
-        // Replace this with the actual calculation of the total price based on items in the cart
-        double totalPrice = calculateTotalPrice();
-
         // Display a message with the total price and card details
         String message = "Total Price: $" + String.format("%.2f", totalPrice) + "\n\nCardholder's Name: " +
                 cardholderName + "\nCard Number: " + cardNumber + "\nCVV: " + cvv +
                 "\nExpiration Date: " + expirationDate;
         JOptionPane.showMessageDialog(this, message, "Payment Details", JOptionPane.INFORMATION_MESSAGE);
 
+        // Update info
+        updateUserInfo();
+        updateItemQuantity();
+
         // Save cart items to CSV after payment is completed
         saveCart(cartItems, 1002); // Replace 1002 with actual user ID
     }
 
-    private double calculateTotalPrice() {
+    /*private double calculateTotalPrice() {
         for (StudentPhysicalItemScreen.Item item : cartItems) {
             totalPrice += item.getPrice();
         }
 
         return totalPrice;
-    }
-
-    public void setTotalPrice(double totalPrice) {
-        this.totalPrice = totalPrice;
-        totalPriceLabel.setText("Total Price: $" + String.format("%.2f", totalPrice));
-    }
+    }*/
 
     public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
         this.cartItems = cartItems;
@@ -112,14 +110,41 @@ public class PayWithDebitScreen extends JFrame {
         }
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                new PayWithDebitScreen().setVisible(true);
+    private void updateUserInfo() {
+        BufferedReader br = null;
+        FileWriter writer = null;
+        String line = "";
+        List<String[]> rows = new ArrayList<>();
+
+        try {
+            br = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"));
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data[0].equals(Integer.toString(userID))) {
+                    data[6] = String.valueOf(Integer.parseInt(data[6])+1);
+
+                }
+                rows.add(data);
             }
-        });
+
+            writer = new FileWriter("src/UI/UserInfoSpreadsheet.csv");
+            for (String[] rowData : rows) {
+                writer.append(String.join(",", rowData));
+                writer.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+                if (writer != null) writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    private void updateItemQuantity() {
+
     }
 }
-
-

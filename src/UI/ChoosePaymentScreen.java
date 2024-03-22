@@ -9,8 +9,10 @@ import java.util.List;
 public class ChoosePaymentScreen extends JFrame {
     private JLabel totalPriceLabel;
     private List<StudentPhysicalItemScreen.Item> cartItems;
+    private int userID;
 
-    public ChoosePaymentScreen() {
+    public ChoosePaymentScreen(int userID) {
+        this.userID = userID;
         setTitle("Payment GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(300, 200);
@@ -83,9 +85,8 @@ public class ChoosePaymentScreen extends JFrame {
     }
 
     private void openDebitCardPayment() {
-        PayWithDebitScreen debitScreen = new PayWithDebitScreen();
+        PayWithDebitScreen debitScreen = new PayWithDebitScreen(userID, calculateTotalPrice());
         debitScreen.setCartItems(cartItems); // Pass the cart items to the PayWithDebitScreen
-        debitScreen.setTotalPrice(calculateTotalPrice()); // Pass the total price to the payment screen
         debitScreen.setVisible(true);
         this.setVisible(false); // Hide the ChoosePaymentScreen
     }

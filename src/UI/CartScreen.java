@@ -70,7 +70,7 @@ public class CartScreen extends JFrame implements CartListener {
         add(middlePanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
         cartItems = new ArrayList<>();
-        paymentScreen = new ChoosePaymentScreen();
+        paymentScreen = new ChoosePaymentScreen(userId);
         loadCartItemsFromCSV();
         refreshCartView();
 
@@ -235,5 +235,3 @@ public class CartScreen extends JFrame implements CartListener {
         refreshCartView();
     }
 }
-
-
