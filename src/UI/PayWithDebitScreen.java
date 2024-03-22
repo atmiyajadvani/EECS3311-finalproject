@@ -83,6 +83,10 @@ public class PayWithDebitScreen extends JFrame {
 
         // Save cart items to CSV after payment is completed
         saveCart(cartItems, 1002); // Replace 1002 with actual user ID
+
+        // go back
+        dispose();
+        new StudentPhysicalItemScreen(userID).setVisible(true);
     }
 
     public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
