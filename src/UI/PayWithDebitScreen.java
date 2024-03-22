@@ -83,9 +83,11 @@ public class PayWithDebitScreen extends JFrame {
     }
 
     private double calculateTotalPrice() {
-        // Replace this with the actual calculation of the total price based on items in the cart
-        // For simplicity, let's assume the total price is $100.00
-        return 100.00;
+        for (StudentPhysicalItemScreen.Item item : cartItems) {
+            totalPrice += item.getPrice();
+        }
+
+        return totalPrice;
     }
 
     public void setTotalPrice(double totalPrice) {
@@ -99,9 +101,11 @@ public class PayWithDebitScreen extends JFrame {
 
     private void saveCart(List<StudentPhysicalItemScreen.Item> cartItems, int userId) {
         String csvFile = "src/UI/UserBooksBrought.csv";
+        int daysBorrowed = 0;
+        String isLost = "no";
         try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
             for (StudentPhysicalItemScreen.Item item : cartItems) {
-                writer.println(userId + "," + item.getId() + "," + item.getName() + "," + item.getAuthor() + "," + item.getItemType());
+                writer.println(userId + "," + item.getId() + "," + item.getName() + "," + item.getAuthor() + "," + item.getItemType() + "," + daysBorrowed + "," + isLost);
             }
         } catch (IOException e) {
             e.printStackTrace();
