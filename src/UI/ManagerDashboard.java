@@ -19,7 +19,9 @@ public class ManagerDashboard extends JFrame {
         initializeUI();
     }
 
-    public ManagerDashboard() { initializeUI(); }
+    public ManagerDashboard() {
+        initializeUI();
+    }
 
     private void initializeUI() {
         setTitle("YorkU Library Management App - Manager Dashboard");

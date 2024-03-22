@@ -11,7 +11,6 @@ import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-
 public class RequestBookScreen extends JFrame implements ActionListener {
     private JButton btnBack, btnRequestBook;
     private JTextField txtBookName, txtSearch;
@@ -56,7 +55,7 @@ public class RequestBookScreen extends JFrame implements ActionListener {
         mainPanel.add(lblSubtitle, gbc);
 
         JPanel comboBoxPanel = new JPanel(new FlowLayout(FlowLayout.CENTER, 5, 5));
-        String[] purposes = {"Course Teaching", "Self Improvement"};
+        String[] purposes = { "Course Teaching", "Self Improvement" };
         purposeComboBox = new JComboBox<>(purposes);
         comboBoxPanel.add(purposeComboBox);
         gbc.gridy = 2;
@@ -89,7 +88,8 @@ public class RequestBookScreen extends JFrame implements ActionListener {
     private void requestBook(ActionEvent e) {
         String bookName = txtBookName.getText().trim();
         if (bookName.isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter the name of the book.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Please enter the name of the book.", "Error",
+                    JOptionPane.ERROR_MESSAGE);
             return;
         }
 
@@ -109,13 +109,14 @@ public class RequestBookScreen extends JFrame implements ActionListener {
                             JOptionPane.DEFAULT_OPTION,
                             JOptionPane.INFORMATION_MESSAGE,
                             null,
-                            new Object[]{"Okay"},
+                            new Object[] { "Okay" },
                             "Okay");
 
                     if (choice == 0) {
                         // Continue with whatever action is needed
                         int num = updatePriorityQueue(bookName);
-                        JOptionPane.showMessageDialog(this, "You are: " + num + " in line for this item", "Queue Information", JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.showMessageDialog(this, "You are: " + num + " in line for this item",
+                                "Queue Information", JOptionPane.INFORMATION_MESSAGE);
                         System.out.println("Okay button clicked + " + num);
                     }
                     return;
@@ -181,8 +182,6 @@ public class RequestBookScreen extends JFrame implements ActionListener {
         }
         return count;
     }
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {

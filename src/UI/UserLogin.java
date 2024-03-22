@@ -36,10 +36,12 @@ public class UserLogin extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 String username = emailTextField.getText().trim(); // Trim to remove leading/trailing spaces
-                String password = new String(passwordField.getPassword()).trim(); // Trim to remove leading/trailing spaces
+                String password = new String(passwordField.getPassword()).trim(); // Trim to remove leading/trailing
+                                                                                  // spaces
 
                 if (username.isEmpty() || password.isEmpty()) {
-                    JOptionPane.showMessageDialog(null, "Email and password are required!", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Email and password are required!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     return;
                 }
 
@@ -56,7 +58,7 @@ public class UserLogin extends JFrame {
                             id = Integer.parseInt(userInfo[0]);
                             String userType = userInfo[3];
                             switch (userType) {
-                                case "Visitor" :
+                                case "Visitor":
                                 case "Student":
                                     // Hide the login window
                                     setVisible(false);
@@ -85,13 +87,15 @@ public class UserLogin extends JFrame {
                     }
                     reader.close();
                     if (!found) {
-                        JOptionPane.showMessageDialog(null, "Username or password is incorrect!", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Username or password is incorrect!", "Error",
+                                JOptionPane.ERROR_MESSAGE);
                         // Clear the fields
                         emailTextField.setText("");
                         passwordField.setText("");
                     }
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, "An error occurred while reading the user data.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "An error occurred while reading the user data.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     ex.printStackTrace();
                 }
             }
@@ -120,7 +124,6 @@ public class UserLogin extends JFrame {
         add(new JLabel("")); // This just adds an empty space
         add(buttonPanel); // Adding buttons panel
     }
-
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {

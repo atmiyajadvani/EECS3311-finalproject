@@ -12,9 +12,9 @@ public class StudentDashboard extends JFrame {
     private JButton requestBookButton;
     private JButton newsletterButton;
 
-    //public StudentDashboard() {
-      //  initializeUI();
-    //}
+    // public StudentDashboard() {
+    // initializeUI();
+    // }
 
     public StudentDashboard(int userId) { // Modify the constructor to accept the user ID
         this.userId = userId; // Store the user ID
@@ -25,7 +25,7 @@ public class StudentDashboard extends JFrame {
 
         // Add your dashboard components here
 
-        //setVisible(true);
+        // setVisible(true);
         initializeUI();
     }
 
@@ -75,7 +75,6 @@ public class StudentDashboard extends JFrame {
         add(southPanel, BorderLayout.SOUTH);
     }
 
-
     private void signOut() {
         dispose(); // Dispose the current dashboard
         UserLogin loginScreen = new UserLogin(); // Open the login screen
@@ -84,7 +83,8 @@ public class StudentDashboard extends JFrame {
 
     private void navigateToPhysicalRentals() {
         dispose(); // Dispose the current dashboard
-        StudentPhysicalItemScreen physicalItemScreen = new StudentPhysicalItemScreen(userId); // Open the physical item screen
+        StudentPhysicalItemScreen physicalItemScreen = new StudentPhysicalItemScreen(userId); // Open the physical item
+                                                                                              // screen
         physicalItemScreen.setVisible(true);
     }
 
@@ -102,13 +102,14 @@ public class StudentDashboard extends JFrame {
 
     private void navigateToStudentTextbooksScreen() {
         dispose(); // Dispose the current dashboard
-        StudentTextbooksScreen studentTextbooksScreen = new StudentTextbooksScreen(userId); // Open the physical item screen
+        StudentTextbooksScreen studentTextbooksScreen = new StudentTextbooksScreen(userId); // Open the physical item
+                                                                                            // screen
         studentTextbooksScreen.setVisible(true);
     }
 
     private void navigateToCartScreen() {
         dispose(); // Dispose the current dashboard
-        CartScreenRM cartScreenRM = new CartScreenRM(userId); // Open the physical item screen
+        CartScreen cartScreenRM = new CartScreen(userId); // Open the physical item screen
         cartScreenRM.setVisible(true);
     }
 

@@ -1,4 +1,5 @@
 package UI;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -17,7 +18,7 @@ public class NewspaperMainpage extends JFrame {
     public NewspaperMainpage(int temp) {
 
         this.userId = temp;
-        //int id = 1000; //temp id because user class not ready
+        // int id = 1000; //temp id because user class not ready
         String csvFile = "src/UI/userSubs.csv";
         // Try-with-resources to automatically close the BufferedReader
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -39,7 +40,8 @@ public class NewspaperMainpage extends JFrame {
                         }
                     } else {
                         for (int i = 0; i < 4; i++) {
-                            userData[i] = Integer.parseInt(data[i + 1].trim()); // Assuming the values start from the second column
+                            userData[i] = Integer.parseInt(data[i + 1].trim()); // Assuming the values start from the
+                                                                                // second column
                             System.out.println(userData[i]);
                         }
                     }
@@ -49,7 +51,6 @@ public class NewspaperMainpage extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
 
         setTitle("Newspapers");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -69,19 +70,27 @@ public class NewspaperMainpage extends JFrame {
         JPanel sectionsPanel = new JPanel(new GridLayout(4, 1));
 
         // Section 1
-        JPanel section1Panel = createSectionPanel("New York's Time", "New York's Time delivers bite-sized insights into NYC's culture, events, and hidden gems.", 0, userData);
+        JPanel section1Panel = createSectionPanel("New York's Time",
+                "New York's Time delivers bite-sized insights into NYC's culture, events, and hidden gems.", 0,
+                userData);
         sectionsPanel.add(section1Panel);
 
         // Section 2
-        JPanel section2Panel = createSectionPanel("The Mail and Globe", "\"The Mail and Globe\" is your weekly briefing. Stay informed on the latest news and trends shaping our world.", 1, userData);
+        JPanel section2Panel = createSectionPanel("The Mail and Globe",
+                "\"The Mail and Globe\" is your weekly briefing. Stay informed on the latest news and trends shaping our world.",
+                1, userData);
         sectionsPanel.add(section2Panel);
 
         // Section 3
-        JPanel section3Panel = createSectionPanel("Toronto Moon", "\"Toronto Moon\" is your essential weekly digest of all things Toronto, featuring the latest events and gems.", 2, userData);
+        JPanel section3Panel = createSectionPanel("Toronto Moon",
+                "\"Toronto Moon\" is your essential weekly digest of all things Toronto, featuring the latest events and gems.",
+                2, userData);
         sectionsPanel.add(section3Panel);
 
         // Section 4
-        JPanel section4Panel = createSectionPanel("The DC Post", "\"The DC Post\" delivers weekly updates on all things Washington D.C., from politics and culture to events and local news.", 3, userData);
+        JPanel section4Panel = createSectionPanel("The DC Post",
+                "\"The DC Post\" delivers weekly updates on all things Washington D.C., from politics and culture to events and local news.",
+                3, userData);
         sectionsPanel.add(section4Panel);
 
         add(sectionsPanel, BorderLayout.CENTER);
@@ -91,7 +100,7 @@ public class NewspaperMainpage extends JFrame {
             public void windowClosing(WindowEvent e) {
                 // Perform actions when the window is closing
                 // For example, save user data before closing
-                //UpdateUserInfo();
+                // UpdateUserInfo();
             }
         });
 
@@ -101,13 +110,14 @@ public class NewspaperMainpage extends JFrame {
             String redirecterDashboardRole = "";
             String temp1 = "";
 
-            for(int i=0; i<4; i++){
+            for (int i = 0; i < 4; i++) {
                 System.out.println(userData[i]);
-                temp1 += userData[i]+",";
+                temp1 += userData[i] + ",";
             }
 
-            //open the UserInfoSpreadsheet.csv, look through the rows and find matching row.
-            //after the first comma, add/replace the following values with the temp1 string
+            // open the UserInfoSpreadsheet.csv, look through the rows and find matching
+            // row.
+            // after the first comma, add/replace the following values with the temp1 string
             try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
                 String line;
                 StringBuilder updatedContent = new StringBuilder();
@@ -139,17 +149,17 @@ public class NewspaperMainpage extends JFrame {
                     }
                 }
 
-                //System.out.println("This works1");
+                // System.out.println("This works1");
                 // Write the updated content back to the CSV file
                 try (FileWriter writer = new FileWriter(csvFile)) {
                     writer.write(updatedContent.toString());
 
-                    //System.out.println("This works2");
+                    // System.out.println("This works2");
                 }
             } catch (IOException g) {
                 g.printStackTrace();
             }
-            //System.out.println("This works2");
+            // System.out.println("This works2");
             try (BufferedReader br = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"))) {
                 String line;
                 boolean firstLine = true; // Flag to indicate the first line
@@ -192,8 +202,7 @@ public class NewspaperMainpage extends JFrame {
                     System.out.println("Dashboard not accessible.");
             }
 
-
-            //Organize Classes, correct dashboard
+            // Organize Classes, correct dashboard
             StudentDashboard dashboard = new StudentDashboard(userId); // Assuming this class exists
             dashboard.setVisible(true);
             dispose(); // Close the current frame
@@ -202,8 +211,6 @@ public class NewspaperMainpage extends JFrame {
         JPanel bottomPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         bottomPanel.add(backButton);
         add(bottomPanel, BorderLayout.SOUTH);
-
-
 
         setVisible(true);
     }
@@ -240,24 +247,36 @@ public class NewspaperMainpage extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 if (button1.getText().equals("  Subscribe  ")) {
-                    // Show input dialog for payment information
-                    String paymentInfo = JOptionPane.showInputDialog(null, "Please enter your payment information:");
-                    // Show payment accepted message
-                    JOptionPane.showMessageDialog(null, "Payment Accepted!");
-                    userData[num] = 1;
-                    // Enable the "View" button
-                    button2.setEnabled(true);
-                    // Change the button text to "Unsubscribe"
-                    button1.setText("Unsubscribe");
+                    // First dialog: Choose payment method
+                    String[] options = { "Credit", "Debit", "Mobile Wallet" };
+                    int paymentType = JOptionPane.showOptionDialog(null, "Select your payment method:",
+                            "Payment Method",
+                            JOptionPane.DEFAULT_OPTION, JOptionPane.INFORMATION_MESSAGE, null, options, options[0]);
+
+                    if (paymentType >= 0) { // If a payment method is chosen (i.e., user didn't close the dialog)
+                        // Second dialog: Enter payment information
+                        String paymentInfo = JOptionPane.showInputDialog(null,
+                                "Please enter your payment information for " + options[paymentType] + ":");
+
+                        if (paymentInfo != null && !paymentInfo.trim().isEmpty()) {
+                            // Show payment accepted message
+                            JOptionPane.showMessageDialog(null, "Payment Accepted!");
+                            userData[num] = 1;
+                            // Update button states
+                            button1.setText("Unsubscribe");
+                            button2.setEnabled(true);
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Payment information is required.", "Error",
+                                    JOptionPane.ERROR_MESSAGE);
+                        }
+                    }
                 } else {
-                    // Show confirmation dialog
-                    int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to unsubscribe?", "Unsubscribe", JOptionPane.YES_NO_OPTION);
+                    // Show confirmation dialog for unsubscription
+                    int choice = JOptionPane.showConfirmDialog(null, "Are you sure you want to unsubscribe?",
+                            "Unsubscribe", JOptionPane.YES_NO_OPTION);
                     if (choice == JOptionPane.YES_OPTION) {
-                        // Update userData array
                         userData[num] = 0;
-                        // Change the button text to "Subscribe"
                         button1.setText("  Subscribe  ");
-                        // Disable the "View" button
                         button2.setEnabled(false);
                     }
                 }
@@ -301,8 +320,6 @@ public class NewspaperMainpage extends JFrame {
             JOptionPane.showMessageDialog(null, "Error opening image: " + e.getMessage());
         }
     }
-
-
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new NewspaperMainpage(userId));

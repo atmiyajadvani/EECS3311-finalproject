@@ -7,6 +7,8 @@ import java.awt.event.ActionListener;
 import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class UserRegistration extends JFrame {
     private JTextField emailTextField;
@@ -29,7 +31,7 @@ public class UserRegistration extends JFrame {
         emailTextField = new JTextField();
         passwordField = new JPasswordField();
         retypePasswordField = new JPasswordField();
-        String[] userTypes = {"Student", "Faculty", "Staff", "Manager", "Visitor"};
+        String[] userTypes = { "Student", "Faculty", "Staff", "Visitor" };
         userTypeComboBox = new JComboBox<>(userTypes);
 
         panel.add(new JLabel("Email:"));
@@ -68,6 +70,19 @@ public class UserRegistration extends JFrame {
                     return;
                 }
 
+                // Check if email format is valid
+                if (!isValidEmailFormat(email)) {
+                    JOptionPane.showMessageDialog(null, "Invalid email format!", "Error", JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
+                // Check if email is unique
+                if (!isEmailUnique(email)) {
+                    JOptionPane.showMessageDialog(null, "This email is already in use!", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                    return;
+                }
+
                 // Check if passwords match
                 if (!password.equals(retypePassword)) {
                     JOptionPane.showMessageDialog(null, "Passwords do not match!", "Error", JOptionPane.ERROR_MESSAGE);
@@ -80,7 +95,8 @@ public class UserRegistration extends JFrame {
                 if (!userType.equals("Visitor")) {
                     String verificationCode = JOptionPane.showInputDialog(null, "Enter verification code:");
                     if (verificationCode == null || !verificationCode.equals("123")) {
-                        JOptionPane.showMessageDialog(null, "Invalid verification code!", "Error", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Invalid verification code!", "Error",
+                                JOptionPane.ERROR_MESSAGE);
                         // Clear fields on error
                         clearFields();
                         return;
@@ -88,16 +104,19 @@ public class UserRegistration extends JFrame {
                 }
 
                 // Write user information to the spreadsheet
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter("src/UI/UserInfoSpreadsheet.csv", true))) {
+                try (BufferedWriter writer = new BufferedWriter(
+                        new FileWriter("src/UI/UserInfoSpreadsheet.csv", true))) {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
                     String dateRegistered = dateFormat.format(new Date());
-                    int id = getNextUserId("src/UI/UserInfoSpreadsheet.csv") + 1; // Increment the last ID from the spreadsheet
+                    int id = getNextUserId("src/UI/UserInfoSpreadsheet.csv") + 1; // Increment the last ID from the
+                                                                                  // spreadsheet
                     String id1 = String.valueOf(id);
                     String userData = id1 + "," + email + "," + password + "," + userType + "," + dateRegistered;
                     writer.write("\n" + userData); // Add a newline character before writing the new entry
                     writer.flush();
                     // Write user ID to userToTextbook.csv
-                    try (BufferedWriter writerToTextbook = new BufferedWriter(new FileWriter("src/UI/userToTextbook.csv", true))) {
+                    try (BufferedWriter writerToTextbook = new BufferedWriter(
+                            new FileWriter("src/UI/userToTextbook.csv", true))) {
                         writerToTextbook.write(id1);
                         writerToTextbook.newLine(); // Add a newline after writing the ID
                     } catch (IOException ex) {
@@ -111,7 +130,25 @@ public class UserRegistration extends JFrame {
                         ex.printStackTrace();
                     }
 
+                    if (userType.equals("Faculty")) {
+                        try (BufferedWriter writerFaculty = new BufferedWriter(
+                                new FileWriter("src/UI/FacultyUsers.csv", true))) {
+                            writerFaculty.write(id1);
+                            writerFaculty.newLine(); // Add a newline after writing the ID
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
 
+                    if (userType.equals("Student")) {
+                        try (BufferedWriter writerFaculty = new BufferedWriter(
+                                new FileWriter("src/UI/VitualCopies.csv", true))) {
+                            writerFaculty.write(id1);
+                            writerFaculty.newLine(); // Add a newline after writing the ID
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
 
                     // Redirect to the appropriate dashboard
                     switch (userType) {
@@ -131,7 +168,8 @@ public class UserRegistration extends JFrame {
                     // Close the registration window
                     dispose();
                 } catch (IOException ex) {
-                    JOptionPane.showMessageDialog(null, "An error occurred while writing the user data.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "An error occurred while writing the user data.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
                     ex.printStackTrace();
                     return;
                 }
@@ -144,6 +182,31 @@ public class UserRegistration extends JFrame {
         add(panel);
 
         setVisible(true);
+    }
+
+    // Method to validate email format
+    private boolean isValidEmailFormat(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.find();
+    }
+
+    // Method to check if the email is unique
+    private boolean isEmailUnique(String email) {
+        String filePath = "src/UI/UserInfoSpreadsheet.csv";
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] values = line.split(",");
+                if (values.length > 1 && values[1].equalsIgnoreCase(email)) {
+                    return false; // Email already exists
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return true; // Email is unique
     }
 
     private static int getNextUserId(String filePath) {
