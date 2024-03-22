@@ -63,6 +63,9 @@ public class UserRegistration extends JFrame {
                 String password = new String(passwordField.getPassword());
                 String retypePassword = new String(retypePasswordField.getPassword());
                 String userType = (String) userTypeComboBox.getSelectedItem();
+                String canBorrow = "yes";
+                int itemsBorrowed = 0;
+                int itemsOverdue = 0;
 
                 // Check if all fields are filled out
                 if (email.isEmpty() || password.isEmpty() || retypePassword.isEmpty()) {
@@ -111,7 +114,7 @@ public class UserRegistration extends JFrame {
                     int id = getNextUserId("src/UI/UserInfoSpreadsheet.csv") + 1; // Increment the last ID from the
                                                                                   // spreadsheet
                     String id1 = String.valueOf(id);
-                    String userData = id1 + "," + email + "," + password + "," + userType + "," + dateRegistered;
+                    String userData = id1 + "," + email + "," + password + "," + userType + "," + dateRegistered+ "," + canBorrow + "," + itemsBorrowed + "," + itemsOverdue;;
                     writer.write("\n" + userData); // Add a newline character before writing the new entry
                     writer.flush();
                     // Write user ID to userToTextbook.csv
