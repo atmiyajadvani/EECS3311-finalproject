@@ -98,6 +98,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         if (role != null) {
             switch (role) {
                 case "Student":
+                case "Visitor":
                     dispose(); // Dispose the current StudentTextbooksScreen frame
                     StudentDashboard studentDashboard = new StudentDashboard(userID); // Open the StudentDashboard
                     studentDashboard.setVisible(true);
