@@ -22,3 +22,7 @@ UserID,ItemID,Title,Author,ItemType,DaysBorrowed,IsLost
 1002,1002,The Last Ember,Marcus Reed,Book,0,no
 1002,1006,Echoes of the Storm,Julian Hawthorne,Book,0,no
 1002,1005,The Forgotten Garden,Sienna Blake,Book,0,no
+1002,1003,Whispers of the Past,Lila Moreno,Book,0,no
+1002,1005,The Forgotten Garden,Sienna Blake,Book,0,no
+1002,1007,The Sapphire Heist,Naomi K. Lewis,Book,0,no
+1002,1014,Beneath the Crimson Moon,Moonbeam Studios,Movie,0,no

@@ -10,16 +10,20 @@ public class ChoosePaymentScreen extends JFrame {
     private JLabel totalPriceLabel;
     private List<StudentPhysicalItemScreen.Item> cartItems;
     private int userID;
+    private JTextField promoCodeField;
 
     public ChoosePaymentScreen(int userID) {
         this.userID = userID;
         setTitle("Payment GUI");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setSize(300, 200);
+        setSize(400, 200);
         setLocationRelativeTo(null);
 
         totalPriceLabel = new JLabel("Total Price: $0.00");
         totalPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
+
+        promoCodeField = new JTextField(10);
+        promoCodeField.setHorizontalAlignment(SwingConstants.CENTER);
 
         JButton creditCardButton = new JButton("Credit Card");
         JButton debitCardButton = new JButton("Debit Card");
@@ -33,33 +37,32 @@ public class ChoosePaymentScreen extends JFrame {
         creditCardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openDebitCardPayment();
+                applyPromoAndOpenDebitCardPayment();
             }
         });
 
         debitCardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openDebitCardPayment();
+                applyPromoAndOpenDebitCardPayment();
             }
         });
 
         paypalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openDebitCardPayment();
+                applyPromoAndOpenDebitCardPayment();
             }
         });
 
-        // JButton payButton = new JButton("Proceed to Pay");
-        // payButton.addActionListener(e -> {
-        // // Handle payment processing
-        // });
+        JPanel promoCodePanel = new JPanel();
+        promoCodePanel.add(new JLabel("Promo code:"));
+        promoCodePanel.add(promoCodeField);
 
-        JPanel mainPanel = new JPanel(new GridLayout(3, 1));
+        JPanel mainPanel = new JPanel(new GridLayout(4, 1));
         mainPanel.add(totalPriceLabel);
+        mainPanel.add(promoCodePanel);
         mainPanel.add(paymentOptionsPanel);
-        // mainPanel.add(payButton);
 
         add(mainPanel, BorderLayout.CENTER);
     }
@@ -84,8 +87,16 @@ public class ChoosePaymentScreen extends JFrame {
         return totalPrice;
     }
 
-    private void openDebitCardPayment() {
-        PayWithDebitScreen debitScreen = new PayWithDebitScreen(userID, calculateTotalPrice());
+    private void applyPromoAndOpenDebitCardPayment() {
+        String promoCode = promoCodeField.getText().trim();
+        double discount = 0.0;
+        if ("fo40".equals(promoCode)) {
+            discount = 0.4; // 40% discount
+        }
+
+        double totalPrice = calculateTotalPrice() * (1 - discount);
+
+        PayWithDebitScreen debitScreen = new PayWithDebitScreen(userID, totalPrice);
         debitScreen.setCartItems(cartItems); // Pass the cart items to the PayWithDebitScreen
         debitScreen.setVisible(true);
         this.setVisible(false); // Hide the ChoosePaymentScreen

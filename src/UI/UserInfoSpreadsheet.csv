@@ -14,7 +14,7 @@ UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverd
 112,mason.brick@example.com,pass123!,Student,13/01/24,yes,0,0
 113,nina.cloud@example.com,pass123!,Student,14/01/24,yes,0,0
 114,oscar.wilde@example.com,pass123!,Student,15/01/24,yes,0,0
-115,piper.lee@example.com,pass123!,Student,16/01/24,yes,0,0
+115,piper.lee@example.com,pass123!,Student,16/01/24,yes,1,0
 116,quincy.stone@example.com,pass123!,Student,17/01/24,yes,0,0
 117,rachel.day@example.com,pass123!,Student,18/01/24,yes,0,0
 118,steven.frost@example.com,pass123!,Student,19/01/24,yes,0,0
