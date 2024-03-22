@@ -75,6 +75,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         seeCartButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
                 openCartScreen();
             }
         });
