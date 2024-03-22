@@ -45,13 +45,13 @@ public class CartScreen extends JFrame implements CartListener {
 
         bottomPanel = new JPanel();
         checkoutButton = new JButton("Checkout");
-        promoCodeField = new JTextField(15);
-        promoCodeButton = new JButton("Go");
-        promoCodeButton.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                applyPromoCode();
-            }
-        });
+        // promoCodeField = new JTextField(15);
+        // promoCodeButton = new JButton("Go");
+        // promoCodeButton.addActionListener(new ActionListener() {
+        // public void actionPerformed(ActionEvent e) {
+        // applyPromoCode();
+        // }
+        // });
 
         checkoutButton.addActionListener(new ActionListener() {
             @Override
@@ -61,8 +61,8 @@ public class CartScreen extends JFrame implements CartListener {
         });
 
         bottomPanel.add(new JLabel("Enter promo code: "));
-        bottomPanel.add(promoCodeField);
-        bottomPanel.add(promoCodeButton);
+        // bottomPanel.add(promoCodeField);
+        // bottomPanel.add(promoCodeButton);
         bottomPanel.add(checkoutButton);
 
         setLayout(new BorderLayout());
@@ -139,14 +139,14 @@ public class CartScreen extends JFrame implements CartListener {
         middlePanel.repaint();
     }
 
-    private void applyPromoCode() {
-        String promoCode = promoCodeField.getText().trim();
-        if (promoCode.equals("sixty60")) {
-            loadItems(2);
-        } else if (promoCode.equals("fo40")) {
-            loadItems(3);
-        }
-    }
+    // private void applyPromoCode() {
+    // String promoCode = promoCodeField.getText().trim();
+    // if (promoCode.equals("sixty60")) {
+    // loadItems(2);
+    // } else if (promoCode.equals("fo40")) {
+    // loadItems(3);
+    // }
+    // }
 
     private void goToPaymentScreen() {
         paymentScreen.setCartItems(cartItems);
