@@ -85,14 +85,6 @@ public class PayWithDebitScreen extends JFrame {
         saveCart(cartItems, 1002); // Replace 1002 with actual user ID
     }
 
-    /*private double calculateTotalPrice() {
-        for (StudentPhysicalItemScreen.Item item : cartItems) {
-            totalPrice += item.getPrice();
-        }
-
-        return totalPrice;
-    }*/
-
     public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
         this.cartItems = cartItems;
     }
@@ -145,6 +137,40 @@ public class PayWithDebitScreen extends JFrame {
     }
 
     private void updateItemQuantity() {
+        BufferedReader br = null;
+        FileWriter writer = null;
+        String line = "";
+        List<String[]> rows = new ArrayList<>();
+        List<String> itemIDs = new ArrayList<>();
 
+        for (StudentPhysicalItemScreen.Item item : cartItems) {
+            itemIDs.add(item.getId());
+        }
+
+        try {
+            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (itemIDs.contains(data[0])) {
+                    data[4] = String.valueOf(Integer.parseInt(data[4]) - 1);
+                }
+                rows.add(data);
+            }
+
+            writer = new FileWriter("src/UI/ItemSpreadsheet.csv");
+            for (String[] rowData : rows) {
+                writer.append(String.join(",", rowData));
+                writer.append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+                if (writer != null) writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
     }
 }

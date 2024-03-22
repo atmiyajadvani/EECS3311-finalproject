@@ -183,6 +183,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
     }
 
     private void openCartScreen() {
+        cartScreen.setCartItems(cart);
         cartScreen.setVisible(true);
     }
 
