@@ -126,6 +126,10 @@ public class CartScreen extends JFrame implements CartListener {
         return null; // Placeholder return statement
     }
 
+    public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
+        this.cartItems = cartItems;
+    }
+
     private void refreshCartView() {
         middlePanel.removeAll();
         for (StudentPhysicalItemScreen.Item item : cartItems) {
