@@ -6,10 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/items.csv" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/FacultyDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FacultyDashboard.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FacultyUsers.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/VirtualCopies.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,7 +41,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager" selected="Application.StudentPhysicalItemScreen">
+  <component name="RunManager" selected="Application.FacultyDashboard">
     <configuration name="CartScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="UI.CartScreen" />
       <module name="EECS3311-finalproject" />
@@ -110,9 +109,9 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.StudentPhysicalItemScreen" />
         <item itemvalue="Application.FacultyDashboard" />
         <item itemvalue="Application.StudentTextbooksScreen" />
+        <item itemvalue="Application.StudentPhysicalItemScreen" />
         <item itemvalue="Application.UserLogin" />
         <item itemvalue="Application.CartScreen" />
       </list>

@@ -6,14 +6,12 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 
 public class FacultyDashboard extends JFrame {
     private JButton signOutButton;
     private JTextField inputTextField;
-    private JTextArea userListTextArea;
-
+    private JList<Item> userList;
+    private DefaultListModel<Item> itemListModel;
     static private int userId;
 
     public FacultyDashboard(int userId) {
@@ -34,23 +32,15 @@ public class FacultyDashboard extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titlePanel.add(titleLabel);
 
-        /**
-        // Title label for the input box
-        JLabel searchLabel = new JLabel("Search for a user:");
-        searchLabel.setFont(new Font("Arial", Font.BOLD, 14));
-        searchLabel.setHorizontalAlignment(SwingConstants.CENTER);
+        // Create a DefaultListModel to hold user information and textbooks
+        itemListModel = new DefaultListModel<>();
 
-        // Panel for search components
-        JPanel searchPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        searchPanel.add(searchLabel);
-        inputTextField = new JTextField(15); // Adjust the size here
-        inputTextField.setPreferredSize(new Dimension(150, inputTextField.getPreferredSize().height)); // Set preferred size
-        searchPanel.add(inputTextField);
-        */
-        // Create a text area for displaying user list and textbooks
-        userListTextArea = new JTextArea();
-        userListTextArea.setEditable(false);
-        JScrollPane scrollPane = new JScrollPane(userListTextArea);
+        // Create a JList with the list model
+        userList = new JList<>(itemListModel);
+        userList.setCellRenderer(new ItemListCellRenderer());
+        JScrollPane scrollPane = new JScrollPane(userList);
+
+
 
         // South panel with Sign Out button
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -63,18 +53,10 @@ public class FacultyDashboard extends JFrame {
         addCourseButton.addActionListener(e -> addCourse());
         southPanel.add(addCourseButton);
 
-        // Create a panel to hold both searchPanel and userListTextArea
-        JPanel centerPanel = new JPanel(new BorderLayout());
-        //centerPanel.add(searchPanel, BorderLayout.NORTH);
-        centerPanel.add(scrollPane, BorderLayout.CENTER);
-
-        // Add titlePanel, centerPanel, and southPanel to the NORTH, CENTER, and SOUTH regions respectively
+        // Add titlePanel, scrollPane, and southPanel to the NORTH, CENTER, and SOUTH regions respectively
         add(titlePanel, BorderLayout.NORTH);
-        add(centerPanel, BorderLayout.CENTER);
+        add(scrollPane, BorderLayout.CENTER);
         add(southPanel, BorderLayout.SOUTH);
-
-        // Populate user list and textbooks
-        //populateUserList();
     }
 
     private void signOut() {
@@ -108,11 +90,18 @@ public class FacultyDashboard extends JFrame {
     }
 
     private void updateUserList(String courseCode, String textbook) {
-        // Append the new course and textbook information to the user list text area
-        userListTextArea.append("Course Code: " + courseCode + "\n");
-        userListTextArea.append("Textbook: " + textbook + "\n\n");
-    }
+        // Create a new Item with user information and button
+        Item newItem = new Item("Course Code: " + courseCode + " - Textbook: " + textbook);
+        newItem.getViewButton().addActionListener(e -> {
+            // Handle the action when "View Textbook" button is clicked
+            ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));
+            JLabel label = new JLabel(icon);
+            JOptionPane.showMessageDialog(this, label, "View Textbook", JOptionPane.PLAIN_MESSAGE);
+        });
 
+        // Add the new item to the list model
+        itemListModel.addElement(newItem);
+    }
 
     private boolean isCourseCodeValid(String courseCode) {
         boolean isValid = false;
@@ -130,33 +119,7 @@ public class FacultyDashboard extends JFrame {
         }
         return isValid;
     }
-    /**
-    private void populateUserList() {
-        // Initialize the list of users
-        ArrayList<User> users = new ArrayList<>();
 
-        try (BufferedReader reader = new BufferedReader(new FileReader("FacultyUsers.csv"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                String userId = parts[0].trim();
-                String courseCode = parts[1].trim();
-                String textbook = getTextbookForCourse(courseCode); // Get the textbook for the course
-
-                User user = new User(userId, courseCode, textbook);
-                users.add(user);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Populate the text area with user list and textbooks
-        for (User user : users) {
-            userListTextArea.append("User ID: " + user.getUserId() + " - Course Code: " + user.getCourseCode() + " - Textbook: " + user.getTextbook() + "\n");
-        }
-    }
-    */
-    // Method to get the textbook associated with a course code
     private String getTextbookForCourse(String courseCode) {
         String textbook = "N/A"; // Default value if no textbook found
         try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/TextbookSpreadsheet.csv"))) {
@@ -164,7 +127,7 @@ public class FacultyDashboard extends JFrame {
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length >= 3 && parts[2].trim().equals(courseCode.trim())) {
-                    textbook = parts[1].trim(); // Assuming the textbook is in the second column of TextbookList.csv
+                    textbook = parts[1].trim(); // Assuming the textbook is in the second column of TextbookSpreadsheet.csv
                     break;
                 }
             }
@@ -174,28 +137,51 @@ public class FacultyDashboard extends JFrame {
         return textbook;
     }
 
-    // Inner class representing a user
-    private class User {
-        private String userId;
-        private String courseCode;
-        private String textbook;
+    private static class Item {
+        private String userInfo;
+        private JButton viewButton;
 
-        public User(String userId, String courseCode, String textbook) {
-            this.userId = userId;
-            this.courseCode = courseCode;
-            this.textbook = textbook;
+        public Item(String userInfo) {
+            this.userInfo = userInfo;
+            this.viewButton = new JButton("View Textbook"); // Updated button name
+            // Add action listener to the viewButton
+            this.viewButton.addActionListener(e -> {
+                // Handle the action when "View Textbook" button is clicked
+                ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));
+                JLabel label = new JLabel(icon);
+                JOptionPane.showMessageDialog(null, label, "View Textbook", JOptionPane.PLAIN_MESSAGE);
+            });
         }
 
-        public String getUserId() {
-            return userId;
+        public String getUserInfo() {
+            return userInfo;
         }
 
-        public String getCourseCode() {
-            return courseCode;
+        public JButton getViewButton() {
+            return viewButton;
         }
 
-        public String getTextbook() {
-            return textbook;
+        @Override
+        public String toString() {
+            return userInfo;
+        }
+    }
+
+
+    // Custom cell renderer for the JList
+    static class ItemListCellRenderer extends DefaultListCellRenderer {
+        @Override
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            if (value instanceof Item) {
+                Item item = (Item) value;
+                JButton button = item.getViewButton(); // Use the view button from the item
+                JPanel panel = new JPanel(new BorderLayout());
+                panel.add(new JLabel(item.getUserInfo()), BorderLayout.CENTER); // Add item information
+                panel.add(button, BorderLayout.EAST); // Add view button
+                return panel;
+            }
+            return this;
         }
     }
 
