@@ -74,7 +74,7 @@ public class FacultyDashboard extends JFrame {
         add(southPanel, BorderLayout.SOUTH);
 
         // Populate user list and textbooks
-        populateUserList();
+        //populateUserList();
     }
 
     private void signOut() {
@@ -109,7 +109,8 @@ public class FacultyDashboard extends JFrame {
 
     private void updateUserList(String courseCode, String textbook) {
         // Append the new course and textbook information to the user list text area
-        userListTextArea.append("User ID: " + userId + " - Course Code: " + courseCode + " - Textbook: " + textbook + "\n");
+        userListTextArea.append("Course Code: " + courseCode + "\n");
+        userListTextArea.append("Textbook: " + textbook + "\n\n");
     }
 
 
@@ -129,7 +130,7 @@ public class FacultyDashboard extends JFrame {
         }
         return isValid;
     }
-
+    /**
     private void populateUserList() {
         // Initialize the list of users
         ArrayList<User> users = new ArrayList<>();
@@ -154,7 +155,7 @@ public class FacultyDashboard extends JFrame {
             userListTextArea.append("User ID: " + user.getUserId() + " - Course Code: " + user.getCourseCode() + " - Textbook: " + user.getTextbook() + "\n");
         }
     }
-
+    */
     // Method to get the textbook associated with a course code
     private String getTextbookForCourse(String courseCode) {
         String textbook = "N/A"; // Default value if no textbook found
