@@ -11,12 +11,13 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentPhysicalItemScreen extends JFrame {
+public class StudentPhysicalItemScreen extends JFrame implements CartListener{
     private DefaultListModel<Item> itemListModel;
     private List<Item> csvData;
     private JTextField searchTextField;
     private List<Item> cart;
     private int userID;
+    private CartScreen cartScreen;
 
     public StudentPhysicalItemScreen(int id) {
         this.userID = id;
@@ -35,7 +36,7 @@ public class StudentPhysicalItemScreen extends JFrame {
         cart = new ArrayList<>();
         itemListModel = new DefaultListModel<>();
         JList<Item> itemList = new JList<>(itemListModel);
-        itemList.setCellRenderer(new ItemListCellRenderer());
+        itemList.setCellRenderer(new ItemListCellRenderer(this));
         JScrollPane scrollPane = new JScrollPane(itemList);
         add(scrollPane, BorderLayout.CENTER);
 
@@ -67,7 +68,26 @@ public class StudentPhysicalItemScreen extends JFrame {
         });
 
         loadCSVData("src/UI/ItemSpreadsheet.csv");
+         cartScreen = new CartScreen(userID);
+
+        // Add "See Cart" button
+        JButton seeCartButton = new JButton("See Cart");
+        seeCartButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openCartScreen();
+            }
+        });
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(seeCartButton);
+        add(buttonPanel, BorderLayout.SOUTH);
+
+
     }
+
+
+
+
 
     private void loadCSVData(String filePath) {
         csvData = new ArrayList<>();
@@ -102,6 +122,11 @@ public class StudentPhysicalItemScreen extends JFrame {
         }
     }
 
+    private void openCartScreen() {
+        cartScreen.setVisible(true);
+    }
+
+
     private void addToCart(Item item) {
         if (cart.size() == 10) {
             JOptionPane.showMessageDialog(this, "You have reached your max amount of items.", "Limit Reached",
@@ -115,6 +140,7 @@ public class StudentPhysicalItemScreen extends JFrame {
                 JOptionPane.showMessageDialog(this, item.getName() + " Added to cart!", "Item Added",
                         JOptionPane.INFORMATION_MESSAGE);
                 System.out.println("User " + userID + " added to cart: " + item.getName());
+                cartScreen.itemAddedToCart(item);
             }
         }
     }
@@ -133,6 +159,10 @@ public class StudentPhysicalItemScreen extends JFrame {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+    @Override
+    public void itemAddedToCart(Item item){
+        addToCart(item);
     }
 
     public static void main(String[] args) {
@@ -192,8 +222,12 @@ public class StudentPhysicalItemScreen extends JFrame {
 
     static class ItemListCellRenderer extends DefaultListCellRenderer {
         private static final long serialVersionUID = 1L;
+        private StudentPhysicalItemScreen studentPhysicalItemScreen;
+        public ItemListCellRenderer(StudentPhysicalItemScreen studentPhysicalItemScreen) {
+            this.studentPhysicalItemScreen = studentPhysicalItemScreen;
+        }
 
-        @Override
+
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (value instanceof Item) {
@@ -202,7 +236,8 @@ public class StudentPhysicalItemScreen extends JFrame {
                 button.addActionListener(new ActionListener() {
                     @Override
                     public void actionPerformed(ActionEvent e) {
-                        // Handle add to cart action here
+                        // Call addToCart method using the reference to StudentPhysicalItemScreen
+                        studentPhysicalItemScreen.addToCart(item);
                     }
                 });
                 JPanel panel = new JPanel(new BorderLayout());
@@ -212,5 +247,9 @@ public class StudentPhysicalItemScreen extends JFrame {
             }
             return this;
         }
+
+
+
+
     }
 }

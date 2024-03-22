@@ -4,12 +4,16 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
+
 
 public class ChoosePaymentScreen extends JFrame {
     private JLabel cartLabel;
     private JRadioButton creditCardRadio;
     private JRadioButton debitCardRadio;
     private JRadioButton paypalRadio;
+    private List<StudentPhysicalItemScreen.Item> cartItems;
+
 
     public ChoosePaymentScreen() {
         setTitle("Payment GUI");
@@ -68,6 +72,10 @@ public class ChoosePaymentScreen extends JFrame {
             return "No payment method selected";
         }
     }
+    public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
+        this.cartItems = cartItems;
+    }
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(new Runnable() {
