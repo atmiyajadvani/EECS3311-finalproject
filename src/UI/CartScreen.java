@@ -1,6 +1,5 @@
 package UI;
 
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -56,6 +55,7 @@ public class CartScreen extends JFrame implements CartListener {
         checkoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
                 goToPaymentScreen();
             }
         });
@@ -126,7 +126,6 @@ public class CartScreen extends JFrame implements CartListener {
         return null; // Placeholder return statement
     }
 
-
     private void refreshCartView() {
         middlePanel.removeAll();
         for (StudentPhysicalItemScreen.Item item : cartItems) {
@@ -139,7 +138,6 @@ public class CartScreen extends JFrame implements CartListener {
         middlePanel.revalidate();
         middlePanel.repaint();
     }
-
 
     private void applyPromoCode() {
         String promoCode = promoCodeField.getText().trim();
@@ -188,11 +186,14 @@ public class CartScreen extends JFrame implements CartListener {
                 if (integerNum == (userId)) {
                     for (int i = 1; i < data.length; i += 2) {
                         if (flag == 1) {
-                            items.add("[" + data[i] + "] - " + data[i+1] + " | Location: Scott Library | Purchase from online store. - $4.25");
+                            items.add("[" + data[i] + "] - " + data[i + 1]
+                                    + " | Location: Scott Library | Purchase from online store. - $4.25");
                         } else if (flag == 2) {
-                            items.add("[" + data[i] + "] - " + data[i+1] + " | Location: Scott Library | Purchase from online store. - $4.25 | 60% OFF → $1.70");
+                            items.add("[" + data[i] + "] - " + data[i + 1]
+                                    + " | Location: Scott Library | Purchase from online store. - $4.25 | 60% OFF → $1.70");
                         } else {
-                            items.add("[" + data[i] + "] - " + data[i+1] + " | Location: Scott Library | Purchase from online store. - $4.25 | 40% OFF → $2.55");
+                            items.add("[" + data[i] + "] - " + data[i + 1]
+                                    + " | Location: Scott Library | Purchase from online store. - $4.25 | 40% OFF → $2.55");
                         }
                     }
                     break;
@@ -224,6 +225,7 @@ public class CartScreen extends JFrame implements CartListener {
         }
         return role;
     }
+
     public static void main(String[] args) {
         CartScreen cartScreen = new CartScreen(1002);
         cartScreen.setVisible(true);
@@ -235,5 +237,3 @@ public class CartScreen extends JFrame implements CartListener {
         refreshCartView();
     }
 }
-
-

@@ -11,7 +11,7 @@ import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class StudentPhysicalItemScreen extends JFrame implements CartListener{
+public class StudentPhysicalItemScreen extends JFrame implements CartListener {
     private DefaultListModel<Item> itemListModel;
     private List<Item> csvData;
     private JTextField searchTextField;
@@ -82,12 +82,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
         buttonPanel.add(seeCartButton);
         add(buttonPanel, BorderLayout.SOUTH);
 
-
     }
-
-
-
-
 
     private void loadCSVData(String filePath) {
         csvData = new ArrayList<>();
@@ -97,7 +92,8 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
                 String[] values = line.split(",");
                 if (values.length >= 6) {
                     double price = Double.parseDouble(values[5].trim());
-                    Item item = new Item(values[0].trim(), values[1].trim(), values[2].trim(), values[3].trim(), values[4].trim() ,price);
+                    Item item = new Item(values[0].trim(), values[1].trim(), values[2].trim(), values[3].trim(),
+                            values[4].trim(), price);
                     csvData.add(item);
                 } else {
                     System.out.println("Invalid item format: " + String.join(", ", values));
@@ -126,7 +122,6 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
     private void openCartScreen() {
         cartScreen.setVisible(true);
     }
-
 
     private void addToCart(Item item) {
         if (cart.size() == 10) {
@@ -161,8 +156,9 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
             e.printStackTrace();
         }
     }
+
     @Override
-    public void itemAddedToCart(Item item){
+    public void itemAddedToCart(Item item) {
         addToCart(item);
     }
 
@@ -170,6 +166,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
         int sampleUserId = 120;
         EventQueue.invokeLater(() -> new StudentPhysicalItemScreen(sampleUserId).setVisible(true));
     }
+
     static class Item {
         private String id;
         private String name;
@@ -221,8 +218,10 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
 
         @Override
         public boolean equals(Object o) {
-            if (this == o) return true;
-            if (o == null || getClass() != o.getClass()) return false;
+            if (this == o)
+                return true;
+            if (o == null || getClass() != o.getClass())
+                return false;
             Item item = (Item) o;
             return Objects.equals(id, item.id);
         }
@@ -238,18 +237,16 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
         }
     }
 
-
-
-
     static class ItemListCellRenderer extends DefaultListCellRenderer {
         private static final long serialVersionUID = 1L;
         private StudentPhysicalItemScreen studentPhysicalItemScreen;
+
         public ItemListCellRenderer(StudentPhysicalItemScreen studentPhysicalItemScreen) {
             this.studentPhysicalItemScreen = studentPhysicalItemScreen;
         }
 
-
-        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+                boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (value instanceof Item) {
                 Item item = (Item) value;
@@ -268,9 +265,6 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener{
             }
             return this;
         }
-
-
-
 
     }
 }
