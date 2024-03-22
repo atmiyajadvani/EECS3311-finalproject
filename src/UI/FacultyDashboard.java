@@ -45,15 +45,13 @@ public class FacultyDashboard extends JFrame {
         userList.addMouseListener(new java.awt.event.MouseAdapter() {
             @Override
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                System.out.println("working");
-                // PUT list click functionality HERE
-                /*JList<?> list = (JList<?>) evt.getSource();
+                JList<?> list = (JList<?>) evt.getSource();
                 int index = list.locationToIndex(evt.getPoint());
                 if (index >= 0) {
-                    StudentTextbooksScreen.Item selected = itemListModel.getElementAt(index);
+                    FacultyDashboard.Item selected = itemListModel.getElementAt(index);
                     System.out.println(selected);
                     showTextbook();
-                }*/
+                }
             }
         });
 
@@ -150,6 +148,20 @@ public class FacultyDashboard extends JFrame {
             e.printStackTrace();
         }
         return textbook;
+    }
+
+    private void showTextbook() {
+        ImageIcon imageIcon = new ImageIcon("src/UI/VirtualCopiesDemo.png");
+        JLabel imageLabel = new JLabel(imageIcon);
+        JScrollPane scrollPane = new JScrollPane(imageLabel);
+
+        // Set preferred size of the scroll pane to fit width and set a fixed height
+        int width = imageIcon.getIconWidth();
+        int fixedHeight = 600; // You can adjust this as needed
+        scrollPane.setPreferredSize(new Dimension(width, fixedHeight));
+
+        // Show the scrollable window
+        JOptionPane.showMessageDialog(null, scrollPane, "Image", JOptionPane.PLAIN_MESSAGE);
     }
 
     private static class Item {
