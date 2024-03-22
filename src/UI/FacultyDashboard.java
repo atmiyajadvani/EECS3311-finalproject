@@ -38,9 +38,24 @@ public class FacultyDashboard extends JFrame {
         // Create a JList with the list model
         userList = new JList<>(itemListModel);
         userList.setCellRenderer(new ItemListCellRenderer());
+        userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        userList.setLayoutOrientation(JList.VERTICAL);
         JScrollPane scrollPane = new JScrollPane(userList);
 
-
+        userList.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                System.out.println("working");
+                // PUT list click functionality HERE
+                /*JList<?> list = (JList<?>) evt.getSource();
+                int index = list.locationToIndex(evt.getPoint());
+                if (index >= 0) {
+                    StudentTextbooksScreen.Item selected = itemListModel.getElementAt(index);
+                    System.out.println(selected);
+                    showTextbook();
+                }*/
+            }
+        });
 
         // South panel with Sign Out button
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));

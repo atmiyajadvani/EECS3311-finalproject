@@ -34,8 +34,8 @@ public class StudentTextbooksScreen extends JFrame {
         // Create a JList with the list model
         JList<Item> itemList = new JList<>(itemListModel);
         itemList.setCellRenderer(new ItemListCellRenderer());
-        //itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        //itemList.setLayoutOrientation(JList.VERTICAL);
+        itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        itemList.setLayoutOrientation(JList.VERTICAL);
         JScrollPane scrollPane = new JScrollPane(itemList);
 
         itemList.addMouseListener(new java.awt.event.MouseAdapter() {
