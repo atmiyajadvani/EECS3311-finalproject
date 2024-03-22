@@ -1,5 +1,5 @@
 UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverdue
-100,alex.jordan@example.com,pass123!,Student,01/01/24,yes,0,0
+1002,alex.jordan@example.com,pass123!,Student,01/01/24,yes,0,0
 101,bethany.lime@example.com,pass123!,Student,02/01/24,yes,0,0
 102,charlie.greenwood@example.com,pass123!,Student,03/01/24,yes,0,0
 103,danielle.sky@example.com,pass123!,Student,04/01/24,yes,0,0

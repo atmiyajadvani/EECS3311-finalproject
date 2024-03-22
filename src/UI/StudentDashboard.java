@@ -4,6 +4,12 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 public class StudentDashboard extends JFrame {
     static private int userId;
@@ -12,9 +18,9 @@ public class StudentDashboard extends JFrame {
     private JButton requestBookButton;
     private JButton newsletterButton;
 
-    //public StudentDashboard() {
-      //  initializeUI();
-    //}
+    // public StudentDashboard() {
+    // initializeUI();
+    // }
 
     public StudentDashboard(int userId) { // Modify the constructor to accept the user ID
         this.userId = userId; // Store the user ID
@@ -25,8 +31,9 @@ public class StudentDashboard extends JFrame {
 
         // Add your dashboard components here
 
-        //setVisible(true);
+        // setVisible(true);
         initializeUI();
+
     }
 
     private void initializeUI() {
@@ -73,6 +80,8 @@ public class StudentDashboard extends JFrame {
 
         add(buttonsPanel, BorderLayout.CENTER);
         add(southPanel, BorderLayout.SOUTH);
+
+        checkForOverdueBooks();
     }
 
     private void signOut() {
@@ -83,7 +92,8 @@ public class StudentDashboard extends JFrame {
 
     private void navigateToPhysicalRentals() {
         dispose(); // Dispose the current dashboard
-        StudentPhysicalItemScreen physicalItemScreen = new StudentPhysicalItemScreen(userId); // Open the physical item screen
+        StudentPhysicalItemScreen physicalItemScreen = new StudentPhysicalItemScreen(userId); // Open the physical item
+                                                                                              // screen
         physicalItemScreen.setVisible(true);
     }
 
@@ -101,7 +111,8 @@ public class StudentDashboard extends JFrame {
 
     private void navigateToStudentTextbooksScreen() {
         dispose(); // Dispose the current dashboard
-        StudentTextbooksScreen studentTextbooksScreen = new StudentTextbooksScreen(userId); // Open the physical item screen
+        StudentTextbooksScreen studentTextbooksScreen = new StudentTextbooksScreen(userId); // Open the physical item
+                                                                                            // screen
         studentTextbooksScreen.setVisible(true);
     }
 
@@ -109,6 +120,39 @@ public class StudentDashboard extends JFrame {
         dispose(); // Dispose the current dashboard
         CartScreen cartScreenRM = new CartScreen(userId); // Open the physical item screen
         cartScreenRM.setVisible(true);
+    }
+
+    private void checkForOverdueBooks() {
+        String csvFile = "src/UI/UserBooksBrought.csv";
+        String line;
+        String cvsSplitBy = ",";
+
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            // Skip the first line
+            br.readLine();
+
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(cvsSplitBy);
+                int userIDFromFile = Integer.parseInt(data[0]);
+                if (userIDFromFile == this.userId) {
+                    int numberOfDaysOverdue = Integer.parseInt(data[5]);
+                    System.out.println(numberOfDaysOverdue);
+                    if (numberOfDaysOverdue > 30 && numberOfDaysOverdue < 45) {
+                        double penalty = (numberOfDaysOverdue - 30) * 0.05;
+                        JOptionPane.showMessageDialog(null,
+                                "Penalty applied, item(s) overdue. Your total fine is: $" + penalty, "Overdue Penalty",
+                                JOptionPane.INFORMATION_MESSAGE);
+                    } else if (numberOfDaysOverdue > 45) {
+                        JOptionPane.showMessageDialog(null,
+                                "Your items are over 15 days overdue and now considered lost.",
+                                "Lost book notification.", JOptionPane.INFORMATION_MESSAGE);
+                    }
+                    break; // Assuming there is only one entry per user ID
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public static void main(String[] args) {
