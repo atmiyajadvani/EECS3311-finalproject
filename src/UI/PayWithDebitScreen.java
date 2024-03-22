@@ -4,8 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-//Payment_info
-
+import java.util.List;
 
 public class PayWithDebitScreen extends JFrame {
     private JLabel totalPriceLabel;
@@ -13,6 +12,7 @@ public class PayWithDebitScreen extends JFrame {
     private JTextField cardNumberField;
     private JTextField cvvField;
     private JTextField expirationDateField;
+    private List<StudentPhysicalItemScreen.Item> cartItems;
 
     public PayWithDebitScreen() {
         setTitle("Checkout");
@@ -79,6 +79,10 @@ public class PayWithDebitScreen extends JFrame {
         // Replace this with the actual calculation of the total price based on items in the cart
         // For simplicity, let's assume the total price is $100.00
         return 100.00;
+    }
+
+    public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
+        this.cartItems = cartItems;
     }
 
     public static void main(String[] args) {
