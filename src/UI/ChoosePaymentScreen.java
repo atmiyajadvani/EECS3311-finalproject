@@ -1,7 +1,5 @@
 package UI;
 
-
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -51,15 +49,15 @@ public class ChoosePaymentScreen extends JFrame {
             }
         });
 
-        JButton payButton = new JButton("Proceed to Pay");
-        payButton.addActionListener(e -> {
-            // Handle payment processing
-        });
+        // JButton payButton = new JButton("Proceed to Pay");
+        // payButton.addActionListener(e -> {
+        // // Handle payment processing
+        // });
 
         JPanel mainPanel = new JPanel(new GridLayout(3, 1));
         mainPanel.add(totalPriceLabel);
         mainPanel.add(paymentOptionsPanel);
-        mainPanel.add(payButton);
+        // mainPanel.add(payButton);
 
         add(mainPanel, BorderLayout.CENTER);
     }
