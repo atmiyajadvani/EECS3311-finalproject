@@ -6,8 +6,9 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
-public class CartScreen extends JFrame {
+public class CartScreen extends JFrame implements CartListener {
     private JPanel topPanel;
     private JPanel middlePanel;
     private JPanel bottomPanel;
@@ -16,16 +17,16 @@ public class CartScreen extends JFrame {
     private JButton checkoutButton;
     private JTextField promoCodeField;
     private JButton promoCodeButton;
-    //private double OGprice;
-
+    private ChoosePaymentScreen paymentScreen;
+    private List<StudentPhysicalItemScreen.Item> cartItems;
     private static int userId;
 
     public CartScreen(int userId) {
+
         this.userId = userId;
         int def = 1;
 
         setTitle("Cart Screen");
-
         // Dynamically adjust window size
         setSize(1200, 400);
 
@@ -80,6 +81,13 @@ public class CartScreen extends JFrame {
 
             }
         });
+        checkoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                goToPaymentScreen();
+            }
+        });
+
 
         bottomPanel.add(new JLabel("Enter promo code: "));
         bottomPanel.add(promoCodeField);
@@ -90,7 +98,79 @@ public class CartScreen extends JFrame {
         add(topPanel, BorderLayout.NORTH);
         add(middlePanel, BorderLayout.CENTER);
         add(bottomPanel, BorderLayout.SOUTH);
+        cartItems = new ArrayList<>();
+        paymentScreen = new ChoosePaymentScreen();
+        loadCartItemsFromCSV();
+        refreshCartView();
+
     }
+
+
+    public int getCartItemCount() {
+        return cartItems.size();
+    }
+
+
+
+    private void goToPaymentScreen() {
+        paymentScreen.setCartItems(cartItems);
+        paymentScreen.setVisible(true);
+        this.setVisible(false); //
+    }
+
+
+
+    @Override
+    public void itemAddedToCart(StudentPhysicalItemScreen.Item item) {
+        cartItems.add(item);
+        refreshCartView();
+    }
+
+    private void refreshCartView() {
+        middlePanel.removeAll();
+        for (StudentPhysicalItemScreen.Item item : cartItems) {
+            JLabel label = new JLabel(item.toString());
+            label.setFont(label.getFont().deriveFont(Font.PLAIN, 16));
+            label.setAlignmentX(Component.LEFT_ALIGNMENT);
+            middlePanel.add(label);
+            middlePanel.add(Box.createVerticalStrut(10));
+        }
+        middlePanel.revalidate();
+        middlePanel.repaint();
+    }
+
+
+    private void loadCartItemsFromCSV() {
+        String csvFile = "src/UI/userIdtoCart.csv";
+        String line;
+        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                int id = Integer.parseInt(data[0]);
+                if (id == userId) {
+                    for (int i = 1; i < data.length; i += 2) {
+                        String itemId = data[i];
+                        // Retrieve item details from wherever you store them
+                        StudentPhysicalItemScreen.Item item = retrieveItemDetails(itemId);
+                        if (item != null) {
+                            cartItems.add(item);
+                        }
+                    }
+                    break;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private StudentPhysicalItemScreen.Item retrieveItemDetails(String itemId) {
+        // Implement logic to retrieve item details based on itemId
+        // For example, you might fetch details from a database or another CSV file
+        return null; // Placeholder return statement
+    }
+
+
+
 
     private void loadItems(int num) {
         // Clear existing items from middlePanel
@@ -121,6 +201,7 @@ public class CartScreen extends JFrame {
         ArrayList<Double> prices = new ArrayList<>();
         String csvFile = "src/UI/userIdtoCart.csv";
         String line;
+
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
@@ -172,6 +253,14 @@ public class CartScreen extends JFrame {
         System.out.println(role);
         return role;
     }
+
+    private void checkout() {
+        ChoosePaymentScreen paymentScreen = new ChoosePaymentScreen();
+        paymentScreen.setVisible(true);
+        // Logic to process the checkout action
+    }
+
+
 
 
 
