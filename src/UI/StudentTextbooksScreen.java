@@ -3,16 +3,12 @@ package UI;
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
-import java.awt.event.ActionListener;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class StudentTextbooksScreen extends JFrame {
     private JButton signOutButton;
-    private JTextField inputTextField;
-    private JList<Item> itemList;
     static private int userId;
     private DefaultListModel<Item> itemListModel;
 
@@ -36,11 +32,24 @@ public class StudentTextbooksScreen extends JFrame {
         itemListModel = new DefaultListModel<>();
 
         // Create a JList with the list model
-        itemList = new JList<>(itemListModel);
-        itemList.setCellRenderer(new ItemRenderer());
-        itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        itemList.setLayoutOrientation(JList.VERTICAL);
+        JList<Item> itemList = new JList<>(itemListModel);
+        itemList.setCellRenderer(new ItemListCellRenderer());
+        //itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        //itemList.setLayoutOrientation(JList.VERTICAL);
         JScrollPane scrollPane = new JScrollPane(itemList);
+
+        itemList.addMouseListener(new java.awt.event.MouseAdapter() {
+            @Override
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                JList<?> list = (JList<?>) evt.getSource();
+                int index = list.locationToIndex(evt.getPoint());
+                if (index >= 0) {
+                    StudentTextbooksScreen.Item selected = itemListModel.getElementAt(index);
+                    System.out.println(selected);
+                    showTextbook();
+                }
+            }
+        });
 
         // South panel with Sign Out button
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -53,13 +62,9 @@ public class StudentTextbooksScreen extends JFrame {
         addCourseButton.addActionListener(e -> addCourse());
         southPanel.add(addCourseButton);
 
-        // Create a panel to hold the JList
-        JPanel centerPanel = new JPanel(new BorderLayout());
-        centerPanel.add(scrollPane, BorderLayout.CENTER);
-
         // Add titlePanel, centerPanel, and southPanel to the NORTH, CENTER, and SOUTH regions respectively
         add(titlePanel, BorderLayout.NORTH);
-        add(centerPanel, BorderLayout.CENTER);
+        add(scrollPane, BorderLayout.CENTER);
         add(southPanel, BorderLayout.SOUTH);
 
         // Make the frame visible
@@ -145,6 +150,20 @@ public class StudentTextbooksScreen extends JFrame {
         return textbook;
     }
 
+    private void showTextbook() {
+        ImageIcon imageIcon = new ImageIcon("src/UI/VirtualCopiesDemo.png");
+        JLabel imageLabel = new JLabel(imageIcon);
+        JScrollPane scrollPane = new JScrollPane(imageLabel);
+
+        // Set preferred size of the scroll pane to fit width and set a fixed height
+        int width = imageIcon.getIconWidth();
+        int fixedHeight = 600; // You can adjust this as needed
+        scrollPane.setPreferredSize(new Dimension(width, fixedHeight));
+
+        // Show the scrollable window
+        JOptionPane.showMessageDialog(null, scrollPane, "Image", JOptionPane.PLAIN_MESSAGE);
+    }
+
     // Inner class representing a user
     private static class User {
         private String userId;
@@ -195,33 +214,18 @@ public class StudentTextbooksScreen extends JFrame {
     }
 
     // Custom cell renderer for the JList
-    private static class ItemRenderer extends JPanel implements ListCellRenderer<Item> {
-        private JLabel label;
-        private JButton button;
-
-        public ItemRenderer() {
-            setLayout(new BorderLayout());
-            label = new JLabel();
-            add(label, BorderLayout.CENTER);
-
-            button = new JButton("View Virtual Copy");
-            button.addActionListener(e -> {
-                // Handle the action when the button is clicked
-                Item item = (Item) ((JButton) e.getSource()).getClientProperty("item");
-                if (item != null) {
-                    ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));
-                    JLabel imageLabel = new JLabel(icon);
-                    JOptionPane.showMessageDialog(null, imageLabel, "View Virtual Copy", JOptionPane.PLAIN_MESSAGE);
-                }
-            });
-            add(button, BorderLayout.EAST);
-        }
-
+    static class ItemListCellRenderer extends DefaultListCellRenderer {
         @Override
-        public Component getListCellRendererComponent(JList<? extends Item> list, Item item, int index, boolean isSelected, boolean cellHasFocus) {
-            label.setText(item.getUserInfo());
-            button.putClientProperty("item", item);
-
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+            super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
+            if (value instanceof Item) {
+                Item item = (Item) value;
+                JButton button = item.getViewButton(); // Use the view button from the item
+                JPanel panel = new JPanel(new BorderLayout());
+                panel.add(new JLabel(item.getUserInfo()), BorderLayout.CENTER); // Add item information
+                panel.add(button, BorderLayout.EAST); // Add view button
+                return panel;
+            }
             return this;
         }
     }
