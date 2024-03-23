@@ -82,7 +82,7 @@ public class PayWithDebitScreen extends JFrame {
         updateItemQuantity();
 
         // Save cart items to CSV after payment is completed
-        saveCart(cartItems, 1002); // Replace 1002 with actual user ID
+        saveCart(cartItems, userID); // Replace 1002 with actual user ID
 
         // go back
         dispose();
