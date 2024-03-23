@@ -231,7 +231,7 @@ public class CartScreen extends JFrame implements CartListener {
     }
 
     public static void main(String[] args) {
-        CartScreen cartScreen = new CartScreen(1002);
+        CartScreen cartScreen = new CartScreen(userId);
         cartScreen.setVisible(true);
     }
 

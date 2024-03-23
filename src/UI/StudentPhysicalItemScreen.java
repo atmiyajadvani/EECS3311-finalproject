@@ -90,7 +90,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
 
     }
 
-    // Method to handle going back to the Student Dashboard
+    // Method to handle going back to the Dashboard
     private void goBackToDashboard() {
         // Read user info from CSV file
         String role = getUserRoleFromCSV(userID);

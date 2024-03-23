@@ -45,4 +45,4 @@ UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverd
 154,checking@gmail.com,123,Student,22/03/24,yes,0,0
 
 156,test@test.com,test,Student,22/03/24,yes,0,0
-158,testf@test.com,test,Faculty,22/03/24,yes,1,0
+158,testf@test.com,test,Faculty,22/03/24,yes,5,0
