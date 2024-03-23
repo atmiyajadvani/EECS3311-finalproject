@@ -6,6 +6,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -56,7 +57,11 @@ public class CartScreen extends JFrame implements CartListener {
         checkoutButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                goToPaymentScreen();
+                if (canRentMoreItems(userId)) {
+                    goToPaymentScreen();
+                } else {
+                    JOptionPane.showMessageDialog(getParent(), "You have more than 10 items currently rented.");
+                }
             }
         });
 
@@ -74,6 +79,33 @@ public class CartScreen extends JFrame implements CartListener {
         loadCartItemsFromCSV();
         refreshCartView();
 
+    }
+
+    private boolean canRentMoreItems(int userID) {
+        BufferedReader br = null;
+        FileWriter writer = null;
+
+        try {
+            br = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data[0].equals(Integer.toString(userID))) {
+                    return Integer.parseInt(data[6]) <= 10;
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+                if (writer != null) writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return true;
     }
 
     private void goBack() {
