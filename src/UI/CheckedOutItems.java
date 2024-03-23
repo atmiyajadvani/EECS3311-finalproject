@@ -6,12 +6,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CheckedOutItems extends JFrame {
     static private int userId;
+    private JLabel itemsRented;
     private JTextArea displayArea;
     private List<String[]> itemsData;
 
@@ -21,11 +23,16 @@ public class CheckedOutItems extends JFrame {
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
+        itemsRented = new JLabel("", SwingConstants.CENTER);
+        itemsRented.setText("Items Rented: " + getNumItemsRented(userId));
+        itemsRented.setFont(new Font(itemsRented.getFont().getName(), Font.BOLD, 20));
         displayArea = new JTextArea(20, 50);
+        displayArea.setFont(new Font(itemsRented.getFont().getName(), Font.PLAIN, 15));
         displayArea.setEditable(false);
 
         JScrollPane scrollPane = new JScrollPane(displayArea);
 
+        add(itemsRented, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
 
         JPanel southPanel = new JPanel();
@@ -82,6 +89,33 @@ public class CheckedOutItems extends JFrame {
             JOptionPane.showMessageDialog(this, "User not found or role not specified.", "Error",
                     JOptionPane.ERROR_MESSAGE);
         }
+    }
+
+    private String getNumItemsRented(int userID) {
+        BufferedReader br = null;
+        FileWriter writer = null;
+
+        try {
+            br = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"));
+            String line = "";
+            while ((line = br.readLine()) != null) {
+                String[] data = line.split(",");
+                if (data[0].equals(Integer.toString(userID))) {
+                    return data[6];
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (br != null) br.close();
+                if (writer != null) writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+
+        return "";
     }
 
     private String getUserRoleFromCSV(int userId) {
@@ -153,9 +187,9 @@ public class CheckedOutItems extends JFrame {
 
         for (String[] item : itemsData) {
             if (item.length >= 2 && item[0].equals(String.valueOf(userId))) { // Convert userId to String
-                for (int i = 1; i < item.length; i++) {
+                for (int i = 1; i < 5; i++) {
                     displayText.append(item[i]);
-                    if (i < item.length - 1) {
+                    if (i < 4) {
                         displayText.append(", ");
                     }
                 }

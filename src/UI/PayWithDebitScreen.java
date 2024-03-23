@@ -117,8 +117,7 @@ public class PayWithDebitScreen extends JFrame {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(Integer.toString(userID))) {
-                    data[6] = String.valueOf(Integer.parseInt(data[6])+1);
-
+                    data[6] = String.valueOf(Integer.parseInt(data[6]) + cartItems.size());
                 }
                 rows.add(data);
             }

@@ -88,6 +88,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         backButton.addActionListener(e -> goBackToDashboard());
         buttonPanel.add(backButton);
 
+        searchItem();
     }
 
     // Method to handle going back to the Dashboard

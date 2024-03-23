@@ -38,3 +38,16 @@ UserID,ItemID,Title,Author,ItemType,DaysBorrowed,IsLost
 1002,1012,The Last Sunset,Starlight CinemaWorks,Movie,0,no
 158,1021,Global Explorer,Gloss & Glam Media Co.,Magazine,0,no
 158,1022,EcoFuture,Gloss & Glam Media Co.,Magazine,0,no
+104,1002,The Last Ember,Marcus Reed,Book,0,no
+104,1003,Whispers of the Past,Lila Moreno,Book,0,no
+104,1004,Beneath the Silver Sky,Arthus Quinn,Book,0,no
+110,1001,Shadows Over Mars,Evelyn Archer,Book,0,no
+110,1017,Beyond the Shadows,Silver Screen Dynamics,Movie,0,no
+106,1002,The Last Ember,Marcus Reed,Book,0,no
+106,1012,The Last Sunset,Starlight CinemaWorks,Movie,0,no
+113,1022,EcoFuture,Gloss & Glam Media Co.,Magazine,0,no
+113,1023,Tech Frontier,Inkwell Publishing House,Magazine,0,no
+113,1025,Mindful Living,Spectrum Editions Ltd.,Magazine,0,no
+113,1030,AstroQuest,Zenith Magazines Group,Magazine,0,no
+113,1029,Historical Times,Zenith Magazines Group,Magazine,0,no
+113,1028,Elite Fitness,Pinnacle Printworks,Magazine,0,no
