@@ -50,6 +50,7 @@ public class StudentDashboard extends JFrame {
         newsletterButton = new JButton("Newsletter");
         JButton studentTextbooksButton = new JButton("Student Textbooks"); // New button
         JButton cartButton = new JButton("Cart"); // New button
+        JButton checkoutButton = new JButton("Renting");
 
         // Sign out action
         signOutButton.addActionListener(e -> signOut());
@@ -66,6 +67,9 @@ public class StudentDashboard extends JFrame {
         // Cart action
         cartButton.addActionListener(e -> navigateToCartScreen());
 
+        // Navigate to list of rented items screen
+        checkoutButton.addActionListener(e -> navigateToCheckoutScreen());
+
         // Buttons panel
         JPanel buttonsPanel = new JPanel(new GridLayout(1, 5)); // Adjust the grid size for new buttons
         buttonsPanel.add(physicalRentalsButton);
@@ -73,6 +77,7 @@ public class StudentDashboard extends JFrame {
         buttonsPanel.add(newsletterButton);
         buttonsPanel.add(studentTextbooksButton); // Add the new button
         buttonsPanel.add(cartButton); // Add the new button
+        buttonsPanel.add(checkoutButton);
 
         // South panel with Sign out button
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
@@ -122,6 +127,12 @@ public class StudentDashboard extends JFrame {
         cartScreenRM.setVisible(true);
     }
 
+    private void navigateToCheckoutScreen() {
+        dispose();
+        CheckedOutItems checkedOutItems = new CheckedOutItems(userId);
+        checkedOutItems.setVisible(true);
+    }
+
     private void checkForOverdueBooks() {
         String csvFile = "src/UI/UserBooksBrought.csv";
         String line;
@@ -158,6 +169,7 @@ public class StudentDashboard extends JFrame {
             e.printStackTrace();
         }
     }
+
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> new StudentDashboard(userId).setVisible(true));

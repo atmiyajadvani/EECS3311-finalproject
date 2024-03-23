@@ -15,8 +15,8 @@ public class CheckedOutItems extends JFrame {
     private JTextArea displayArea;
     private List<String[]> itemsData;
 
-    public CheckedOutItems(int userId) {
-        this.userID = userId;
+    public CheckedOutItems(int userID) {
+        this.userID = userID;
         setTitle("Checked Out Items");
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -35,17 +35,17 @@ public class CheckedOutItems extends JFrame {
                 // Code to go back
                 System.out.println(1);
                 // Read the user's role from UserInfoSpreadsheet.csv
-                String role = getUserRole(1002);
+                String role = getUserRole(userID);
                 dispose();
                 // Redirect the user based on their role
                 if (role.equalsIgnoreCase("student") || role.equalsIgnoreCase("visitor")) {
-                    StudentDashboard studentDashboard = new StudentDashboard(userId);
+                    StudentDashboard studentDashboard = new StudentDashboard(userID);
                     studentDashboard.setVisible(true);
                 } else if (role.equalsIgnoreCase("faculty") || role.equalsIgnoreCase("staff")) {
-                    FacultyDashboard facultyDashboard = new FacultyDashboard(userId);
+                    FacultyDashboard facultyDashboard = new FacultyDashboard(userID);
                     facultyDashboard.setVisible(true);
                 } else if (role.equalsIgnoreCase("manager")) {
-                    ManagerDashboard managerDashboard = new ManagerDashboard(userId);
+                    ManagerDashboard managerDashboard = new ManagerDashboard(userID);
                     managerDashboard.setVisible(true);
                 }
             }
@@ -56,10 +56,10 @@ public class CheckedOutItems extends JFrame {
 
         itemsData = new ArrayList<>();
         loadItemsDataFromFile(); // Load data from CSV file
-        displayItemsForUser(userId); // Display items for the provided user ID
+        displayItemsForUser(userID); // Display items for the provided user ID
     }
 
-    private String getUserRole(int userId) {
+    private String getUserRole(int userID) {
         String csvFile = "src/UI/UserInfoSpreadsheet.csv";
         String line;
         String role = "";
@@ -71,7 +71,7 @@ public class CheckedOutItems extends JFrame {
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 int id = Integer.parseInt(data[0]);
-                if (id == userId) {
+                if (id == userID) {
                     role = data[3]; // Assuming role is in the fourth column
                     break;
                 }
@@ -94,11 +94,11 @@ public class CheckedOutItems extends JFrame {
         }
     }
 
-    private void displayItemsForUser(int userId) {
+    private void displayItemsForUser(int userID) {
         StringBuilder displayText = new StringBuilder();
 
         for (String[] item : itemsData) {
-            if (item.length >= 2 && item[0].equals(String.valueOf(userId))) { // Convert userId to String
+            if (item.length >= 2 && item[0].equals(String.valueOf(userID))) { // Convert userId to String
                 for (int i = 1; i < item.length; i++) {
                     displayText.append(item[i]);
                     if (i < item.length - 1) {

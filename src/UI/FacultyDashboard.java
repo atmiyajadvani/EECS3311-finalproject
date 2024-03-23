@@ -9,10 +9,11 @@ import java.io.IOException;
 
 public class FacultyDashboard extends JFrame {
     private JButton signOutButton;
-    private JTextField inputTextField;
-    private JList<Item> userList;
-    private DefaultListModel<Item> itemListModel;
     static private int userId;
+    private JButton physicalRentalsButton;
+    private JButton addCourseButton;
+    private JButton checkoutButton;
+    private JButton cartButton;
 
     public FacultyDashboard(int userId) {
         this.userId = userId;
@@ -20,55 +21,52 @@ public class FacultyDashboard extends JFrame {
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setLayout(new BorderLayout());
+        //setLayout(new BorderLayout());
 
         initializeUI();
     }
 
     private void initializeUI() {
-        // Title panel with Faculty Dashboard title
-        JPanel titlePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JLabel titleLabel = new JLabel("Faculty Dashboard");
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
-        titlePanel.add(titleLabel);
+        setTitle("YorkU Library Management App - Faculty Dashboard");
+        setSize(800, 600);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new BorderLayout());
 
-        // Create a DefaultListModel to hold user information and textbooks
-        itemListModel = new DefaultListModel<>();
-
-        // Create a JList with the list model
-        userList = new JList<>(itemListModel);
-        userList.setCellRenderer(new ItemListCellRenderer());
-        userList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        userList.setLayoutOrientation(JList.VERTICAL);
-        JScrollPane scrollPane = new JScrollPane(userList);
-
-        userList.addMouseListener(new java.awt.event.MouseAdapter() {
-            @Override
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                JList<?> list = (JList<?>) evt.getSource();
-                int index = list.locationToIndex(evt.getPoint());
-                if (index >= 0) {
-                    FacultyDashboard.Item selected = itemListModel.getElementAt(index);
-                    System.out.println(selected);
-                    showTextbook();
-                }
-            }
-        });
-
-        // South panel with Sign Out button
-        JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        // Initialize buttons
         signOutButton = new JButton("Sign out");
+        physicalRentalsButton = new JButton("Physical Rentals");
+        addCourseButton = new JButton("Add Course");
+        cartButton = new JButton("Cart");
+        checkoutButton = new JButton("Renting");
+
+        // Sign out action
         signOutButton.addActionListener(e -> signOut());
+
+        // Navigate to Physical Rentals screen
+        physicalRentalsButton.addActionListener(e -> navigateToPhysicalRentals());
+
+        //Navigate to faculty add courses screen
+        addCourseButton.addActionListener(e -> navigateToAddCourse());
+
+        // Cart action
+        cartButton.addActionListener(e -> navigateToCartScreen());
+
+        //Navigate to list of rented items screen
+        checkoutButton.addActionListener(e -> navigateToCheckoutScreen());
+
+        // Buttons panel
+        JPanel buttonsPanel = new JPanel(new GridLayout(1, 5)); // Adjust the grid size for new buttons
+        buttonsPanel.add(physicalRentalsButton);
+        buttonsPanel.add(addCourseButton); // Add the new button
+        buttonsPanel.add(cartButton); // Add the new button
+        buttonsPanel.add(checkoutButton);
+
+        // South panel with Sign out button
+        JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         southPanel.add(signOutButton);
 
-        // Button for adding a course
-        JButton addCourseButton = new JButton("Add Course");
-        addCourseButton.addActionListener(e -> addCourse());
-        southPanel.add(addCourseButton);
-
-        // Add titlePanel, scrollPane, and southPanel to the NORTH, CENTER, and SOUTH regions respectively
-        add(titlePanel, BorderLayout.NORTH);
-        add(scrollPane, BorderLayout.CENTER);
+        add(buttonsPanel, BorderLayout.CENTER);
         add(southPanel, BorderLayout.SOUTH);
     }
 
@@ -78,90 +76,28 @@ public class FacultyDashboard extends JFrame {
         loginScreen.setVisible(true);
     }
 
-    private void addCourse() {
-        String courseCode = JOptionPane.showInputDialog(this, "Enter course code:");
-        if (courseCode != null && !courseCode.isEmpty()) {
-            if (isCourseCodeValid(courseCode)) {
-                String textbook = getTextbookForCourse(courseCode); // Get the textbook for the course
-                try {
-                    FileWriter writer = new FileWriter("src/UI/FacultyUsers.csv", true); // Append mode
-                    writer.append(userId + "," + courseCode + "," + textbook + "\n"); // Assuming userId is unique per user
-                    writer.close();
-                    JOptionPane.showMessageDialog(this, "Course added successfully!");
-                    // Update the user list after adding the course
-                    updateUserList(courseCode, textbook);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Error adding course.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Course code does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid course code.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
+    private void navigateToPhysicalRentals() {
+        dispose(); // Dispose the current dashboard
+        StudentPhysicalItemScreen physicalItemScreen = new StudentPhysicalItemScreen(userId); // Open the physical item screen
+        physicalItemScreen.setVisible(true);
     }
 
-    private void updateUserList(String courseCode, String textbook) {
-        // Create a new Item with user information and button
-        Item newItem = new Item("Course Code: " + courseCode + " - Textbook: " + textbook);
-        newItem.getViewButton().addActionListener(e -> {
-            // Handle the action when "View Textbook" button is clicked
-            ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));
-            JLabel label = new JLabel(icon);
-            JOptionPane.showMessageDialog(this, label, "View Textbook", JOptionPane.PLAIN_MESSAGE);
-        });
-
-        // Add the new item to the list model
-        itemListModel.addElement(newItem);
+    private void navigateToAddCourse() {
+        dispose(); // Dispose the current dashboard
+        FacultyCourses facultyCourses = new FacultyCourses(userId); // Open the physical item screen
+        facultyCourses.setVisible(true);
     }
 
-    private boolean isCourseCodeValid(String courseCode) {
-        boolean isValid = false;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/TextbookSpreadsheet.csv"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length >= 3 && parts[2].trim().equals(courseCode.trim())) {
-                    isValid = true;
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return isValid;
+    private void navigateToCartScreen() {
+        dispose(); // Dispose the current dashboard
+        CartScreen cartScreenRM = new CartScreen(userId); // Open the physical item screen
+        cartScreenRM.setVisible(true);
     }
 
-    private String getTextbookForCourse(String courseCode) {
-        String textbook = "N/A"; // Default value if no textbook found
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/TextbookSpreadsheet.csv"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length >= 3 && parts[2].trim().equals(courseCode.trim())) {
-                    textbook = parts[1].trim(); // Assuming the textbook is in the second column of TextbookSpreadsheet.csv
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return textbook;
-    }
-
-    private void showTextbook() {
-        ImageIcon imageIcon = new ImageIcon("src/UI/VirtualCopiesDemo.png");
-        JLabel imageLabel = new JLabel(imageIcon);
-        JScrollPane scrollPane = new JScrollPane(imageLabel);
-
-        // Set preferred size of the scroll pane to fit width and set a fixed height
-        int width = imageIcon.getIconWidth();
-        int fixedHeight = 600; // You can adjust this as needed
-        scrollPane.setPreferredSize(new Dimension(width, fixedHeight));
-
-        // Show the scrollable window
-        JOptionPane.showMessageDialog(null, scrollPane, "Image", JOptionPane.PLAIN_MESSAGE);
+    private void navigateToCheckoutScreen() {
+        dispose();
+        CheckedOutItems checkedOutItems = new CheckedOutItems(userId);
+        checkedOutItems.setVisible(true);
     }
 
     private static class Item {

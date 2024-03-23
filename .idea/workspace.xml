@@ -5,16 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/UI/CheckedOutItems.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/VitualCopies.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/UI/FacultyCourses.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/CheckedOutItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/CheckedOutItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/FacultyDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FacultyDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FacultyUsers.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/StudentDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentPhysicalItemScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/StudentTextbooksScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/StudentTextbooksScreen.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/UserBooksBrought.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UserBooksBrought.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/UserInfoSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/UserInfoSpreadsheet.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/VirtualCopies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/userIdtoCart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/VitualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/VitualCopies.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/userSubs.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/userSubs.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/UI/userToTextbook.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/userToTextbook.csv" afterDir="false" />
     </list>
@@ -49,9 +48,6 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo">{
-  &quot;associatedIndex&quot;: 3
-}</component>
   <component name="ProjectId" id="2chMv9aD8AhPA9VtynvkfGGkPrU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -60,7 +56,7 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager" selected="Application.UserLogin">
+  <component name="RunManager" selected="Application.CheckedOutItems">
     <configuration name="CheckedOutItems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="UI.CheckedOutItems" />
       <module name="EECS3311-finalproject" />
@@ -74,8 +70,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentDashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UI.StudentDashboard" />
+    <configuration name="FacultyCourses" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="UI.FacultyCourses" />
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
@@ -87,8 +83,8 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentPhysicalItemScreen" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UI.StudentPhysicalItemScreen" />
+    <configuration name="FacultyDashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="UI.FacultyDashboard" />
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
@@ -128,11 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.UserLogin" />
-        <item itemvalue="Application.StudentPhysicalItemScreen" />
         <item itemvalue="Application.CheckedOutItems" />
-        <item itemvalue="Application.StudentDashboard" />
+        <item itemvalue="Application.UserLogin" />
         <item itemvalue="Application.UserRegistration" />
+        <item itemvalue="Application.FacultyDashboard" />
+        <item itemvalue="Application.FacultyCourses" />
       </list>
     </recent_temporary>
   </component>
