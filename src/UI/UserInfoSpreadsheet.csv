@@ -1,7 +1,7 @@
 UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverdue
 1002,alex.jordan@example.com,pass123!,Student,01/01/24,yes,0,0
 101,bethany.lime@example.com,pass123!,Student,02/01/24,yes,0,0
-102,charlie.greenwood@example.com,pass123!,Student,03/01/24,yes,0,0
+102,charlie.greenwood@example.com,pass123!,Student,03/01/24,yes,8,0
 103,danielle.sky@example.com,pass123!,Student,04/01/24,yes,0,0
 104,ethan.hawk@example.com,pass123!,Student,05/01/24,yes,3,0
 105,felicity.storm@example.com,pass123!,Student,06/01/24,yes,0,0
@@ -45,4 +45,4 @@ UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverd
 154,checking@gmail.com,123,Student,22/03/24,yes,0,0
 
 156,test@test.com,test,Student,22/03/24,yes,0,0
-158,testf@test.com,test,Faculty,22/03/24,yes,6,0
+158,testf@test.com,test,Faculty,22/03/24,yes,2,0
