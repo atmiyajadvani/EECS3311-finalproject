@@ -1,4 +1,4 @@
-package UI;
+package Frontend;
 
 import javax.swing.*;
 import java.awt.*;
@@ -7,8 +7,6 @@ import java.awt.event.ActionListener;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class UserLogin extends JFrame {
     private JTextField emailTextField;

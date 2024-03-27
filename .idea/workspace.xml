@@ -46,11 +46,11 @@
   </component>
   <component name="RunManager" selected="Application.UserLogin">
     <configuration name="CheckedOutItems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UI.CheckedOutItems" />
+      <option name="MAIN_CLASS_NAME" value="Frontend.CheckedOutItems" />
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="UI.*" />
+          <option name="PATTERN" value="Frontend.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -59,11 +59,11 @@
       </method>
     </configuration>
     <configuration name="FacultyCourses" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UI.FacultyCourses" />
+      <option name="MAIN_CLASS_NAME" value="Frontend.FacultyCourses" />
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="UI.*" />
+          <option name="PATTERN" value="Frontend.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -72,11 +72,11 @@
       </method>
     </configuration>
     <configuration name="FacultyDashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UI.FacultyDashboard" />
+      <option name="MAIN_CLASS_NAME" value="Frontend.FacultyDashboard" />
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="UI.*" />
+          <option name="PATTERN" value="Frontend.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -85,11 +85,11 @@
       </method>
     </configuration>
     <configuration name="UserLogin" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UI.UserLogin" />
+      <option name="MAIN_CLASS_NAME" value="Frontend.UserLogin" />
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="UI.*" />
+          <option name="PATTERN" value="Frontend.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -98,11 +98,11 @@
       </method>
     </configuration>
     <configuration name="UserRegistration" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="UI.UserRegistration" />
+      <option name="MAIN_CLASS_NAME" value="Frontend.UserRegistration" />
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="UI.*" />
+          <option name="PATTERN" value="Frontend.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>

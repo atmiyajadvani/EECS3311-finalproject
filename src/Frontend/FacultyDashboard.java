@@ -1,11 +1,7 @@
-package UI;
+package Frontend;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 
 public class FacultyDashboard extends JFrame {
     private JButton signOutButton;
