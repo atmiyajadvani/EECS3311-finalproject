@@ -118,7 +118,7 @@ public class StudentTextbooksScreen extends JFrame {
         Item newItem = new Item("User ID: " + userId + " - Course Code: " + courseCode + " - Textbook: " + textbook);
         newItem.getViewButton().addActionListener(e -> {
             // Handle the action when "View Virtual Copy" button is clicked
-            ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));
+            ImageIcon icon = new ImageIcon(getClass().getResource("src/Assets/VirtualCopiesDemo.png"));
             JLabel label = new JLabel(icon);
             JOptionPane.showMessageDialog(this, label, "View Virtual Copy", JOptionPane.PLAIN_MESSAGE);
         });
@@ -162,7 +162,7 @@ public class StudentTextbooksScreen extends JFrame {
     }
 
     private void showTextbook() {
-        ImageIcon imageIcon = new ImageIcon("src/UI/VirtualCopiesDemo.png");
+        ImageIcon imageIcon = new ImageIcon("src/Assets/VirtualCopiesDemo.png");
         JLabel imageLabel = new JLabel(imageIcon);
         JScrollPane scrollPane = new JScrollPane(imageLabel);
 

@@ -50,8 +50,8 @@ public class UserRegistration extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 // Handle Sign In button click
-                dispose(); // Close the registration window
-                new UserLogin().setVisible(true); // Open the login window
+                dispose();
+                new UserLogin().setVisible(true);
             }
         });
 
@@ -100,7 +100,6 @@ public class UserRegistration extends JFrame {
                     if (verificationCode == null || !verificationCode.equals("123")) {
                         JOptionPane.showMessageDialog(null, "Invalid verification code!", "Error",
                                 JOptionPane.ERROR_MESSAGE);
-                        // Clear fields on error
                         clearFields();
                         return;
                     }
@@ -111,8 +110,7 @@ public class UserRegistration extends JFrame {
                         new FileWriter("src/Database/UserInfoSpreadsheet.csv", true))) {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
                     String dateRegistered = dateFormat.format(new Date());
-                    int id = getNextUserId("src/Database/UserInfoSpreadsheet.csv") + 1; // Increment the last ID from the
-                                                                                  // spreadsheet
+                    int id = getNextUserId("src/Database/UserInfoSpreadsheet.csv") + 1;
                     String id1 = String.valueOf(id);
                     String userData = id1 + "," + email + "," + password + "," + userType + "," + dateRegistered + ","
                             + canBorrow + "," + itemsBorrowed + "," + itemsOverdue;

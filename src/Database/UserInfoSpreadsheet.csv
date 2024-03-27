@@ -46,3 +46,5 @@ UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverd
 
 156,test@test.com,test,Student,22/03/24,yes,0,0
 158,testf@test.com,test,Faculty,22/03/24,yes,2,0
+
+1004,atmiya@gmail.com,1234,Student,27/03/24,yes,2,0

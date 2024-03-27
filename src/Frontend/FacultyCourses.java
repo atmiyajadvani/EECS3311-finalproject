@@ -107,7 +107,7 @@ public class FacultyCourses extends JFrame {
         Item newItem = new Item("Course Code: " + courseCode + " - Textbook: " + textbook);
         newItem.getViewButton().addActionListener(e -> {
             // Handle the action when "View Textbook" button is clicked
-            ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));
+            ImageIcon icon = new ImageIcon(getClass().getResource("src/Assets/VirtualCopiesDemo.png"));
             JLabel label = new JLabel(icon);
             JOptionPane.showMessageDialog(this, label, "View Textbook", JOptionPane.PLAIN_MESSAGE);
         });
@@ -151,7 +151,7 @@ public class FacultyCourses extends JFrame {
     }
 
     private void showTextbook() {
-        ImageIcon imageIcon = new ImageIcon("src/UI/VirtualCopiesDemo.png");
+        ImageIcon imageIcon = new ImageIcon("src/Assets/VirtualCopiesDemo.png");
         JLabel imageLabel = new JLabel(imageIcon);
         JScrollPane scrollPane = new JScrollPane(imageLabel);
 
@@ -174,7 +174,7 @@ public class FacultyCourses extends JFrame {
             // Add action listener to the viewButton
             this.viewButton.addActionListener(e -> {
                 // Handle the action when "View Textbook" button is clicked
-                ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));
+                ImageIcon icon = new ImageIcon(getClass().getResource("src/Assets/VirtualCopiesDemo.png"));
                 JLabel label = new JLabel(icon);
                 JOptionPane.showMessageDialog(null, label, "View Textbook", JOptionPane.PLAIN_MESSAGE);
             });

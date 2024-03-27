@@ -106,7 +106,7 @@ public class FacultyDashboard extends JFrame {
             // Add action listener to the viewButton
             this.viewButton.addActionListener(e -> {
                 // Handle the action when "View Textbook" button is clicked
-                ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));
+                ImageIcon icon = new ImageIcon(getClass().getResource("src/Assets/VirtualCopiesDemo.png"));
                 JLabel label = new JLabel(icon);
                 JOptionPane.showMessageDialog(null, label, "View Textbook", JOptionPane.PLAIN_MESSAGE);
             });
