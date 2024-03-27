@@ -93,7 +93,7 @@ public class RequestBookScreen extends JFrame implements ActionListener {
         }
 
         // Assuming the CSV file is in the same directory as the application
-        String csvFile = "src/UI/TextbookSpreadsheet.csv";
+        String csvFile = "src/Database/TextbookSpreadsheet.csv";
         String line;
         String cvsSplitBy = ",";
 
@@ -129,7 +129,7 @@ public class RequestBookScreen extends JFrame implements ActionListener {
     private int updatePriorityQueue(String bookName) {
         int num = 0; // Initialize the position to 0
 
-        try (BufferedReader br = new BufferedReader(new FileReader("src/UI/TextbookPriorityQueue.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("src/Database/TextbookPriorityQueue.csv"))) {
             StringBuilder updatedContent = new StringBuilder();
             String line;
             // Read each line from the CSV file
@@ -161,7 +161,7 @@ public class RequestBookScreen extends JFrame implements ActionListener {
             }
 
             // Write the updated content back to the CSV file
-            Files.write(Paths.get("src/UI/TextbookPriorityQueue.csv"), updatedContent.toString().getBytes());
+            Files.write(Paths.get("src/Database/TextbookPriorityQueue.csv"), updatedContent.toString().getBytes());
 
         } catch (IOException e) {
             e.printStackTrace();

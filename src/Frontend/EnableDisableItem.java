@@ -71,7 +71,7 @@ public class EnableDisableItem extends JFrame {
         FileWriter writer = null;
 
         try {
-            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
+            br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"));
             String line = "";
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
@@ -102,7 +102,7 @@ public class EnableDisableItem extends JFrame {
         BufferedReader br = null;
 
         try {
-            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
+            br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"));
             String line;
             while ((line = br.readLine()) != null) {
                 line = line.replace(",", " | ");
@@ -157,7 +157,7 @@ public class EnableDisableItem extends JFrame {
         List<String[]> lines = new ArrayList<>();
 
         try {
-            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
+            br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"));
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
@@ -166,7 +166,7 @@ public class EnableDisableItem extends JFrame {
                 lines.add(data);
             }
 
-            writer = new FileWriter("src/UI/ItemSpreadsheet.csv");
+            writer = new FileWriter("src/Database/ItemSpreadsheet.csv");
             for (String[] rowData : lines) {
                 writer.append(String.join(",", rowData));
                 writer.append("\n");
@@ -194,7 +194,7 @@ public class EnableDisableItem extends JFrame {
         List<String[]> lines = new ArrayList<>();
 
         try {
-            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
+            br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"));
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(itemID)) {
@@ -203,7 +203,7 @@ public class EnableDisableItem extends JFrame {
                 lines.add(data);
             }
 
-            writer = new FileWriter("src/UI/ItemSpreadsheet.csv");
+            writer = new FileWriter("src/Database/ItemSpreadsheet.csv");
             for (String[] rowData : lines) {
                 writer.append(String.join(",", rowData));
                 writer.append("\n");

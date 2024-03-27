@@ -41,7 +41,7 @@ public class UserLogin extends JFrame {
                     return;
                 }
 
-                String csvFile = "src/UI/UserInfoSpreadsheet.csv";
+                String csvFile = "src/Database/UserInfoSpreadsheet.csv";
 
                 try {
                     BufferedReader reader = new BufferedReader(new FileReader(csvFile));

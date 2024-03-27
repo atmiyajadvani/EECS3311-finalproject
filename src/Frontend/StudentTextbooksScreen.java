@@ -95,7 +95,7 @@ public class StudentTextbooksScreen extends JFrame {
             if (isCourseCodeValid(courseCode)) {
                 String textbook = getTextbookForCourse(courseCode); // Get the textbook for the course
                 try {
-                    FileWriter writer = new FileWriter("src/UI/VirtualCopies.csv", true); // Append mode
+                    FileWriter writer = new FileWriter("src/Database/VirtualCopies.csv", true); // Append mode
                     writer.append(userId + "," + courseCode + "," + textbook + "\n"); // Assuming userId is unique per user
                     writer.close();
                     JOptionPane.showMessageDialog(this, "Course added successfully!");
@@ -118,7 +118,7 @@ public class StudentTextbooksScreen extends JFrame {
         Item newItem = new Item("User ID: " + userId + " - Course Code: " + courseCode + " - Textbook: " + textbook);
         newItem.getViewButton().addActionListener(e -> {
             // Handle the action when "View Virtual Copy" button is clicked
-            ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));  // Replace "/path/to/your/image.png" with the correct path to your PNG file
+            ImageIcon icon = new ImageIcon(getClass().getResource("src/UI/VirtualCopiesDemo.png"));
             JLabel label = new JLabel(icon);
             JOptionPane.showMessageDialog(this, label, "View Virtual Copy", JOptionPane.PLAIN_MESSAGE);
         });
@@ -129,7 +129,7 @@ public class StudentTextbooksScreen extends JFrame {
 
     private boolean isCourseCodeValid(String courseCode) {
         boolean isValid = false;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/TextbookSpreadsheet.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/TextbookSpreadsheet.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -146,7 +146,7 @@ public class StudentTextbooksScreen extends JFrame {
 
     private String getTextbookForCourse(String courseCode) {
         String textbook = "N/A"; // Default value if no textbook found
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/TextbookSpreadsheet.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/TextbookSpreadsheet.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");

@@ -86,7 +86,7 @@ public class CartScreen extends JFrame implements CartListener {
         FileWriter writer = null;
 
         try {
-            br = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"));
+            br = new BufferedReader(new FileReader("src/Database/UserInfoSpreadsheet.csv"));
             String line = "";
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
@@ -129,7 +129,7 @@ public class CartScreen extends JFrame implements CartListener {
     }
 
     private void loadCartItemsFromCSV() {
-        String csvFile = "src/UI/userIdtoCart.csv";
+        String csvFile = "src/Database/userIdtoCart.csv";
         String line;
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             while ((line = br.readLine()) != null) {
@@ -212,7 +212,7 @@ public class CartScreen extends JFrame implements CartListener {
 
     private ArrayList<String> readItemsFromCSV(int userId, int flag) {
         ArrayList<String> items = new ArrayList<>();
-        String csvFile = "src/UI/userIdtoCart.csv";
+        String csvFile = "src/Database/userIdtoCart.csv";
         String line;
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
@@ -242,7 +242,7 @@ public class CartScreen extends JFrame implements CartListener {
     }
 
     private String getUserRole(int userId) {
-        String csvFile = "src/UI/UserInfoSpreadsheet.csv";
+        String csvFile = "src/Database/UserInfoSpreadsheet.csv";
         String line;
         String role = "";
 

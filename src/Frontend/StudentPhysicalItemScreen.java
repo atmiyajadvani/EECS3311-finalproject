@@ -67,7 +67,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
             }
         });
 
-        loadCSVData("src/UI/ItemSpreadsheet.csv");
+        loadCSVData("src/Database/ItemSpreadsheet.csv");
         cartScreen = new CartScreen(userID);
 
         // Add "See Cart" button
@@ -127,7 +127,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
 
     private String getUserRoleFromCSV(int userId) {
         String role = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/UserInfoSpreadsheet.csv"))) {
             String line;
             boolean firstLineSkipped = false; // Flag to track if the first line has been skipped
             while ((line = reader.readLine()) != null) {
@@ -207,7 +207,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
     }
 
     private void saveCart() {
-        String csvFile = "src/UI/userIdtoCart.csv";
+        String csvFile = "src/Database/userIdtoCart.csv";
         try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
             StringBuilder sb = new StringBuilder();
             sb.append(userID).append(",");

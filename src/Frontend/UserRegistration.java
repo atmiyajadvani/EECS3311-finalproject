@@ -108,10 +108,10 @@ public class UserRegistration extends JFrame {
 
                 // Write user information to the spreadsheet
                 try (BufferedWriter writer = new BufferedWriter(
-                        new FileWriter("src/UI/UserInfoSpreadsheet.csv", true))) {
+                        new FileWriter("src/Database/UserInfoSpreadsheet.csv", true))) {
                     SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
                     String dateRegistered = dateFormat.format(new Date());
-                    int id = getNextUserId("src/UI/UserInfoSpreadsheet.csv") + 1; // Increment the last ID from the
+                    int id = getNextUserId("src/Database/UserInfoSpreadsheet.csv") + 1; // Increment the last ID from the
                                                                                   // spreadsheet
                     String id1 = String.valueOf(id);
                     String userData = id1 + "," + email + "," + password + "," + userType + "," + dateRegistered + ","
@@ -121,14 +121,14 @@ public class UserRegistration extends JFrame {
                     writer.flush();
                     // Write user ID to userToTextbook.csv
                     try (BufferedWriter writerToTextbook = new BufferedWriter(
-                            new FileWriter("src/UI/userToTextbook.csv", true))) {
+                            new FileWriter("src/Database/userToTextbook.csv", true))) {
                         writerToTextbook.write(id1);
                         writerToTextbook.newLine(); // Add a newline after writing the ID
                     } catch (IOException ex) {
                         ex.printStackTrace();
                     }
                     // Write user ID to userSubs.csv
-                    try (BufferedWriter writerSubs = new BufferedWriter(new FileWriter("src/UI/userSubs.csv", true))) {
+                    try (BufferedWriter writerSubs = new BufferedWriter(new FileWriter("src/Database/userSubs.csv", true))) {
                         writerSubs.write(id1 + ",0,0,0,0");
                         writerSubs.newLine(); // Add a newline after writing the ID
                     } catch (IOException ex) {
@@ -137,7 +137,7 @@ public class UserRegistration extends JFrame {
 
                     if (userType.equals("Faculty")) {
                         try (BufferedWriter writerFaculty = new BufferedWriter(
-                                new FileWriter("src/UI/FacultyUsers.csv", true))) {
+                                new FileWriter("src/Database/FacultyUsers.csv", true))) {
                             writerFaculty.write(id1);
                             writerFaculty.newLine(); // Add a newline after writing the ID
                         } catch (IOException ex) {
@@ -147,7 +147,7 @@ public class UserRegistration extends JFrame {
 
                     if (userType.equals("Student")) {
                         try (BufferedWriter writerFaculty = new BufferedWriter(
-                                new FileWriter("src/UI/VitualCopies.csv", true))) {
+                                new FileWriter("src/Database/VitualCopies.csv", true))) {
                             writerFaculty.write(id1);
                             writerFaculty.newLine(); // Add a newline after writing the ID
                         } catch (IOException ex) {
@@ -199,7 +199,7 @@ public class UserRegistration extends JFrame {
 
     // Method to check if the email is unique
     private boolean isEmailUnique(String email) {
-        String filePath = "src/UI/UserInfoSpreadsheet.csv";
+        String filePath = "src/Database/UserInfoSpreadsheet.csv";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = br.readLine()) != null) {

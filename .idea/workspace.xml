@@ -4,7 +4,39 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="" />
+    <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/AddItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/AddItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/CartScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/CartScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/CheckedOutItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/CheckedOutItems.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/EnableDisableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/EnableDisableItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/FacultyCourses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/FacultyCourses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/NewspaperMainpage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/NewspaperMainpage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/PayWithDebitScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/PayWithDebitScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/RequestBookScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/RequestBookScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/StudentDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/StudentDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/StudentPhysicalItemScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/StudentPhysicalItemScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/StudentTextbooksScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/StudentTextbooksScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/TextbookPriorityQueue.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/TextbookPriorityQueue.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/TextbookSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/TextbookSpreadsheet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/UserBooksBrought.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/UserBooksBrought.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/UserInfoSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/UserInfoSpreadsheet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/UserLogin.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/UserLogin.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/UserRentals.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/UserRentals.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/VirtualCopiesDemo.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/VirtualCopiesDemo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/VitualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VitualCopies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/newspaperPhotos/0.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/0.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/newspaperPhotos/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/1.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/newspaperPhotos/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/2.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/newspaperPhotos/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/Assets/3.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/userIdtoCart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userIdtoCart.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/userSubs.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userSubs.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/userToTextbook.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userToTextbook.csv" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -36,6 +68,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 0
+}]]></component>
   <component name="ProjectId" id="2chMv9aD8AhPA9VtynvkfGGkPrU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -44,7 +80,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="RunManager" selected="Application.UserLogin">
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ManagerDashboard.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "git-widget-placeholder": "PD3",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/Database" />
+      <recent name="$PROJECT_DIR$/src/Assets/newspaperPhotos" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.CheckedOutItems">
     <configuration name="CheckedOutItems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Frontend.CheckedOutItems" />
       <module name="EECS3311-finalproject" />
@@ -123,7 +178,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-ae57be32" />
+        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-995e55e7" />
       </set>
     </attachedChunks>
   </component>
@@ -143,6 +198,7 @@
       <workItem from="1709172765429" duration="31000" />
       <workItem from="1709778171146" duration="188000" />
       <workItem from="1709929247136" duration="19182000" />
+      <workItem from="1711576456208" duration="538000" />
     </task>
     <servers />
   </component>
@@ -150,6 +206,21 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -167,21 +238,6 @@
                 </map>
               </option>
             </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
           </value>
         </entry>
       </map>

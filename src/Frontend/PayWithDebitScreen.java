@@ -94,7 +94,7 @@ public class PayWithDebitScreen extends JFrame {
     }
 
     private void saveCart(List<StudentPhysicalItemScreen.Item> cartItems, int userId) {
-        String csvFile = "src/UI/UserBooksBrought.csv";
+        String csvFile = "src/Database/UserBooksBrought.csv";
         int daysBorrowed = 0;
         String isLost = "no";
         try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
@@ -113,7 +113,7 @@ public class PayWithDebitScreen extends JFrame {
         List<String[]> rows = new ArrayList<>();
 
         try {
-            br = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"));
+            br = new BufferedReader(new FileReader("src/Database/UserInfoSpreadsheet.csv"));
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (data[0].equals(Integer.toString(userID))) {
@@ -122,7 +122,7 @@ public class PayWithDebitScreen extends JFrame {
                 rows.add(data);
             }
 
-            writer = new FileWriter("src/UI/UserInfoSpreadsheet.csv");
+            writer = new FileWriter("src/Database/UserInfoSpreadsheet.csv");
             for (String[] rowData : rows) {
                 writer.append(String.join(",", rowData));
                 writer.append("\n");
@@ -151,7 +151,7 @@ public class PayWithDebitScreen extends JFrame {
         }
 
         try {
-            br = new BufferedReader(new FileReader("src/UI/ItemSpreadsheet.csv"));
+            br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"));
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
                 if (itemIDs.contains(data[0])) {
@@ -160,7 +160,7 @@ public class PayWithDebitScreen extends JFrame {
                 rows.add(data);
             }
 
-            writer = new FileWriter("src/UI/ItemSpreadsheet.csv");
+            writer = new FileWriter("src/Database/ItemSpreadsheet.csv");
             for (String[] rowData : rows) {
                 writer.append(String.join(",", rowData));
                 writer.append("\n");

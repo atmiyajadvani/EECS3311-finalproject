@@ -14,7 +14,7 @@ public class NewspaperMainpage extends JFrame {
 
         this.userId = temp;
         // int id = 1000; //temp id because user class not ready
-        String csvFile = "src/UI/userSubs.csv";
+        String csvFile = "src/Database/userSubs.csv";
         // Try-with-resources to automatically close the BufferedReader
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
             String line;
@@ -160,7 +160,7 @@ public class NewspaperMainpage extends JFrame {
                 g.printStackTrace();
             }
             // System.out.println("This works2");
-            try (BufferedReader br = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"))) {
+            try (BufferedReader br = new BufferedReader(new FileReader("src/Database/UserInfoSpreadsheet.csv"))) {
                 String line;
                 boolean firstLine = true; // Flag to indicate the first line
                 // Read each line from the CSV file

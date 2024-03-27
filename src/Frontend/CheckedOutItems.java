@@ -94,7 +94,7 @@ public class CheckedOutItems extends JFrame {
         FileWriter writer = null;
 
         try {
-            br = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"));
+            br = new BufferedReader(new FileReader("src/Database/UserInfoSpreadsheet.csv"));
             String line = "";
             while ((line = br.readLine()) != null) {
                 String[] data = line.split(",");
@@ -118,7 +118,7 @@ public class CheckedOutItems extends JFrame {
 
     private String getUserRoleFromCSV(int userId) {
         String role = null;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/UserInfoSpreadsheet.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/UserInfoSpreadsheet.csv"))) {
             String line;
             boolean firstLineSkipped = false; // Flag to track if the first line has been skipped
             while ((line = reader.readLine()) != null) {
@@ -140,7 +140,7 @@ public class CheckedOutItems extends JFrame {
     }
 
     private String getUserRole(int userId) {
-        String csvFile = "src/UI/UserInfoSpreadsheet.csv";
+        String csvFile = "src/Database/UserInfoSpreadsheet.csv";
         String line;
         String role = "";
 
@@ -170,7 +170,7 @@ public class CheckedOutItems extends JFrame {
     }
 
     private void loadItemsDataFromFile() {
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/UserBooksBrought.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/UserBooksBrought.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 itemsData.add(line.split(","));

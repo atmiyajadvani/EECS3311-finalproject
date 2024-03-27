@@ -84,7 +84,7 @@ public class FacultyCourses extends JFrame {
             if (isCourseCodeValid(courseCode)) {
                 String textbook = getTextbookForCourse(courseCode); // Get the textbook for the course
                 try {
-                    FileWriter writer = new FileWriter("src/UI/FacultyUsers.csv", true); // Append mode
+                    FileWriter writer = new FileWriter("src/Database/FacultyUsers.csv", true); // Append mode
                     writer.append(userId + "," + courseCode + "," + textbook + "\n"); // Assuming userId is unique per user
                     writer.close();
                     JOptionPane.showMessageDialog(this, "Course added successfully!");
@@ -118,7 +118,7 @@ public class FacultyCourses extends JFrame {
 
     private boolean isCourseCodeValid(String courseCode) {
         boolean isValid = false;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/TextbookSpreadsheet.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/TextbookSpreadsheet.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
@@ -135,7 +135,7 @@ public class FacultyCourses extends JFrame {
 
     private String getTextbookForCourse(String courseCode) {
         String textbook = "N/A"; // Default value if no textbook found
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/UI/TextbookSpreadsheet.csv"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/TextbookSpreadsheet.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
