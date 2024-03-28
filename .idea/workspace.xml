@@ -5,18 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Backend/deleteIt.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/deleteTheFile.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/TextbookPriorityQueue.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/TextbookPriorityQueue.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/UserBooksBrought.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/UserBooksBrought.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/UserInfoSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/UserInfoSpreadsheet.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/VitualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VitualCopies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/userSubs.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userSubs.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/userToTextbook.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userToTextbook.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/FacultyCourses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/FacultyCourses.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/FacultyDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/FacultyDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/StudentTextbooksScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/StudentTextbooksScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,10 +40,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 0
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 0
+}</component>
   <component name="ProjectId" id="2chMv9aD8AhPA9VtynvkfGGkPrU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -65,8 +56,10 @@
   "keyToString": {
     "Application.CheckedOutItems.executor": "Run",
     "Application.ManagerDashboard.executor": "Run",
+    "Application.StudentDashboard.executor": "Run",
     "Application.UserRegistration.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "PD3",
     "kotlin-language-version-configured": "true",
     "node.js.detected.package.eslint": "true",
@@ -182,6 +175,7 @@
       <workItem from="1709778171146" duration="188000" />
       <workItem from="1709929247136" duration="19182000" />
       <workItem from="1711576456208" duration="1801000" />
+      <workItem from="1711636849996" duration="306000" />
     </task>
     <servers />
   </component>
