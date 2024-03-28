@@ -45,4 +45,7 @@ UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverd
 154,checking@gmail.com,123,Student,22/03/24,yes,0,0
 
 156,test@test.com,test,Student,22/03/24,yes,0,0
-158,testf@test.com,test,Faculty,22/03/24,yes,2,0
+158,testf@test.com,test,Faculty,22/03/24,yes,8,0
+
+1004,testf1@test.com,test,Faculty,22/03/24,yes,0,0
+1006,testfaculty@test.com,test,Faculty,22/03/24,yes,1,0

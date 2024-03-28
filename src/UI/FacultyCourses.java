@@ -66,6 +66,11 @@ public class FacultyCourses extends JFrame {
         addCourseButton.addActionListener(e -> addCourse());
         southPanel.add(addCourseButton);
 
+        // Back button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> goBackToDashboard());
+        southPanel.add(backButton);
+
         // Add titlePanel, scrollPane, and southPanel to the NORTH, CENTER, and SOUTH regions respectively
         add(titlePanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
@@ -76,6 +81,12 @@ public class FacultyCourses extends JFrame {
         dispose(); // Dispose the current page
         UserLogin loginScreen = new UserLogin(); // Open the login screen
         loginScreen.setVisible(true);
+    }
+
+    private void goBackToDashboard() {
+        dispose(); // Dispose the current Faculty Courses frame
+        FacultyDashboard facultyDashboard = new FacultyDashboard(userId); // Open the StudentDashboard
+        facultyDashboard.setVisible(true);
     }
 
     private void addCourse() {

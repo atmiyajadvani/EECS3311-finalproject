@@ -22,3 +22,6 @@ UserID,ItemID,Title,Author,ItemType,DaysBorrowed,IsLost
 113,1030,AstroQuest,Zenith Magazines Group,Magazine,0,no
 113,1029,Historical Times,Zenith Magazines Group,Magazine,0,no
 113,1028,Elite Fitness,Pinnacle Printworks,Magazine,0,no
+158,1001,Shadows Over Mars,Evelyn Archer,Book,0,no
+158,1002,The Last Ember,Marcus Reed,Book,0,no
+1006,1001,Shadows Over Mars,Evelyn Archer,Book,0,no
