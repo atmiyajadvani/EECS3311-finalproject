@@ -13,6 +13,8 @@ public class Student extends User {
     }
 
     public void setStudentId(int studentId) {
+        //student id starts with 1
+        studentId += 1000;
         this.studentId = studentId;
     }
 }

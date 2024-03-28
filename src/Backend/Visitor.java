@@ -1,18 +1,20 @@
 package Backend;
 
 public class Visitor extends User {
-    private String visitorPurpose;
+    private String visitorId;
 
-    public Visitor(String email, String password, String userType, String visitorPurpose) {
+    public Visitor(String email, String password, String userType, String visitorId) {
         super(email, password, userType);
-        this.visitorPurpose = visitorPurpose;
+        this.visitorId = visitorId;
     }
 
-    public String getVisitorPurpose() {
-        return visitorPurpose;
+    public String getVisitorId() {
+        return visitorId;
     }
 
-    public void setVisitorPurpose(String visitorPurpose) {
-        this.visitorPurpose = visitorPurpose;
+    public void setVisitorId(String visitorId) {
+        //visitor id starts with 1
+        visitorId += 2000;
+        this.visitorId = visitorId;
     }
 }

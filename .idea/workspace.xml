@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="" />
+    <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Faculty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Visitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,7 +58,7 @@
       <recent name="$PROJECT_DIR$/src/Assets/newspaperPhotos" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.CheckedOutItems">
+  <component name="RunManager" selected="Application.UserRegistration">
     <configuration name="CheckedOutItems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Frontend.CheckedOutItems" />
       <module name="EECS3311-finalproject" />
@@ -118,9 +126,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.UserRegistration" />
         <item itemvalue="Application.CheckedOutItems" />
         <item itemvalue="Application.UserLogin" />
-        <item itemvalue="Application.UserRegistration" />
         <item itemvalue="Application.FacultyDashboard" />
         <item itemvalue="Application.FacultyCourses" />
       </list>

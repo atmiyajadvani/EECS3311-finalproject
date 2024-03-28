@@ -1,5 +1,7 @@
 package Frontend;
 
+import Backend.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -105,6 +107,7 @@ public class UserRegistration extends JFrame {
                     }
                 }
 
+                User user = new User(email, password, userType);
                 // Write user information to the spreadsheet
                 try (BufferedWriter writer = new BufferedWriter(
                         new FileWriter("src/Database/UserInfoSpreadsheet.csv", true))) {
