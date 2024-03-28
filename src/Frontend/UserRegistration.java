@@ -145,7 +145,7 @@ public class UserRegistration extends JFrame {
 
                     if (userType.equals("Student")) {
                         try (BufferedWriter writerFaculty = new BufferedWriter(
-                                new FileWriter("src/Database/VitualCopies.csv", true))) {
+                                new FileWriter("src/Database/VirtualCopies.csv", true))) {
                             writerFaculty.write(id1);
                             writerFaculty.newLine(); // Add a newline after writing the ID
                         } catch (IOException ex) {
