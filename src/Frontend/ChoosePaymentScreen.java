@@ -1,9 +1,13 @@
 package Frontend;
 
+import Backend.PaymentOptions;
+
 import javax.swing.*;
+import javax.swing.text.html.Option;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChoosePaymentScreen extends JFrame {
@@ -11,6 +15,9 @@ public class ChoosePaymentScreen extends JFrame {
     private List<StudentPhysicalItemScreen.Item> cartItems;
     private int userID;
     private JTextField promoCodeField;
+    private PaymentOptions OptionsToPay;
+    private double totalPrice ;
+
 
     public ChoosePaymentScreen(int userID) {
         this.userID = userID;
@@ -18,8 +25,10 @@ public class ChoosePaymentScreen extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setSize(400, 200);
         setLocationRelativeTo(null);
+        OptionsToPay = new PaymentOptions();
 
-        totalPriceLabel = new JLabel("Total Price: $0.00");
+        totalPriceLabel = new JLabel("Total Price: $0.0");
+//        totalPriceLabel = new JLabel("Total Price: $" + String.format("%.2f", OptionsToPay.calculateTotalPrice(cartItems)));
         totalPriceLabel.setHorizontalAlignment(SwingConstants.CENTER);
 
         promoCodeField = new JTextField(10);
@@ -37,21 +46,21 @@ public class ChoosePaymentScreen extends JFrame {
         creditCardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                applyPromoAndOpenDebitCardPayment();
+                navigateToPayWithDebitScreen();
             }
         });
 
         debitCardButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                applyPromoAndOpenDebitCardPayment();
+                navigateToPayWithDebitScreen();
             }
         });
 
         paypalButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                applyPromoAndOpenDebitCardPayment();
+                navigateToPayWithDebitScreen();
             }
         });
 
@@ -63,42 +72,26 @@ public class ChoosePaymentScreen extends JFrame {
         mainPanel.add(totalPriceLabel);
         mainPanel.add(promoCodePanel);
         mainPanel.add(paymentOptionsPanel);
+        cartItems = new ArrayList<>();
 
         add(mainPanel, BorderLayout.CENTER);
     }
 
-    public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
-        this.cartItems = cartItems;
-        updateTotalPriceLabel();
-    }
+    private void navigateToPayWithDebitScreen() {
+        double discountedPrice = OptionsToPay.applyPromo(this.totalPrice, promoCodeField.getText().trim());
+        totalPriceLabel.setText("Total Price: $" + String.format("%.2f", discountedPrice));
 
-    private void updateTotalPriceLabel() {
-        double totalPrice = calculateTotalPrice();
-        totalPriceLabel.setText("Total Price: $" + String.format("%.2f", totalPrice));
-    }
-
-    private double calculateTotalPrice() {
-        double totalPrice = 0.0;
-        if (cartItems != null) {
-            for (StudentPhysicalItemScreen.Item item : cartItems) {
-                totalPrice += item.getPrice();
-            }
-        }
-        return totalPrice;
-    }
-
-    private void applyPromoAndOpenDebitCardPayment() {
-        String promoCode = promoCodeField.getText().trim();
-        double discount = 0.0;
-        if ("fo40".equals(promoCode)) {
-            discount = 0.4; // 40% discount
-        }
-
-        double totalPrice = calculateTotalPrice() * (1 - discount);
-
-        PayWithDebitScreen debitScreen = new PayWithDebitScreen(userID, totalPrice);
+        PayWithDebitScreen debitScreen = new PayWithDebitScreen(userID, discountedPrice);
         debitScreen.setCartItems(cartItems); // Pass the cart items to the PayWithDebitScreen
         debitScreen.setVisible(true);
         this.setVisible(false); // Hide the ChoosePaymentScreen
+    }
+
+
+    public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
+        this.cartItems = cartItems;
+        this.totalPrice = OptionsToPay.calculateTotalPrice(cartItems);
+        totalPriceLabel.setText("Total Price: $" + String.format("%.2f", totalPrice));
+
     }
 }

@@ -5,13 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Backend/PaymentOptions.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Faculty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Visitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/ChoosePaymentScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/ChoosePaymentScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/StudentPhysicalItemScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/StudentPhysicalItemScreen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,13 +49,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.StudentDashboard.executor": "Run",
+    "Application.StudentPhysicalItemScreen.executor": "Run",
+    "git-widget-placeholder": "PD3",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Database" />
       <recent name="$PROJECT_DIR$/src/Assets/newspaperPhotos" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.UserRegistration">
+  <component name="RunManager">
     <configuration name="CheckedOutItems" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Frontend.CheckedOutItems" />
       <module name="EECS3311-finalproject" />
@@ -166,6 +171,21 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="MAIN">
@@ -183,21 +203,6 @@
                 </map>
               </option>
             </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
           </value>
         </entry>
       </map>

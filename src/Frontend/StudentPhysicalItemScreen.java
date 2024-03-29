@@ -232,7 +232,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         EventQueue.invokeLater(() -> new StudentPhysicalItemScreen(sampleUserId).setVisible(true));
     }
 
-    static class Item {
+    public static class Item {
         private String id;
         private String name;
         private String author;
