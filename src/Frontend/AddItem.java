@@ -1,16 +1,20 @@
 package Frontend;
 
+import Backend.Item;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.text.NumberFormat;
 
 public class AddItem extends JFrame {
     private JTextField titleField;
     private JTextField authorField;
     private JComboBox<String> itemTypeDropdown;
+    private JTextField priceField;
     private JButton addItemButton;
     private JButton backButton;
 
@@ -34,6 +38,7 @@ public class AddItem extends JFrame {
         titleField = new JTextField();
         itemTypeDropdown = new JComboBox<>(new String[]{"Book", "Magazine", "CD"});
         authorField = new JTextField();
+        priceField = new JTextField();
         addItemButton = new JButton("Add Item");
         addItemButton.addActionListener(e -> addItem());
         backButton = new JButton("Back");
@@ -46,6 +51,8 @@ public class AddItem extends JFrame {
         formPanel.add(authorField);
         formPanel.add(new JLabel("Item Type:"));
         formPanel.add(itemTypeDropdown);
+        formPanel.add(new JLabel("Price:"));
+        formPanel.add(priceField);
 
         bottomPanel.add(backButton);
         bottomPanel.add(addItemButton);
@@ -57,13 +64,20 @@ public class AddItem extends JFrame {
     }
 
     private void addItem() {
-        String id = String.valueOf(getNextItemID("src/Database/ItemSpreadsheet.csv"));
+        String id = String.valueOf(Item.getNextID());
         String title = titleField.getText();
         String author = authorField.getText();
         String itemType = (String) itemTypeDropdown.getSelectedItem();
         String quantity = "20";
+        String price = priceField.getText();
         String status = "enabled";
 
+        if (!Item.isValidPrice(price)) {
+            JOptionPane.showMessageDialog(this, "ERROR! Invalid price.");
+            return;
+        }
+
+        // put this in database writeItem method with the above as parameters, also should use formatPrice from item
         FileWriter writer = null;
         try {
             writer = new FileWriter("src/Database/ItemSpreadsheet.csv", true);
@@ -72,7 +86,7 @@ public class AddItem extends JFrame {
                     .append(author).append(",")
                     .append(itemType).append(",")
                     .append(quantity).append(",")
-                    .append("1").append(",")
+                    .append(Item.formatPrice(price)).append(",")
                     .append(status).append("\n");
             JOptionPane.showMessageDialog(this, "Item added successfully!");
 
@@ -89,27 +103,6 @@ public class AddItem extends JFrame {
                 System.err.println("Error closing FileWriter: " + e.getMessage());
             }
         }
-    }
-
-    private static int getNextItemID(String filePath) {
-        int maxItemID = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                if (!line.trim().isEmpty()) {
-                    int currItemID = Integer.parseInt(line.split(",")[0]);
-                    if (currItemID > maxItemID) {
-                        maxItemID = currItemID;
-                    }
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NumberFormatException e) {
-            System.out.println("Error parsing UserID from the file: " + e.getMessage());
-        }
-
-        return maxItemID + 1;
     }
 
     private void goBack() {
