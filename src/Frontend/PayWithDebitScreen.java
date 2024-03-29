@@ -1,5 +1,9 @@
 package Frontend;
 
+import Backend.Item;
+import Backend.StudentItemHandler;
+
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -14,7 +18,7 @@ public class PayWithDebitScreen extends JFrame {
     private JTextField cardNumberField;
     private JTextField cvvField;
     private JTextField expirationDateField;
-    private List<StudentPhysicalItemScreen.Item> cartItems;
+    private List<Item> cartItems;
     private double totalPrice;
     private int userID;
 
@@ -89,16 +93,16 @@ public class PayWithDebitScreen extends JFrame {
         new StudentPhysicalItemScreen(userID).setVisible(true);
     }
 
-    public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
+    public void setCartItems(List<Item> cartItems) {
         this.cartItems = cartItems;
     }
 
-    private void saveCart(List<StudentPhysicalItemScreen.Item> cartItems, int userId) {
+    private void saveCart(List<Item> cartItems, int userId) {
         String csvFile = "src/Database/UserBooksBrought.csv";
         int daysBorrowed = 0;
         String isLost = "no";
         try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
-            for (StudentPhysicalItemScreen.Item item : cartItems) {
+            for (Item item : cartItems) {
                 writer.println(userId + "," + item.getId() + "," + item.getName() + "," + item.getAuthor() + "," + item.getItemType() + "," + daysBorrowed + "," + isLost);
             }
         } catch (IOException e) {
@@ -146,7 +150,7 @@ public class PayWithDebitScreen extends JFrame {
         List<String[]> rows = new ArrayList<>();
         List<String> itemIDs = new ArrayList<>();
 
-        for (StudentPhysicalItemScreen.Item item : cartItems) {
+        for (Item item : cartItems) {
             itemIDs.add(item.getId());
         }
 

@@ -1,18 +1,14 @@
 package Backend;
 
-import Frontend.PayWithDebitScreen;
-import Frontend.StudentPhysicalItemScreen;
-
-import javax.security.auth.callback.TextInputCallback;
-import javax.swing.*;
+import Backend.Item;
 import java.util.List;
 
 public class PaymentOptions {
 
-    public double calculateTotalPrice(List<StudentPhysicalItemScreen.Item> cartItems) {
+    public double calculateTotalPrice(List<Item> cartItems) {
         double totalPrice = 0.0;
         if (cartItems != null) {
-            for (StudentPhysicalItemScreen.Item item : cartItems) {
+            for (Item item : cartItems) {
                 totalPrice += item.getPrice();
             }
         }

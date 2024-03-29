@@ -1,5 +1,8 @@
 package Frontend;
 
+import Backend.StudentItemHandler;
+import Backend.Item;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -21,7 +24,7 @@ public class CartScreen extends JFrame implements CartListener {
     private JTextField promoCodeField;
     private JButton promoCodeButton;
     private ChoosePaymentScreen paymentScreen;
-    private List<StudentPhysicalItemScreen.Item> cartItems;
+    private List<Item> cartItems;
     private static int userId;
 
     public CartScreen(int userId) {
@@ -139,7 +142,7 @@ public class CartScreen extends JFrame implements CartListener {
                     for (int i = 1; i < data.length; i += 2) {
                         String itemId = data[i];
                         // Retrieve item details from wherever you store them
-                        StudentPhysicalItemScreen.Item item = retrieveItemDetails(itemId);
+                        Item item = retrieveItemDetails(itemId);
                         if (item != null) {
                             cartItems.add(item);
                         }
@@ -152,19 +155,19 @@ public class CartScreen extends JFrame implements CartListener {
         }
     }
 
-    private StudentPhysicalItemScreen.Item retrieveItemDetails(String itemId) {
+    private Item retrieveItemDetails(String itemId) {
         // Implement logic to retrieve item details based on itemId
         // For example, you might fetch details from a database or another CSV file
         return null; // Placeholder return statement
     }
 
-    public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
+    public void setCartItems(List<Item> cartItems) {
         this.cartItems = cartItems;
     }
 
     private void refreshCartView() {
         middlePanel.removeAll();
-        for (StudentPhysicalItemScreen.Item item : cartItems) {
+        for (Item item : cartItems) {
             JLabel label = new JLabel(item.toString());
             label.setFont(label.getFont().deriveFont(Font.PLAIN, 16));
             label.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -268,7 +271,7 @@ public class CartScreen extends JFrame implements CartListener {
     }
 
     @Override
-    public void itemAddedToCart(StudentPhysicalItemScreen.Item item) {
+    public void itemAddedToCart(Item item) {
         cartItems.add(item);
         refreshCartView();
     }

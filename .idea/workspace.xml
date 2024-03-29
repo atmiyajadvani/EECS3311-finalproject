@@ -5,10 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Backend/PaymentOptions.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/ChoosePaymentScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/ChoosePaymentScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/StudentPhysicalItemScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/StudentPhysicalItemScreen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/Item.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Item.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/AddItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/AddItem.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/EnableDisableItem.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/EnableDisableItem.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +53,7 @@
   "keyToString": {
     "Application.StudentDashboard.executor": "Run",
     "Application.StudentPhysicalItemScreen.executor": "Run",
-    "git-widget-placeholder": "PD3",
+    "git-widget-placeholder": "Merging PD3",
     "node.js.selected.package.tslint": "(autodetect)"
   }
 }]]></component>

@@ -1,5 +1,8 @@
 package Frontend;
 
+import Backend.Item;
+import Backend.StudentItemHandler;
+
 public interface CartListener {
-    void itemAddedToCart(StudentPhysicalItemScreen.Item item);
+    void itemAddedToCart(Item item);
 }

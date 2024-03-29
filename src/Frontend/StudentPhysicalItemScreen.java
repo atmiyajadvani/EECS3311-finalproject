@@ -1,5 +1,8 @@
 package Frontend;
 
+import Backend.Item;
+import Backend.StudentItemHandler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,9 +10,11 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
+import java.lang.reflect.Array;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class StudentPhysicalItemScreen extends JFrame implements CartListener {
     private DefaultListModel<Item> itemListModel;
@@ -19,8 +24,12 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
     private int userID;
     private CartScreen cartScreen;
 
+    private Item item;
+    private StudentItemHandler itemHandler;
+
     public StudentPhysicalItemScreen(int id) {
         this.userID = id;
+        this.itemHandler = new StudentItemHandler();
         setTitle("Item Search");
         setSize(600, 400);
         setLocationRelativeTo(null);
@@ -29,7 +38,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                saveCart();
+                itemHandler.saveCart(userID);
             }
         });
 
@@ -67,7 +76,6 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
             }
         });
 
-        loadCSVData("src/Database/ItemSpreadsheet.csv");
         cartScreen = new CartScreen(userID);
 
         // Add "See Cart" button
@@ -147,39 +155,12 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         }
         return role;
     }
-
-    private void loadCSVData(String filePath) {
-        csvData = new ArrayList<>();
-        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
-            String line;
-            while ((line = br.readLine()) != null) {
-                String[] values = line.split(",");
-                if (values.length >= 6) {
-                    double price = Double.parseDouble(values[5].trim());
-                    Item item = new Item(values[0].trim(), values[1].trim(), values[2].trim(), values[3].trim(),
-                            values[4].trim(), price);
-                    csvData.add(item);
-                } else {
-                    System.out.println("Invalid item format: " + String.join(", ", values));
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private void searchItem() {
         String searchText = searchTextField.getText().trim().toLowerCase();
         itemListModel.clear();
-
-        for (Item item : csvData) {
-            String itemName = item.getName().toLowerCase();
-            String author = item.getAuthor().toLowerCase();
-            String itemType = item.getItemType().toLowerCase();
-
-            if (itemName.contains(searchText) || author.contains(searchText) || itemType.contains(searchText)) {
-                itemListModel.addElement(item);
-            }
+        ArrayList<Item> filteredItems = this.itemHandler.filterItems(searchText);
+        for(Item item: filteredItems){
+            itemListModel.addElement(item);
         }
     }
 
@@ -206,21 +187,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         }
     }
 
-    private void saveCart() {
-        String csvFile = "src/Database/userIdtoCart.csv";
-        try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(userID).append(",");
-            for (Item item : cart) {
-                sb.append(item.getId()).append(",").append(item.toString()).append(",");
-            }
-            sb.deleteCharAt(sb.length() - 1);
-            sb.append("\n");
-            writer.write(sb.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
+
 
     @Override
     public void itemAddedToCart(Item item) {
@@ -230,76 +197,6 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
     public static void main(String[] args) {
         int sampleUserId = 120;
         EventQueue.invokeLater(() -> new StudentPhysicalItemScreen(sampleUserId).setVisible(true));
-    }
-
-    public static class Item {
-        private String id;
-        private String name;
-        private String author;
-        private String itemType;
-        private String amountLeft;
-        private double price; // New attribute
-
-        public Item(String id, String name, String author, String itemType, String amountLeft, double price) {
-            this.id = id;
-            this.name = name;
-            this.author = author;
-            this.itemType = itemType;
-            this.amountLeft = amountLeft;
-            this.price = price;
-        }
-
-        public String getId() {
-            return id;
-        }
-
-        public String getName() {
-            return name;
-        }
-
-        public String getAuthor() {
-            return author;
-        }
-
-        public String getItemType() {
-            return itemType;
-        }
-
-        public String getAmountLeft() {
-            return amountLeft;
-        }
-
-        public void setAmountLeft(String amountLeft) {
-            this.amountLeft = amountLeft;
-        }
-
-        public double getPrice() {
-            return price;
-        }
-
-        public void setPrice(double price) {
-            this.price = price;
-        }
-
-        @Override
-        public boolean equals(Object o) {
-            if (this == o)
-                return true;
-            if (o == null || getClass() != o.getClass())
-                return false;
-            Item item = (Item) o;
-            return Objects.equals(id, item.id);
-        }
-
-        @Override
-        public int hashCode() {
-            return Objects.hash(id);
-        }
-
-        @Override
-        public String toString() {
-            return name + " | " + author + " | " + itemType + " | " + amountLeft + " Available copies.";
-        }
     }
 
     static class ItemListCellRenderer extends DefaultListCellRenderer {

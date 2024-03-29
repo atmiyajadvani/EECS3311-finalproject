@@ -1,6 +1,8 @@
 package Frontend;
 
+import Backend.Item;
 import Backend.PaymentOptions;
+import Backend.StudentItemHandler;
 
 import javax.swing.*;
 import javax.swing.text.html.Option;
@@ -12,7 +14,7 @@ import java.util.List;
 
 public class ChoosePaymentScreen extends JFrame {
     private JLabel totalPriceLabel;
-    private List<StudentPhysicalItemScreen.Item> cartItems;
+    private List<Item> cartItems;
     private int userID;
     private JTextField promoCodeField;
     private PaymentOptions OptionsToPay;
@@ -88,7 +90,7 @@ public class ChoosePaymentScreen extends JFrame {
     }
 
 
-    public void setCartItems(List<StudentPhysicalItemScreen.Item> cartItems) {
+    public void setCartItems(List<Item> cartItems) {
         this.cartItems = cartItems;
         this.totalPrice = OptionsToPay.calculateTotalPrice(cartItems);
         totalPriceLabel.setText("Total Price: $" + String.format("%.2f", totalPrice));
