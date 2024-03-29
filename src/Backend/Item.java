@@ -1,10 +1,16 @@
 package Backend;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Item {
     private String id;
     private String name;
+
     private String author;
     private String itemType;
     private String amountLeft;
@@ -13,6 +19,7 @@ public class Item {
     public Item(String id, String name, String author, String itemType, String amountLeft, double price) {
         this.id = id;
         this.name = name;
+
         this.author = author;
         this.itemType = itemType;
         this.amountLeft = amountLeft;
@@ -66,58 +73,6 @@ public class Item {
         return Objects.hash(id);
     }
 
-    @Override
-    public String toString() {
-        return name + " | " + author + " | " + itemType + " | " + amountLeft + " Available copies.";
-    }
-
-    public String getItemID() {
-        return itemID;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public String getAuthor() {
-        return author;
-    }
-
-    public ItemType getType() {
-        return type;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void increaseQuantity() {
-        quantity++;
-    }
-
-    public void decreaseQuantity() {
-        quantity--;
-    }
-
-    public double getPrice() {
-        return price;
-    }
-
-    public void setPrice(double price) {
-        this.price = price;
-    }
-
-    public boolean isEnabled() {
-        return isEnabled;
-    }
-
-    public void enable() {
-        isEnabled = true;
-    }
-
-    public void disable() {
-        isEnabled = false;
-    }
 
     // used in AddItem
     public static int getNextID() {
@@ -174,11 +129,9 @@ public class Item {
 
     @Override
     public String toString() {
-        return title + " | " + author + " | " + type + " | " + quantity + " Available copies.";
+        return name + " | " + author + " | " + itemType + " | " + amountLeft + " Available copies.";
     }
 }
-
-
 
 
 //

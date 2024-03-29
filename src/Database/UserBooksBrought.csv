@@ -24,3 +24,5 @@ UserID,ItemID,Title,Author,ItemType,DaysBorrowed,IsLost
 113,1028,Elite Fitness,Pinnacle Printworks,Magazine,0,no
 1004,1001,Shadows Over Mars,Evelyn Archer,Book,0,no
 1004,1003,Whispers of the Past,Lila Moreno,Book,0,no
+120,1002,The Last Ember,Marcus Reed,Book,0,no
+120,1005,The Forgotten Garden,Sienna Blake,Book,0,no

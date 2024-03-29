@@ -19,7 +19,7 @@ UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverd
 117,rachel.day@example.com,pass123!,Student,18/01/24,yes,0,0
 118,steven.frost@example.com,pass123!,Student,19/01/24,yes,0,0
 119,tiffany.shade@example.com,pass123!,Staff,20/01/24,yes,0,0
-120,ulysses.peak@example.com,pass123!,Staff,21/01/24,yes,0,0
+120,ulysses.peak@example.com,pass123!,Staff,21/01/24,yes,2,0
 121,victoria.spring@example.com,pass123!,Faculty,22/01/24,yes,0,0
 122,william.vale@example.com,pass123!,Faculty,23/01/24,yes,0,0
 123,xavier.north@example.com,pass123!,Faculty,24/01/24,yes,0,0
