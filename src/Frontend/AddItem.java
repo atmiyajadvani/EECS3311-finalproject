@@ -73,7 +73,7 @@ public class AddItem extends JFrame {
         String status = "enabled";
 
         if (!Item.isValidPrice(price)) {
-            JOptionPane.showMessageDialog(this, "Price invalid!");
+            JOptionPane.showMessageDialog(this, "ERROR! Invalid price.");
             return;
         }
 
