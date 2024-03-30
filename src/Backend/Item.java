@@ -15,15 +15,16 @@ public class Item {
     private String itemType;
     private String amountLeft;
     private double price; // New attribute
+    private boolean isEnabled;
 
     public Item(String id, String name, String author, String itemType, String amountLeft, double price) {
         this.id = id;
         this.name = name;
-
         this.author = author;
         this.itemType = itemType;
         this.amountLeft = amountLeft;
         this.price = price;
+        isEnabled = true;
     }
 
     public String getId() {
@@ -58,6 +59,18 @@ public class Item {
         this.price = price;
     }
 
+    public boolean isEnabled() {
+        return isEnabled;
+    }
+
+    public void enable() {
+        isEnabled = true;
+    }
+
+    public void disable() {
+        isEnabled = false;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o)
@@ -72,7 +85,6 @@ public class Item {
     public int hashCode() {
         return Objects.hash(id);
     }
-
 
     // used in AddItem
     public static int getNextID() {

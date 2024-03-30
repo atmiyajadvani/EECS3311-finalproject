@@ -1,5 +1,8 @@
 package Frontend;
 
+import Backend.Item;
+import Backend.StudentItemHandler;
+
 import javax.swing.*;
 import java.awt.*;
 import java.io.BufferedReader;
@@ -13,14 +16,16 @@ public class EnableDisableItem extends JFrame {
     private JButton backButton;
     private JTextField searchTextField;
     private JButton searchButton;
-    private DefaultListModel<String> itemListModel;
-    private JList<String> itemList;
+    private DefaultListModel<Item> itemListModel;
+    private JList<Item> itemList;
     private JButton enableButton;
     private JButton disableButton;
+    private StudentItemHandler itemHandler;
 
     public EnableDisableItem() { initializeUI(); }
 
     private void initializeUI() {
+        itemHandler = new StudentItemHandler();
         setTitle("Manager Dashboard - Enable/Disable Item");
         setSize(800, 600);
         setLocationRelativeTo(null);
@@ -67,160 +72,53 @@ public class EnableDisableItem extends JFrame {
 
     private void selectItem() {
         String itemID = String.valueOf(itemList.getSelectedIndex() + 1001);
-        BufferedReader br = null;
-        FileWriter writer = null;
 
-        try {
-            br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"));
-            String line = "";
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                if (data[0].equals(itemID)) {
-                    if (data[6].equals("enabled")) {
-                        enableButton.setEnabled(false);
-                        disableButton.setEnabled(true);
-                    } else if (data[6].equals("disabled")) {
-                        enableButton.setEnabled(true);
-                        disableButton.setEnabled(false);
-                    }
+        for (Item item : itemHandler.getCsvData()) {
+            if (item.getId().equals(itemID)) {
+                if (item.isEnabled()) {
+                    enableButton.setEnabled(false);
+                    disableButton.setEnabled(true);
+                } else {
+                    enableButton.setEnabled(true);
+                    disableButton.setEnabled(false);
                 }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null) br.close();
-                if (writer != null) writer.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
             }
         }
     }
 
     private void loadItems() {
-        List<String> items = new ArrayList<>();
-        BufferedReader br = null;
-
-        try {
-            br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"));
-            String line;
-            while ((line = br.readLine()) != null) {
-                line = line.replace(",", " | ");
-                items.add(line);
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null) br.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
         itemListModel.clear();
-        for (String attribute : items) {
+        for (Item attribute : itemHandler.getCsvData()) {
             itemListModel.addElement(attribute);
         }
     }
 
     private void executeSearch() {
-        loadItems();
         String searchText = searchTextField.getText().trim().toLowerCase();
-        List<String> searchResult = new ArrayList<>();
-
-        for (int i = 0; i < itemListModel.getSize(); i++) {
-            String originalItem = itemListModel.getElementAt(i);
-            String trimmedItem = originalItem.toLowerCase().substring(7, originalItem.length()-19);
-
-            if (trimmedItem.contains(searchText)) {
-                searchResult.add(originalItem);
-            }
-        }
-
         itemListModel.clear();
-        for (String item : searchResult) {
+        List<Item> filteredItems = itemHandler.filterItems(searchText);
+        for (Item item: filteredItems) {
             itemListModel.addElement(item);
         }
     }
 
-    private void goBack() {
-        this.dispose();
-        new ManagerDashboard().setVisible(true);
-    }
-
     private void enableItem() {
         String itemID = String.valueOf(itemList.getSelectedIndex() + 1001);
-        BufferedReader br = null;
-        FileWriter writer = null;
-        String line = "";
-        List<String[]> lines = new ArrayList<>();
-
-        try {
-            br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"));
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                if (data[0].equals(itemID)) {
-                    data[6] = "enabled";
-                }
-                lines.add(data);
-            }
-
-            writer = new FileWriter("src/Database/ItemSpreadsheet.csv");
-            for (String[] rowData : lines) {
-                writer.append(String.join(",", rowData));
-                writer.append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null) br.close();
-                if (writer != null) writer.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
+        itemHandler.enableItem(itemID);
         loadItems();
         JOptionPane.showMessageDialog(this, "Item enabled.");
     }
 
     private void disableItem() {
         String itemID = String.valueOf(itemList.getSelectedIndex() + 1001);
-        BufferedReader br = null;
-        FileWriter writer = null;
-        String line = "";
-        List<String[]> lines = new ArrayList<>();
-
-        try {
-            br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"));
-            while ((line = br.readLine()) != null) {
-                String[] data = line.split(",");
-                if (data[0].equals(itemID)) {
-                    data[6] = "disabled";
-                }
-                lines.add(data);
-            }
-
-            writer = new FileWriter("src/Database/ItemSpreadsheet.csv");
-            for (String[] rowData : lines) {
-                writer.append(String.join(",", rowData));
-                writer.append("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            try {
-                if (br != null) br.close();
-                if (writer != null) writer.close();
-            } catch (IOException ex) {
-                ex.printStackTrace();
-            }
-        }
-
+        itemHandler.disableItem(itemID);
         loadItems();
         JOptionPane.showMessageDialog(this, "Item disabled.");
+    }
+
+    private void goBack() {
+        this.dispose();
+        new ManagerDashboard().setVisible(true);
     }
 
     public static void main(String[] args) {

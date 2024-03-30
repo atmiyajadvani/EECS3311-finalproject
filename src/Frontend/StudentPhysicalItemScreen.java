@@ -158,7 +158,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
     private void searchItem() {
         String searchText = searchTextField.getText().trim().toLowerCase();
         itemListModel.clear();
-        ArrayList<Item> filteredItems = this.itemHandler.filterItems(searchText);
+        List<Item> filteredItems = this.itemHandler.filterItems(searchText);
         for(Item item: filteredItems){
             itemListModel.addElement(item);
         }

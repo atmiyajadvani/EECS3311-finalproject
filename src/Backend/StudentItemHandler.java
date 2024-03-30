@@ -1,19 +1,27 @@
 package Backend;
 
 import Backend.Item;
+
+import javax.swing.*;
 import java.io.*;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Objects;
 
 public class StudentItemHandler {
-    private String CSV_ITEM = "src/Database/ItemSpreadsheet.csv";
-    private String CSV_CART = "src/Database/userIdtoCart.csv";
-    private ArrayList<Item> csvData;
-
+    private final String CSV_ITEM = "src/Database/ItemSpreadsheet.csv";
+    private final String CSV_CART = "src/Database/userIdtoCart.csv";
+    private List<Item> csvData;
     private ArrayList<Item> cart;
+
     public StudentItemHandler() {
         loadCSVData(CSV_ITEM);
     }
+
+    public List<Item> getCsvData() {
+        return csvData;
+    }
+
     private void loadCSVData(String filePath) {
         this.csvData = new ArrayList<>();
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -49,8 +57,8 @@ public class StudentItemHandler {
         }
     }
     
-    public ArrayList filterItems(String searchText) {
-        ArrayList<Item> filteredItems = new ArrayList();
+    public List<Item> filterItems(String searchText) {
+        List<Item> filteredItems = new ArrayList<>();
         for (Item item : csvData) {
             String itemName = item.getName().toLowerCase();
             String author = item.getAuthor().toLowerCase();
@@ -63,4 +71,69 @@ public class StudentItemHandler {
         return filteredItems;
     }
 
+    public void enableItem(String itemID) {
+        for (Item item : csvData) {
+            if (item.getId().equals(itemID)) {
+                item.enable();
+                break;
+            }
+        }
+
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("src/Database/ItemSpreadsheet.csv");
+            for (Item item : csvData) {
+                String status = item.isEnabled() ? "enabled" : "disabled";
+
+                writer.append(item.getId()).append(",")
+                        .append(item.getName()).append(",")
+                        .append(item.getAuthor()).append(",")
+                        .append(item.getItemType()).append(",")
+                        .append(item.getAmountLeft()).append(",")
+                        .append(Item.formatPrice("" + item.getPrice())).append(",")
+                        .append(status).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+
+    public void disableItem(String itemID) {
+        for (Item item : csvData) {
+            if (item.getId().equals(itemID)) {
+                item.disable();
+                break;
+            }
+        }
+
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("src/Database/ItemSpreadsheet.csv");
+            for (Item item : csvData) {
+                String status = item.isEnabled() ? "enabled" : "disabled";
+
+                writer.append(item.getId()).append(",")
+                        .append(item.getName()).append(",")
+                        .append(item.getAuthor()).append(",")
+                        .append(item.getItemType()).append(",")
+                        .append(item.getAmountLeft()).append(",")
+                        .append(Item.formatPrice("" + item.getPrice())).append(",")
+                        .append(status).append("\n");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (writer != null) writer.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
 }
