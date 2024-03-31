@@ -1,4 +1,5 @@
 package Frontend;
+import Backend.FacultyCoursesManager;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,13 +10,14 @@ import java.io.IOException;
 
 public class FacultyCourses extends JFrame {
     private JButton signOutButton;
-    private JTextField inputTextField;
     private JList<Item> userList;
     private DefaultListModel<Item> itemListModel;
     static private int userId;
+    private FacultyCoursesManager manager;
 
     public FacultyCourses(int userId) {
         this.userId = userId;
+        this.manager = new FacultyCoursesManager(userId);
         setTitle("Faculty Courses");
         setSize(800, 600);
         setLocationRelativeTo(null);
@@ -63,13 +65,24 @@ public class FacultyCourses extends JFrame {
 
         // Button for adding a course
         JButton addCourseButton = new JButton("Add Course");
-        addCourseButton.addActionListener(e -> addCourse());
+        addCourseButton.addActionListener(e -> addCourseUI());
         southPanel.add(addCourseButton);
+
+        // Add Back button
+        JButton backButton = new JButton("Back");
+        backButton.addActionListener(e -> goBackToDashboard());
+        southPanel.add(backButton);
 
         // Add titlePanel, scrollPane, and southPanel to the NORTH, CENTER, and SOUTH regions respectively
         add(titlePanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(southPanel, BorderLayout.SOUTH);
+    }
+
+    private void goBackToDashboard() {
+        dispose(); // Dispose the current StudentTextbooksScreen frame
+        FacultyDashboard facultyDashboard = new FacultyDashboard(userId); // Open the StudentDashboard
+        facultyDashboard.setVisible(true);
     }
 
     private void signOut() {
@@ -78,27 +91,17 @@ public class FacultyCourses extends JFrame {
         loginScreen.setVisible(true);
     }
 
-    private void addCourse() {
+    private void addCourseUI() {
         String courseCode = JOptionPane.showInputDialog(this, "Enter course code:");
-        if (courseCode != null && !courseCode.isEmpty()) {
-            if (isCourseCodeValid(courseCode)) {
-                String textbook = getTextbookForCourse(courseCode); // Get the textbook for the course
-                try {
-                    FileWriter writer = new FileWriter("src/Database/FacultyUsers.csv", true); // Append mode
-                    writer.append(userId + "," + courseCode + "," + textbook + "\n"); // Assuming userId is unique per user
-                    writer.close();
-                    JOptionPane.showMessageDialog(this, "Course added successfully!");
-                    // Update the user list after adding the course
-                    updateUserList(courseCode, textbook);
-                } catch (IOException ex) {
-                    ex.printStackTrace();
-                    JOptionPane.showMessageDialog(this, "Error adding course.", "Error", JOptionPane.ERROR_MESSAGE);
-                }
-            } else {
-                JOptionPane.showMessageDialog(this, "Course code does not exist.", "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        } else {
-            JOptionPane.showMessageDialog(this, "Invalid course code.", "Error", JOptionPane.ERROR_MESSAGE);
+        String message = manager.addCourse(courseCode);
+        String textbook = manager.getTextbookForCourse(courseCode);
+
+        if (message == "Course added successfully!") {
+            JOptionPane.showMessageDialog(this,message);
+            updateUserList(courseCode, textbook);
+        }
+        else {
+            JOptionPane.showMessageDialog(this,message);
         }
     }
 
@@ -114,40 +117,6 @@ public class FacultyCourses extends JFrame {
 
         // Add the new item to the list model
         itemListModel.addElement(newItem);
-    }
-
-    private boolean isCourseCodeValid(String courseCode) {
-        boolean isValid = false;
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/TextbookSpreadsheet.csv"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length >= 3 && parts[2].trim().equals(courseCode.trim())) {
-                    isValid = true;
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return isValid;
-    }
-
-    private String getTextbookForCourse(String courseCode) {
-        String textbook = "N/A"; // Default value if no textbook found
-        try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/TextbookSpreadsheet.csv"))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                String[] parts = line.split(",");
-                if (parts.length >= 3 && parts[2].trim().equals(courseCode.trim())) {
-                    textbook = parts[1].trim(); // Assuming the textbook is in the second column of TextbookSpreadsheet.csv
-                    break;
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return textbook;
     }
 
     private void showTextbook() {
