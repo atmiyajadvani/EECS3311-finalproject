@@ -17,14 +17,14 @@ public class Item {
     private double price; // New attribute
     private boolean isEnabled;
 
-    public Item(String id, String name, String author, String itemType, String amountLeft, double price) {
+    public Item(String id, String name, String author, String itemType, String amountLeft, double price, String status) {
         this.id = id;
         this.name = name;
         this.author = author;
         this.itemType = itemType;
         this.amountLeft = amountLeft;
         this.price = price;
-        isEnabled = true;
+        isEnabled = status.equals("enabled");
     }
 
     public String getId() {
@@ -141,7 +141,8 @@ public class Item {
 
     @Override
     public String toString() {
-        return name + " | " + author + " | " + itemType + " | " + amountLeft + " Available copies.";
+        String status = isEnabled ? "enabled" : "disabled";
+        return name + " | " + author + " | " + itemType + " | " + amountLeft + " Available copies. | " + status;
     }
 }
 

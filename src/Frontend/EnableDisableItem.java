@@ -88,8 +88,8 @@ public class EnableDisableItem extends JFrame {
 
     private void loadItems() {
         itemListModel.clear();
-        for (Item attribute : itemHandler.getCsvData()) {
-            itemListModel.addElement(attribute);
+        for (Item item : itemHandler.getCsvData()) {
+            itemListModel.addElement(item);
         }
     }
 

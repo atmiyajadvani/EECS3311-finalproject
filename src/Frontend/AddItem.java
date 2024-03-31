@@ -1,6 +1,7 @@
 package Frontend;
 
 import Backend.Item;
+import Backend.StudentItemHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,10 +18,12 @@ public class AddItem extends JFrame {
     private JTextField priceField;
     private JButton addItemButton;
     private JButton backButton;
+    private StudentItemHandler itemHandler;
 
     public AddItem() { initializeUI(); }
 
     private void initializeUI() {
+        itemHandler = new StudentItemHandler();
         setTitle("Manager Dashboard - Add Item");
         setSize(800, 600);
         setLocationRelativeTo(null);
@@ -70,39 +73,18 @@ public class AddItem extends JFrame {
         String itemType = (String) itemTypeDropdown.getSelectedItem();
         String quantity = "20";
         String price = priceField.getText();
-        String status = "enabled";
+        Item item = new Item(id, title, author, itemType, quantity, Double.parseDouble(price), "enabled");
 
         if (!Item.isValidPrice(price)) {
             JOptionPane.showMessageDialog(this, "ERROR! Invalid price.");
             return;
         }
 
-        // put this in database writeItem method with the above as parameters, also should use formatPrice from item
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter("src/Database/ItemSpreadsheet.csv", true);
-            writer.append(id).append(",")
-                    .append(title).append(",")
-                    .append(author).append(",")
-                    .append(itemType).append(",")
-                    .append(quantity).append(",")
-                    .append(Item.formatPrice(price)).append(",")
-                    .append(status).append("\n");
-            JOptionPane.showMessageDialog(this, "Item added successfully!");
+        itemHandler.addItem(item);
+        JOptionPane.showMessageDialog(this, "Item added successfully!");
 
-            // return to manager dashboard
-            goBack();
-        } catch (IOException e) {
-            System.err.println("Error appending data to CSV file: " + e.getMessage());
-        } finally {
-            try {
-                if (writer != null) {
-                    writer.close();
-                }
-            } catch (IOException e) {
-                System.err.println("Error closing FileWriter: " + e.getMessage());
-            }
-        }
+        // return to manager dashboard
+        goBack();
     }
 
     private void goBack() {

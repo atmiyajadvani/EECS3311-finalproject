@@ -96,6 +96,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         backButton.addActionListener(e -> goBackToDashboard());
         buttonPanel.add(backButton);
 
+        itemHandler.removeDisabledItems();
         searchItem();
     }
 
@@ -155,6 +156,7 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         }
         return role;
     }
+
     private void searchItem() {
         String searchText = searchTextField.getText().trim().toLowerCase();
         itemListModel.clear();

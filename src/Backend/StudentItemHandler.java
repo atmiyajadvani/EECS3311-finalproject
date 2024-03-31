@@ -31,7 +31,7 @@ public class StudentItemHandler {
                 if (values.length >= 6) {
                     double price = Double.parseDouble(values[5].trim());
                     Item item = new Item(values[0].trim(), values[1].trim(), values[2].trim(), values[3].trim(),
-                            values[4].trim(), price);
+                            values[4].trim(), price, values[6].trim());
                     csvData.add(item);
                 } else {
                     System.out.println("Invalid item format: " + String.join(", ", values));
@@ -69,6 +69,34 @@ public class StudentItemHandler {
             }
         }
         return filteredItems;
+    }
+
+    public void removeDisabledItems() {
+        csvData.removeIf(item -> !item.isEnabled());
+    }
+
+    public void addItem(Item item) {
+        FileWriter writer = null;
+        try {
+            writer = new FileWriter("src/Database/ItemSpreadsheet.csv", true);
+            writer.append(item.getId()).append(",")
+                    .append(item.getName()).append(",")
+                    .append(item.getAuthor()).append(",")
+                    .append(item.getItemType()).append(",")
+                    .append(item.getAmountLeft()).append(",")
+                    .append(Item.formatPrice("" + item.getPrice())).append(",")
+                    .append("enabled").append("\n");
+        } catch (IOException e) {
+            System.err.println("Error appending data to CSV file: " + e.getMessage());
+        } finally {
+            try {
+                if (writer != null) {
+                    writer.close();
+                }
+            } catch (IOException e) {
+                System.err.println("Error closing FileWriter: " + e.getMessage());
+            }
+        }
     }
 
     public void enableItem(String itemID) {
