@@ -5,9 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/Backend/FacultyCoursesManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/FacultyCoursesManagerTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/StudentTextbooksManagerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/FacultyCourses.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/FacultyCourses.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +55,7 @@
       <recent name="$PROJECT_DIR$/src/Assets/newspaperPhotos" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.FacultyCourses">
+  <component name="RunManager" selected="JUnit.FacultyCoursesManagerTest">
     <configuration name="FacultyCourses" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Frontend.FacultyCourses" />
       <module name="EECS3311-finalproject" />
@@ -81,23 +82,31 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserRegistration" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="Frontend.UserRegistration" />
+    <configuration name="FacultyCoursesManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="Frontend.*" />
+          <option name="PATTERN" value="TestCases.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
+      <option name="PACKAGE_NAME" value="TestCases" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.FacultyCoursesManagerTest" />
+      <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="TestCases" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="StudentTextbooksManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EECS3311-finalproject" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestCases" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestCases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="TestCases" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.StudentTextbooksManagerTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -115,11 +124,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.FacultyCoursesManagerTest" />
+        <item itemvalue="JUnit.StudentTextbooksManagerTest" />
         <item itemvalue="Application.FacultyCourses" />
         <item itemvalue="Application.StudentTextbooksScreen" />
         <item itemvalue="JUnit.TestCases.testLoadCSVData" />
-        <item itemvalue="JUnit.TestCases" />
-        <item itemvalue="Application.UserRegistration" />
       </list>
     </recent_temporary>
   </component>
