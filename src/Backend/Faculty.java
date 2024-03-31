@@ -13,7 +13,7 @@ public class Faculty extends User {
     }
 
     public void setFacultyId(String facultyId) {
-        //faculty id starts with 1
+        //faculty id starts with 3
         facultyId += 3000;
         this.facultyId = facultyId;
     }

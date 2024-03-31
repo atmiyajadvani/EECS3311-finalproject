@@ -52,13 +52,13 @@ public class FacultyDashboard extends JFrame {
         checkoutButton.addActionListener(e -> navigateToCheckoutScreen());
 
         // Buttons panel
-        JPanel buttonsPanel = new JPanel(new GridLayout(1, 5)); // Adjust the grid size for new buttons
+        JPanel buttonsPanel = new JPanel(new GridLayout(1, 5));
         buttonsPanel.add(physicalRentalsButton);
-        buttonsPanel.add(addCourseButton); // Add the new button
-        buttonsPanel.add(cartButton); // Add the new button
+        buttonsPanel.add(addCourseButton);
+        buttonsPanel.add(cartButton);
         buttonsPanel.add(checkoutButton);
 
-        // South panel with Sign out button
+        // South panel and Sign out button
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         southPanel.add(signOutButton);
 
@@ -67,26 +67,26 @@ public class FacultyDashboard extends JFrame {
     }
 
     private void signOut() {
-        dispose(); // Dispose the current dashboard
-        UserLogin loginScreen = new UserLogin(); // Open the login screen
+        dispose();
+        UserLogin loginScreen = new UserLogin();
         loginScreen.setVisible(true);
     }
 
     private void navigateToPhysicalRentals() {
-        dispose(); // Dispose the current dashboard
-        StudentPhysicalItemScreen physicalItemScreen = new StudentPhysicalItemScreen(userId); // Open the physical item screen
+        dispose();
+        StudentPhysicalItemScreen physicalItemScreen = new StudentPhysicalItemScreen(userId);
         physicalItemScreen.setVisible(true);
     }
 
     private void navigateToAddCourse() {
-        dispose(); // Dispose the current dashboard
-        FacultyCourses facultyCourses = new FacultyCourses(userId); // Open the physical item screen
+        dispose();
+        FacultyCourses facultyCourses = new FacultyCourses(userId);
         facultyCourses.setVisible(true);
     }
 
     private void navigateToCartScreen() {
-        dispose(); // Dispose the current dashboard
-        CartScreen cartScreenRM = new CartScreen(userId); // Open the physical item screen
+        dispose();
+        CartScreen cartScreenRM = new CartScreen(userId);
         cartScreenRM.setVisible(true);
     }
 
@@ -102,10 +102,8 @@ public class FacultyDashboard extends JFrame {
 
         public Item(String userInfo) {
             this.userInfo = userInfo;
-            this.viewButton = new JButton("View Textbook"); // Updated button name
-            // Add action listener to the viewButton
+            this.viewButton = new JButton("View Textbook");
             this.viewButton.addActionListener(e -> {
-                // Handle the action when "View Textbook" button is clicked
                 ImageIcon icon = new ImageIcon(getClass().getResource("src/Assets/VirtualCopiesDemo.png"));
                 JLabel label = new JLabel(icon);
                 JOptionPane.showMessageDialog(null, label, "View Textbook", JOptionPane.PLAIN_MESSAGE);
@@ -127,17 +125,16 @@ public class FacultyDashboard extends JFrame {
     }
 
 
-    // Custom cell renderer for the JList
     static class ItemListCellRenderer extends DefaultListCellRenderer {
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (value instanceof Item) {
                 Item item = (Item) value;
-                JButton button = item.getViewButton(); // Use the view button from the item
+                JButton button = item.getViewButton();
                 JPanel panel = new JPanel(new BorderLayout());
-                panel.add(new JLabel(item.getUserInfo()), BorderLayout.CENTER); // Add item information
-                panel.add(button, BorderLayout.EAST); // Add view button
+                panel.add(new JLabel(item.getUserInfo()), BorderLayout.CENTER);
+                panel.add(button, BorderLayout.EAST);
                 return panel;
             }
             return this;

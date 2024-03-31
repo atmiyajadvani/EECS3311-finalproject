@@ -13,7 +13,7 @@ public class Manager extends User {
     }
 
     public void setManagerRole(String managerId) {
-        //manager id starts with 1
+        //manager id starts with 4
         managerId += 4000;
         this.managerId = managerId;
     }

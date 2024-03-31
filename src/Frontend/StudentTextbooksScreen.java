@@ -31,10 +31,8 @@ public class StudentTextbooksScreen extends JFrame {
         titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
         titlePanel.add(titleLabel);
 
-        // Create a list model to hold user information and textbooks
         itemListModel = new DefaultListModel<>();
 
-        // Create a JList with the list model
         JList<Item> itemList = new JList<>(itemListModel);
         itemList.setCellRenderer(new ItemListCellRenderer());
         itemList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
@@ -54,7 +52,7 @@ public class StudentTextbooksScreen extends JFrame {
             }
         });
 
-        // South panel with Sign Out button
+        // South panel and add Sign Out button
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         signOutButton = new JButton("Sign out");
         signOutButton.addActionListener(e -> signOut());
@@ -70,25 +68,24 @@ public class StudentTextbooksScreen extends JFrame {
         backButton.addActionListener(e -> goBackToDashboard());
         southPanel.add(backButton);
 
-        // Add titlePanel, centerPanel, and southPanel to the NORTH, CENTER, and SOUTH regions respectively
+        // Add titlePanel, centerPanel, and southPanel to the NORTH, CENTER, and SOUTH regions
         add(titlePanel, BorderLayout.NORTH);
         add(scrollPane, BorderLayout.CENTER);
         add(southPanel, BorderLayout.SOUTH);
 
-        // Make the frame visible
         setVisible(true);
     }
 
-    // Method to handle going back to the Student Dashboard
+    // For going back to the Student Dashboard
     private void goBackToDashboard() {
-        dispose(); // Dispose the current StudentTextbooksScreen frame
-        StudentDashboard studentDashboard = new StudentDashboard(userId); // Open the StudentDashboard
+        dispose();
+        StudentDashboard studentDashboard = new StudentDashboard(userId);
         studentDashboard.setVisible(true);
     }
 
     private void signOut() {
-        dispose(); // Dispose the current dashboard
-        UserLogin loginScreen = new UserLogin(); // Open the login screen
+        dispose();
+        UserLogin loginScreen = new UserLogin();
         loginScreen.setVisible(true);
     }
 
@@ -107,16 +104,13 @@ public class StudentTextbooksScreen extends JFrame {
     }
 
     private void updateUserList(String courseCode, String textbook) {
-        // Create a new Item with user information and button
         Item newItem = new Item("User ID: " + userId + " - Course Code: " + courseCode + " - Textbook: " + textbook);
         newItem.getViewButton().addActionListener(e -> {
-            // Handle the action when "View Virtual Copy" button is clicked
             ImageIcon icon = new ImageIcon(getClass().getResource("src/Assets/VirtualCopiesDemo.png"));
             JLabel label = new JLabel(icon);
             JOptionPane.showMessageDialog(this, label, "View Virtual Copy", JOptionPane.PLAIN_MESSAGE);
         });
 
-        // Add the new item to the list model
         itemListModel.addElement(newItem);
     }
 
@@ -125,16 +119,13 @@ public class StudentTextbooksScreen extends JFrame {
         JLabel imageLabel = new JLabel(imageIcon);
         JScrollPane scrollPane = new JScrollPane(imageLabel);
 
-        // Set preferred size of the scroll pane to fit width and set a fixed height
         int width = imageIcon.getIconWidth();
-        int fixedHeight = 600; // You can adjust this as needed
+        int fixedHeight = 600;
         scrollPane.setPreferredSize(new Dimension(width, fixedHeight));
 
-        // Show the scrollable window
         JOptionPane.showMessageDialog(null, scrollPane, "Image", JOptionPane.PLAIN_MESSAGE);
     }
 
-    // Inner class representing a user
     private static class User {
         private String userId;
         private String courseCode;
@@ -159,7 +150,6 @@ public class StudentTextbooksScreen extends JFrame {
         }
     }
 
-    // Inner class representing an item in the list
     private static class Item {
         private String userInfo;
         private JButton viewButton;
@@ -183,17 +173,16 @@ public class StudentTextbooksScreen extends JFrame {
         }
     }
 
-    // Custom cell renderer for the JList
     static class ItemListCellRenderer extends DefaultListCellRenderer {
         @Override
         public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (value instanceof Item) {
                 Item item = (Item) value;
-                JButton button = item.getViewButton(); // Use the view button from the item
+                JButton button = item.getViewButton();
                 JPanel panel = new JPanel(new BorderLayout());
-                panel.add(new JLabel(item.getUserInfo()), BorderLayout.CENTER); // Add item information
-                panel.add(button, BorderLayout.EAST); // Add view button
+                panel.add(new JLabel(item.getUserInfo()), BorderLayout.CENTER);
+                panel.add(button, BorderLayout.EAST);
                 return panel;
             }
             return this;
@@ -203,7 +192,7 @@ public class StudentTextbooksScreen extends JFrame {
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
-            StudentTextbooksScreen textbooksScreen = new StudentTextbooksScreen(userId); // Dummy userId for testing
+            StudentTextbooksScreen textbooksScreen = new StudentTextbooksScreen(userId);
         });
     }
 }

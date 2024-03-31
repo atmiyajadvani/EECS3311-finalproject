@@ -31,13 +31,13 @@ public class FacultyCoursesManager {
         return isValid;
     }
     public String getTextbookForCourse(String courseCode) {
-        String textbook = "N/A"; // Default value if no textbook found
+        String textbook = "N/A";
         try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/TextbookSpreadsheet.csv"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
                 if (parts.length >= 3 && parts[2].trim().equals(courseCode.trim())) {
-                    textbook = parts[1].trim(); // Assuming the textbook is in the second column of TextbookSpreadsheet.csv
+                    textbook = parts[1].trim();
                     break;
                 }
             }
@@ -50,10 +50,10 @@ public class FacultyCoursesManager {
     public String addCourse(String courseCode) {
         if (courseCode != null && !courseCode.isEmpty()) {
             if (isCourseCodeValid(courseCode)) {
-                String textbook = getTextbookForCourse(courseCode); // Get the textbook for the course
+                String textbook = getTextbookForCourse(courseCode);
                 try {
-                    FileWriter writer = new FileWriter("src/Database/FacultyUsers.csv", true); // Append mode
-                    writer.append(userId + "," + courseCode + "," + textbook + "\n"); // Assuming userId is unique per user
+                    FileWriter writer = new FileWriter("src/Database/FacultyUsers.csv", true);
+                    writer.append(userId + "," + courseCode + "," + textbook + "\n");
                     writer.close();
                     return "Course added successfully!";
                 } catch (IOException ex) {

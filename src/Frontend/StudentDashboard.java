@@ -24,8 +24,6 @@ public class StudentDashboard extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        // Add your dashboard components here
-
         // setVisible(true);
         initializeUI();
 
@@ -43,7 +41,7 @@ public class StudentDashboard extends JFrame {
         physicalRentalsButton = new JButton("Physical Rentals");
         requestBookButton = new JButton("Request a book");
         newsletterButton = new JButton("Newsletter");
-        JButton studentTextbooksButton = new JButton("Student Textbooks"); // New button
+        JButton studentTextbooksButton = new JButton("Student Textbooks");
         JButton cartButton = new JButton("Cart"); // New button
         JButton checkoutButton = new JButton("Renting");
 
@@ -66,15 +64,15 @@ public class StudentDashboard extends JFrame {
         checkoutButton.addActionListener(e -> navigateToCheckoutScreen());
 
         // Buttons panel
-        JPanel buttonsPanel = new JPanel(new GridLayout(1, 5)); // Adjust the grid size for new buttons
+        JPanel buttonsPanel = new JPanel(new GridLayout(1, 5));
         buttonsPanel.add(physicalRentalsButton);
         buttonsPanel.add(requestBookButton);
         buttonsPanel.add(newsletterButton);
-        buttonsPanel.add(studentTextbooksButton); // Add the new button
-        buttonsPanel.add(cartButton); // Add the new button
+        buttonsPanel.add(studentTextbooksButton);
+        buttonsPanel.add(cartButton);
         buttonsPanel.add(checkoutButton);
 
-        // South panel with Sign out button
+        // South panel and Sign out button
         JPanel southPanel = new JPanel(new FlowLayout(FlowLayout.RIGHT));
         southPanel.add(signOutButton);
 
@@ -85,40 +83,40 @@ public class StudentDashboard extends JFrame {
     }
 
     private void signOut() {
-        dispose(); // Dispose the current dashboard
-        UserLogin loginScreen = new UserLogin(); // Open the login screen
+        dispose();
+        UserLogin loginScreen = new UserLogin();
         loginScreen.setVisible(true);
     }
 
     private void navigateToPhysicalRentals() {
-        dispose(); // Dispose the current dashboard
+        dispose();
         StudentPhysicalItemScreen physicalItemScreen = new StudentPhysicalItemScreen(userId); // Open the physical item
                                                                                               // screen
         physicalItemScreen.setVisible(true);
     }
 
     private void navigateToRequestBookScreen() {
-        dispose(); // Dispose the current dashboard
-        RequestBookScreen requestBookScreen = new RequestBookScreen(userId); // Open the physical item screen
+        dispose();
+        RequestBookScreen requestBookScreen = new RequestBookScreen(userId);
         requestBookScreen.setVisible(true);
     }
 
     private void navigateToNewsletterScreen() {
-        dispose(); // Dispose the current dashboard
-        NewspaperMainpage newsletterScreen = new NewspaperMainpage(userId); // Open the physical item screen
+        dispose();
+        NewspaperMainpage newsletterScreen = new NewspaperMainpage(userId);
         newsletterScreen.setVisible(true);
     }
 
     private void navigateToStudentTextbooksScreen() {
-        dispose(); // Dispose the current dashboard
-        StudentTextbooksScreen studentTextbooksScreen = new StudentTextbooksScreen(userId); // Open the physical item
-                                                                                            // screen
+        dispose();
+        StudentTextbooksScreen studentTextbooksScreen = new StudentTextbooksScreen(userId);
+
         studentTextbooksScreen.setVisible(true);
     }
 
     private void navigateToCartScreen() {
-        dispose(); // Dispose the current dashboard
-        CartScreen cartScreenRM = new CartScreen(userId); // Open the physical item screen
+        dispose();
+        CartScreen cartScreenRM = new CartScreen(userId);
         cartScreenRM.setVisible(true);
     }
 
@@ -134,7 +132,6 @@ public class StudentDashboard extends JFrame {
         String cvsSplitBy = ",";
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            // Skip the first line
             br.readLine();
 
             while ((line = br.readLine()) != null) {
@@ -157,14 +154,13 @@ public class StudentDashboard extends JFrame {
                                 "Your items are due within the next 24 hours.", "Overdue Penalty",
                                 JOptionPane.INFORMATION_MESSAGE);
                     }
-                    break; // Assuming there is only one entry per user ID
+                    break;
                 }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
-
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> new StudentDashboard(userId).setVisible(true));

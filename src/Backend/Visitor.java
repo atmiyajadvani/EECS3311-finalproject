@@ -13,7 +13,7 @@ public class Visitor extends User {
     }
 
     public void setVisitorId(String visitorId) {
-        //visitor id starts with 1
+        //visitor id starts with 2
         visitorId += 2000;
         this.visitorId = visitorId;
     }

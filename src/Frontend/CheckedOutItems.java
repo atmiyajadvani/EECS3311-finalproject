@@ -52,26 +52,25 @@ public class CheckedOutItems extends JFrame {
         add(southPanel, BorderLayout.SOUTH);
 
         itemsData = new ArrayList<>();
-        loadItemsDataFromFile(); // Load data from CSV file
-        displayItemsForUser(userId); // Display items for the provided user ID
+        loadItemsDataFromFile();
+        displayItemsForUser(userId);
     }
 
     private void goBackToDashboard() {
-        // Read user info from CSV file
         String role = getUserRoleFromCSV(userId);
 
         if (role != null) {
             switch (role) {
                 case "Student":
                 case "Visitor":
-                    dispose(); // Dispose the current StudentTextbooksScreen frame
-                    StudentDashboard studentDashboard = new StudentDashboard(userId); // Open the StudentDashboard
+                    dispose();
+                    StudentDashboard studentDashboard = new StudentDashboard(userId);
                     studentDashboard.setVisible(true);
                     break;
                 case "Staff":
                 case "Faculty":
-                    dispose(); // Dispose the current StudentTextbooksScreen frame
-                    FacultyDashboard facultyDashboard = new FacultyDashboard(userId); // Open the FacultyDashboard
+                    dispose();
+                    FacultyDashboard facultyDashboard = new FacultyDashboard(userId);
                     facultyDashboard.setVisible(true);
                     break;
                 case "Manager":
@@ -120,15 +119,15 @@ public class CheckedOutItems extends JFrame {
         String role = null;
         try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/UserInfoSpreadsheet.csv"))) {
             String line;
-            boolean firstLineSkipped = false; // Flag to track if the first line has been skipped
+            boolean firstLineSkipped = false;
             while ((line = reader.readLine()) != null) {
                 if (!firstLineSkipped) {
                     firstLineSkipped = true;
-                    continue; // Skip the first line
+                    continue;
                 }
                 String[] parts = line.split(",");
                 if (parts.length >= 4 && Integer.parseInt(parts[0].trim()) == userId) {
-                    role = parts[3].trim(); // Assuming role is in the fourth column of UserInfoSpreadsheet.csv
+                    role = parts[3].trim();
                     break;
                 }
             }
@@ -145,7 +144,6 @@ public class CheckedOutItems extends JFrame {
         String role = "";
 
         try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            // Skip the first line
             br.readLine();
 
             while ((line = br.readLine()) != null) {
@@ -154,7 +152,7 @@ public class CheckedOutItems extends JFrame {
                     try {
                         int id = Integer.parseInt(data[0]);
                         if (id == userId) {
-                            role = data[3]; // Assuming role is in the fourth column
+                            role = data[3]; 
                             break;
                         }
                     } catch (NumberFormatException e) {
@@ -184,7 +182,7 @@ public class CheckedOutItems extends JFrame {
         StringBuilder displayText = new StringBuilder();
 
         for (String[] item : itemsData) {
-            if (item.length >= 2 && item[0].equals(String.valueOf(userId))) { // Convert userId to String
+            if (item.length >= 2 && item[0].equals(String.valueOf(userId))) {
                 for (int i = 1; i < 5; i++) {
                     displayText.append(item[i]);
                     if (i < 4) {
@@ -203,7 +201,7 @@ public class CheckedOutItems extends JFrame {
     }
 
     public static void main(String[] args) {
-        //int userId = 1004; // Example user ID
+        //int userId = 1004;
         SwingUtilities.invokeLater(() -> {
             CheckedOutItems app = new CheckedOutItems(userId);
             app.setVisible(true);
