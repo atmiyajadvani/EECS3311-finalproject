@@ -2,14 +2,13 @@ package TestCases;
 
 import Backend.Item;
 import Backend.PaymentOptions;
-import Backend.StudentItemHandler;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 import java.util.List;
 
-public class TestCases {
+public class PaymentAndItemSearchTest {
 
     @Test
     public void testItemCreationAndAccess() {
