@@ -5,6 +5,7 @@ import java.awt.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import Backend.*;
 
 public class StudentDashboard extends JFrame {
     static private int userId;
@@ -12,13 +13,16 @@ public class StudentDashboard extends JFrame {
     private JButton physicalRentalsButton;
     private JButton requestBookButton;
     private JButton newsletterButton;
+    static private User user;
 
     // public StudentDashboard() {
     // initializeUI();
     // }
 
-    public StudentDashboard(int userId) { // Modify the constructor to accept the user ID
-        this.userId = userId; // Store the user ID
+    @SuppressWarnings("static-access")
+    public StudentDashboard(Student student) { // Modify the constructor to accept the user ID
+        user = student; // Store the user ID
+        userId = student.getStudentId();
         setTitle("Student Dashboard");
         setSize(400, 250);
         setLocationRelativeTo(null);
@@ -27,6 +31,31 @@ public class StudentDashboard extends JFrame {
         // setVisible(true);
         initializeUI();
 
+    }
+
+    @SuppressWarnings("static-access")
+    public StudentDashboard(Visitor visitor) { // Modify the constructor to accept the user ID
+        user = visitor; // Store the user ID
+        userId = visitor.getVisitorId();
+        setTitle("Visitor Dashboard");
+        setSize(400, 250);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // setVisible(true);
+        initializeUI();
+
+    }
+
+    public StudentDashboard(int id) {
+        this.userId = id;
+        setTitle("Visitor Dashboard");
+        setSize(400, 250);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // setVisible(true);
+        initializeUI();
     }
 
     private void initializeUI() {
@@ -163,6 +192,7 @@ public class StudentDashboard extends JFrame {
     }
 
     public static void main(String[] args) {
-        EventQueue.invokeLater(() -> new StudentDashboard(userId).setVisible(true));
+        Student user = new Student("temp@gmail.com", "123", "Student", 0);
+        EventQueue.invokeLater(() -> new StudentDashboard(user).setVisible(true));
     }
 }

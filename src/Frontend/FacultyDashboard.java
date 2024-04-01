@@ -1,7 +1,9 @@
 package Frontend;
 
 import javax.swing.*;
+import Backend.Visitor;
 import java.awt.*;
+import Backend.*;
 
 public class FacultyDashboard extends JFrame {
     private JButton signOutButton;
@@ -10,16 +12,30 @@ public class FacultyDashboard extends JFrame {
     private JButton addCourseButton;
     private JButton checkoutButton;
     private JButton cartButton;
+    private Faculty user;
 
     public FacultyDashboard(int userId) {
-        this.userId = userId;
+        userId = userId;
         setTitle("Faculty Dashboard");
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //setLayout(new BorderLayout());
+        // setLayout(new BorderLayout());
 
         initializeUI();
+    }
+
+    public FacultyDashboard(Faculty faculty) { // Modify the constructor to accept the user ID
+        user = faculty; // Store the user ID
+        userId = faculty.getFacultyId();
+        setTitle("Faculty & Staff Dashboard");
+        setSize(400, 250);
+        setLocationRelativeTo(null);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        // setVisible(true);
+        initializeUI();
+
     }
 
     private void initializeUI() {
@@ -42,13 +58,13 @@ public class FacultyDashboard extends JFrame {
         // Navigate to Physical Rentals screen
         physicalRentalsButton.addActionListener(e -> navigateToPhysicalRentals());
 
-        //Navigate to faculty add courses screen
+        // Navigate to faculty add courses screen
         addCourseButton.addActionListener(e -> navigateToAddCourse());
 
         // Cart action
         cartButton.addActionListener(e -> navigateToCartScreen());
 
-        //Navigate to list of rented items screen
+        // Navigate to list of rented items screen
         checkoutButton.addActionListener(e -> navigateToCheckoutScreen());
 
         // Buttons panel
@@ -124,10 +140,10 @@ public class FacultyDashboard extends JFrame {
         }
     }
 
-
     static class ItemListCellRenderer extends DefaultListCellRenderer {
         @Override
-        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected, boolean cellHasFocus) {
+        public Component getListCellRendererComponent(JList<?> list, Object value, int index, boolean isSelected,
+                boolean cellHasFocus) {
             super.getListCellRendererComponent(list, value, index, isSelected, cellHasFocus);
             if (value instanceof Item) {
                 Item item = (Item) value;
