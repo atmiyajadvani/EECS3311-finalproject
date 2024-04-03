@@ -114,7 +114,7 @@ public class UserManager {
     }
 
     // Method to validate email format
-    private static boolean isValidEmailFormat(String email) {
+    public static boolean isValidEmailFormat(String email) {
         String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
@@ -122,7 +122,7 @@ public class UserManager {
     }
 
     // Method to check if the email is unique
-    private static boolean isEmailUnique(String email) {
+    public static boolean isEmailUnique(String email) {
         String filePath = "src/Database/UserInfoSpreadsheet.csv";
         try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -138,7 +138,7 @@ public class UserManager {
         return true; // Email is unique
     }
 
-    private static int getNextUserId(String filePath, String userType) {
+    public static int getNextUserId(String filePath, String userType) {
         // int maxUserId = 0;
         // String line = "";
         // try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
@@ -190,12 +190,9 @@ public class UserManager {
                 new StudentDashboard(visitor).setVisible(true);
                 break;
             case "Faculty":
+            case "Staff":
                 Faculty faculty = new Faculty(email, password, userType, id);
                 new FacultyDashboard(faculty).setVisible(true);
-                break;
-            case "Staff":
-                Faculty faculty1 = new Faculty(email, password, userType, id);
-                new FacultyDashboard(faculty1).setVisible(true);
                 break;
             case "Manager":
                 Manager manager2 = new Manager(email, password, userType, id);
