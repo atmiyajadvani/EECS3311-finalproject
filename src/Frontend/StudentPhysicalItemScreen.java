@@ -36,7 +36,13 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                itemHandler.saveCart(userID);
+                if (itemHandler != null) {
+                    try {
+                        itemHandler.saveCart(userID);
+                    } catch (NullPointerException ex) {
+                        ex.printStackTrace();
+                    }
+                }
             }
         });
 

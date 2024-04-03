@@ -39,17 +39,21 @@ public class ItemHandler {
     }
 
     public void saveCart(int userID) {
-        try (PrintWriter writer = new PrintWriter(new FileWriter(CSV_CART, true))) {
-            StringBuilder sb = new StringBuilder();
-            sb.append(userID).append(",");
-            for (Item item : cart) {
-                sb.append(item.getId()).append(",").append(item.toString()).append(",");
+        if (cart != null) {
+            try (PrintWriter writer = new PrintWriter(new FileWriter(CSV_CART, true))) {
+                StringBuilder sb = new StringBuilder();
+                sb.append(userID).append(",");
+                for (Item item : cart) {
+                    sb.append(item.getId()).append(",").append(item.toString()).append(",");
+                }
+                sb.deleteCharAt(sb.length() - 1);
+                sb.append("\n");
+                writer.write(sb.toString());
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            sb.deleteCharAt(sb.length() - 1);
-            sb.append("\n");
-            writer.write(sb.toString());
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("Cart is null, cannot save.");
         }
     }
     

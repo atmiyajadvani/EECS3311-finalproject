@@ -2,6 +2,7 @@ package Frontend;
 
 import Backend.Item;
 import Backend.ItemHandler;
+import Backend.PaymentOptions;
 
 import javax.swing.*;
 import java.awt.*;
@@ -97,15 +98,20 @@ public class PayWithDebitScreen extends JFrame {
     }
 
     private void saveCart(List<Item> cartItems, int userId) {
-        String csvFile = "src/Database/UserBooksBrought.csv";
-        int daysBorrowed = 0;
-        String isLost = "no";
-        try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
-            for (Item item : cartItems) {
-                writer.println(userId + "," + item.getId() + "," + item.getName() + "," + item.getAuthor() + "," + item.getItemType() + "," + daysBorrowed + "," + isLost);
+
+        if (cartItems != null) {
+            String csvFile = "src/Database/UserBooksBrought.csv";
+            int daysBorrowed = 0;
+            String isLost = "no";
+            try (PrintWriter writer = new PrintWriter(new FileWriter(csvFile, true))) {
+                for (Item item : cartItems) {
+                    writer.println(userId + "," + item.getId() + "," + item.getName() + "," + item.getAuthor() + "," + item.getItemType() + "," + daysBorrowed + "," + isLost);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-        } catch (IOException e) {
-            e.printStackTrace();
+        } else {
+            System.out.println("Cart is null, cannot save.");
         }
     }
 
