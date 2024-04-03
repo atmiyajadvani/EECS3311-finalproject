@@ -41,6 +41,9 @@ public class Faculty extends User {
     }
 
     public void setFacultyId(int facultyId) {
-        this.facultyId = facultyId;
+
+        if(facultyId>0){
+            this.facultyId = facultyId;
+        }
     }
 }

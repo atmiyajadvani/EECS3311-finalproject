@@ -40,6 +40,8 @@ public class Manager extends User {
     }
 
     public void setManagerRole(int managerId) {
-        this.managerId = managerId;
+        if(managerId>0){
+            this.managerId = managerId;
+        }
     }
 }

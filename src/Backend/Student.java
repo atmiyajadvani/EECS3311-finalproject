@@ -40,6 +40,10 @@ public class Student extends User {
     }
 
     public void setStudentId(int studentId) {
-        this.studentId = studentId;
+
+        if(studentId > 0){
+            this.studentId = studentId;
+        }
+
     }
 }
