@@ -6,14 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/UserAndSubclassesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/UserAndSubclassesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/UserManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/UserManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/ItemHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/ItemHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +40,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
   <component name="ProjectId" id="2chMv9aD8AhPA9VtynvkfGGkPrU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -54,17 +51,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/TestCases/CSV" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.ItemHandlerTest.executor": "Run",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "PD3",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\javeria\Documents\GitHub\EECS3311-finalproject\src\TestCases\CSV" />
@@ -74,7 +75,7 @@
       <recent name="$PROJECT_DIR$/src/Assets/newspaperPhotos" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestCases in EECS3311-finalproject">
+  <component name="RunManager">
     <configuration name="FacultyCoursesManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
@@ -204,6 +205,7 @@
       <workItem from="1711636849996" duration="306000" />
       <workItem from="1712001711146" duration="1755000" />
       <workItem from="1712149623415" duration="41000" />
+      <workItem from="1712183935704" duration="528000" />
     </task>
     <servers />
   </component>
@@ -211,6 +213,26 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0">
@@ -237,36 +259,22 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$UserManagerTest.ic" NAME="UserManagerTest Coverage Results" MODIFIED="1712182388684" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>TestCases.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/EECS3311_finalproject$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712183067425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>TestCases.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/EECS_3311_Project$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712179633223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>TestCases.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$ItemHandlerTest.ic" NAME="ItemHandlerTest Coverage Results" MODIFIED="1712183075673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>TestCases.*</FILTER>
     </SUITE>
   </component>
