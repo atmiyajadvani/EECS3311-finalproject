@@ -6,8 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/ItemHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/ItemHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/PaymentOptionsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/PaymentOptionsTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,6 +53,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "JUnit.ItemHandlerTest.executor": "Run",
+    "JUnit.PaymentOptionsTest.executor": "Run",
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "git-widget-placeholder": "PD3",
@@ -205,7 +205,7 @@
       <workItem from="1711636849996" duration="306000" />
       <workItem from="1712001711146" duration="1755000" />
       <workItem from="1712149623415" duration="41000" />
-      <workItem from="1712183935704" duration="528000" />
+      <workItem from="1712183935704" duration="1882000" />
     </task>
     <servers />
   </component>
