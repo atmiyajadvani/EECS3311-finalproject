@@ -1,15 +1,54 @@
 package TestCases;
 import Backend.UserManager;
 import Backend.RegistrationException;
+import org.junit.AfterClass;
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.RandomAccessFile;
+import java.io.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 public class UserManagerTest {
+
+    @AfterAll
+    static void eraseAllAdded() {
+        eraseLastLine("src/TestCases/CSV/UserInfoSpreadsheet2.csv");
+        eraseLastLine("src/TestCases/CSV/userSubs2.csv");
+        eraseLastLine("src/TestCases/CSV/userToTextbook2.csv");
+    }
+
+    public static void eraseLastLine(String filePath) {
+        try {
+            File file = new File(filePath);
+            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
+            long length = file.length();
+            if (length == 0) {
+                randomAccessFile.close();
+                return; // Empty file, nothing to erase
+            }
+            long position = length - 1;
+            while (position > 0) {
+                position--;
+                randomAccessFile.seek(position);
+                if (randomAccessFile.readByte() == '\n') {
+                    break;
+                }
+            }
+            if (position == 0) {
+                randomAccessFile.setLength(0);
+            } else {
+                randomAccessFile.setLength(position);
+            }
+            randomAccessFile.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
     @Test

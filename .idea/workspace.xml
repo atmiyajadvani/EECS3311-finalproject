@@ -5,27 +5,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Backend/RegistrationException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/FacultyUsers2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/VirtualCopies2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestCases/UserAuthenticatorTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/TestCases/UserManagerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/EECS3311-finalproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EECS3311-finalproject.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Faculty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/UserAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/UserAuthenticator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/UserManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Visitor.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/userSubs.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userSubs.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/userToTextbook.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userToTextbook.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/UserLoginAndRegTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/UserAndSubclassesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/UserAndSubclassesTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/UserManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/UserManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -186,7 +174,6 @@
         <item itemvalue="JUnit.StudentTextbooksManagerTest" />
         <item itemvalue="JUnit.FacultyCoursesManagerTest" />
         <item itemvalue="JUnit.UserAndSubclassesTest" />
-        <item itemvalue="JUnit.UserAndSubclassesTesting" />
       </list>
     </recent_temporary>
   </component>

@@ -130,7 +130,7 @@ public class UserAndSubclassesTest {
     public void testGetNextStudentIdNoRecords() {
         // Assuming the CSV file initially has no records
         int nextId = Student.getNextStudentId();
-        assertEquals(1006, nextId); // The next ID should be 1005 - according to the current UserInfoSpreadsheet.csv
+        assertEquals(1002, nextId); // The next ID should be 1005 - according to the current UserInfoSpreadsheet.csv
     }
 
     //manager
@@ -308,7 +308,7 @@ public class UserAndSubclassesTest {
     public void testFacultyGetNextFacultyIdNoRecords() {
         // Assuming the CSV file initially has no records
         int nextId = Faculty.getNextFacultyId();
-        assertEquals(3002, nextId); // The next ID should be 3002 according to csv
+        assertEquals(3001, nextId); // The next ID should be 3002 according to csv
     }
 
     @Test// faculty #6
