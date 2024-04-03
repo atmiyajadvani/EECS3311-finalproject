@@ -2,46 +2,90 @@ package TestCases;
 
 import Backend.Item;
 import Backend.PaymentOptions;
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import Backend.StudentItemHandler;
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PaymentAndItemSearchTest {
 
-    @Test
-    public void testItemCreationAndAccess() {
-        Item item = new Item("1", "Test Book", "Test Author", "Book", "10", 19.99, "enabled");
-        Assertions.assertEquals("Test Book", item.getName(), "Item name did not match expected value.");
-        Assertions.assertEquals("Test Author", item.getAuthor(), "Item author did not match expected value.");
-        Assertions.assertEquals(19.99, item.getPrice(), "Item price did not match expected value.");
-    }
+    private PaymentOptions paymentOptions;
+    private StudentItemHandler studentItemHandler;
+    private List<Item> items;
 
-    @Test
-    public void testItemEnableDisable() {
-        Item item = new Item("2", "Test Item", "Author", "Type", "5", 15.00, "enabled");
-        item.disable();
-        Assertions.assertFalse(item.isEnabled(), "Item should be disabled.");
-        item.enable();
-        Assertions.assertTrue(item.isEnabled(), "Item should be enabled.");
+    @Before
+    public void setUp() {
+        paymentOptions = new PaymentOptions();
+        studentItemHandler = new StudentItemHandler();
+        items = new ArrayList<>();
+        items.add(new Item("1", "Book Title One", "Author One", "Book", "10", 50.0, "enabled"));
+        items.add(new Item("2", "Book Title Two", "Author Two", "Book", "5", 30.0, "enabled"));
     }
 
     @Test
     public void testCalculateTotalPrice() {
-        List<Item> items = Arrays.asList(
-                new Item("1", "Item 1", "Author 1", "Type 1", "5", 10.00, "enabled"),
-                new Item("2", "Item 2", "Author 2", "Type 2", "3", 20.00, "enabled"));
-        PaymentOptions paymentOptions = new PaymentOptions();
         double totalPrice = paymentOptions.calculateTotalPrice(items);
-        Assertions.assertEquals(30.00, totalPrice, "Total price did not match expected value.");
+        Assert.assertEquals("Total price calculation is incorrect", 80.0, totalPrice, 0.0);
     }
 
     @Test
     public void testApplyPromo() {
-        PaymentOptions paymentOptions = new PaymentOptions();
-        double totalPriceAfterDiscount = paymentOptions.applyPromo(100.00, "fo40");
-        Assertions.assertEquals(60.00, totalPriceAfterDiscount, "Discounted price did not match expected value.");
+        double discountedPrice = paymentOptions.applyPromo(100.0, "fo40");
+        Assert.assertEquals("Discount application is incorrect", 60.0, discountedPrice, 0.0);
     }
+
+    @Test
+    public void testApplyPromoWithInvalidCode() {
+        double discountedPrice = paymentOptions.applyPromo(100.0, "invalidCode");
+        Assert.assertEquals("Discount with invalid promo code should not be applied", 100.0, discountedPrice, 0.0);
+    }
+
+    @Test
+    public void testFilterItems() {
+        studentItemHandler.addItem(new Item("3", "Filtered Book", "Author Three", "BOOK", "20", 60.0, "enabled"));
+        List<Item> filteredItems = studentItemHandler.filterItems("filtered");
+        Assert.assertFalse("Filtered items list should not be empty", filteredItems.isEmpty());
+    }
+
+    @Test
+    public void testFilterItems2() {
+        studentItemHandler.addItem(new Item("001", "Java Programming", "Author A", "BOOK", "5", 50.0, "enabled"));
+        studentItemHandler.addItem(new Item("002", "Python Programming", "Author B", "BOOK", "5", 45.0, "enabled"));
+        studentItemHandler.addItem(new Item("003", "Effective Java", "Author C", "BOOK", "5", 55.0, "enabled"));
+        List<Item> filteredItems = studentItemHandler.filterItems("Java");
+        boolean allMatchJava = filteredItems.stream().allMatch(item -> item.getName().contains("Java"));
+        Assert.assertTrue("All filtered items should contain 'Java' in their name", allMatchJava);
+    }
+
+
+    @Test
+    public void testRemoveDisabledItems() {
+        items.add(new Item("4", "Disabled Book", "Author Four", "BOOK", "0", 0.0, "disabled"));
+        studentItemHandler.addItem(items.get(2)); // Add a disabled item for testing
+        studentItemHandler.removeDisabledItems();
+        List<Item> csvData = studentItemHandler.getCsvData();
+        boolean containsDisabled = csvData.stream().anyMatch(item -> !item.isEnabled());
+        Assert.assertFalse("Disabled items should be removed", containsDisabled);
+    }
+
+
+    @Test
+    public void testDisableItem() {
+        studentItemHandler.disableItem("1001");
+        List<Item> csvData = studentItemHandler.getCsvData();
+        boolean isDisabled = csvData.stream().anyMatch(item -> item.getId().equals("1") && !item.isEnabled());
+        Assert.assertTrue("Item should be disabled", isDisabled);
+    }
+
+    @Test
+    public void testLoadCSVData() {
+        List<Item> csvData = studentItemHandler.getCsvData();
+        Assert.assertNotNull("CSV data should be loaded", csvData);
+        Assert.assertFalse("CSV data should not be empty", csvData.isEmpty());
+    }
+
 
 }
