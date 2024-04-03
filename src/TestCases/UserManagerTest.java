@@ -1,7 +1,6 @@
 package TestCases;
 import Backend.UserManager;
 import Backend.RegistrationException;
-import org.junit.AfterClass;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 
