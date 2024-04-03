@@ -89,7 +89,7 @@ public class PayWithDebitScreen extends JFrame {
 
         // go back
         dispose();
-        new StudentPhysicalItemScreen(userID).setVisible(true);
+        new StudentDashboard(userID).setVisible(true);
     }
 
     public void setCartItems(List<Item> cartItems) {
