@@ -152,7 +152,7 @@ public class CheckedOutItems extends JFrame {
                     try {
                         int id = Integer.parseInt(data[0]);
                         if (id == userId) {
-                            role = data[3]; 
+                            role = data[3];
                             break;
                         }
                     } catch (NumberFormatException e) {

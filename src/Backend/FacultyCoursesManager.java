@@ -30,6 +30,7 @@ public class FacultyCoursesManager {
         }
         return isValid;
     }
+
     public String getTextbookForCourse(String courseCode) {
         String textbook = "N/A";
         try (BufferedReader reader = new BufferedReader(new FileReader("src/Database/TextbookSpreadsheet.csv"))) {
