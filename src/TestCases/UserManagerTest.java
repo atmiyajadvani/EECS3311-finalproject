@@ -15,42 +15,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class UserManagerTest {
 
-    @AfterAll
-    static void eraseAllAdded() {
-        eraseLastLine("src/TestCases/CSV/UserInfoSpreadsheet2.csv");
-        eraseLastLine("src/TestCases/CSV/userSubs2.csv");
-        eraseLastLine("src/TestCases/CSV/userToTextbook2.csv");
-    }
-
-    public static void eraseLastLine(String filePath) {
-        try {
-            File file = new File(filePath);
-            RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rw");
-            long length = file.length();
-            if (length == 0) {
-                randomAccessFile.close();
-                return; // Empty file, nothing to erase
-            }
-            long position = length - 1;
-            while (position > 0) {
-                position--;
-                randomAccessFile.seek(position);
-                if (randomAccessFile.readByte() == '\n') {
-                    break;
-                }
-            }
-            if (position == 0) {
-                randomAccessFile.setLength(0);
-            } else {
-                randomAccessFile.setLength(position);
-            }
-            randomAccessFile.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-
     @Test
     void isEmailUniqueNo(){
         String email = "casey.dawn@example.com";
@@ -206,5 +170,46 @@ public class UserManagerTest {
             }
             assertTrue(found, "User ID for test5@example.com not found in VirtualCopies2.csv");
         }
+    }
+
+    @AfterAll
+    static void resetCSVFiles() throws IOException {
+        rewriteCSVFile("src/TestCases/CSV/UserInfoSpreadsheet2.csv", getUserInfoSpreadsheetContent());
+        rewriteCSVFile("src/TestCases/CSV/userSubs2.csv", getUserSubsContent());
+        rewriteCSVFile("src/TestCases/CSV/userToTextbook2.csv", getUserToTextbookContent());
+    }
+
+    private static void rewriteCSVFile(String filePath, String content) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(content);
+        }
+    }
+
+    private static String getUserInfoSpreadsheetContent() {
+        return "UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverdue\n" +
+                "4000,casey.dawn@example.com,pass123!,Manager,29/01/24,yes,0,0\n" +
+                "1000,student@test.com,test,Student,22/03/24,yes,0,0\n" +
+                "2000,faculty@test.com,test,Faculty,22/03/24,yes,2,0\n" +
+                "3000,staff@test.com,test,Staff,22/03/24,yes,0,0\n" +
+                "5000,visitor@gmail.com,test,Visitor,22/03/24,yes,0,0\n" +
+                "1001,test5@example.com,test,Student,22/03/24,yes,0,0\n";
+    }
+
+    private static String getUserSubsContent() {
+        return "4000,0,0,0,0\n" +
+                "1000,0,0,0,0\n" +
+                "2000,0,0,0,0\n" +
+                "3000,0,0,0,0\n" +
+                "5000,0,0,0,0\n" +
+                "1001,0,0,0,0\n";
+    }
+
+    private static String getUserToTextbookContent() {
+        return "4000\n" +
+                "2000\n" +
+                "1000\n" +
+                "5000\n" +
+                "3000\n" +
+                "1001\n";
     }
 }

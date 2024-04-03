@@ -263,6 +263,9 @@
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712183067425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>TestCases.*</FILTER>
+    </SUITE>
     <SUITE FILE_PATH="coverage/EECS_3311_Project$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712179633223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>TestCases.*</FILTER>
     </SUITE>
