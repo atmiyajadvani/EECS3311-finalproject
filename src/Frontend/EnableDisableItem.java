@@ -1,16 +1,11 @@
 package Frontend;
 
 import Backend.Item;
-import Backend.StudentItemHandler;
+import Backend.ItemHandler;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.List;
-import java.util.ArrayList;
 
 public class EnableDisableItem extends JFrame {
     private JButton backButton;
@@ -20,12 +15,12 @@ public class EnableDisableItem extends JFrame {
     private JList<Item> itemList;
     private JButton enableButton;
     private JButton disableButton;
-    private StudentItemHandler itemHandler;
+    private ItemHandler itemHandler;
 
     public EnableDisableItem() { initializeUI(); }
 
     private void initializeUI() {
-        itemHandler = new StudentItemHandler();
+        itemHandler = new ItemHandler();
         setTitle("Manager Dashboard - Enable/Disable Item");
         setSize(800, 600);
         setLocationRelativeTo(null);

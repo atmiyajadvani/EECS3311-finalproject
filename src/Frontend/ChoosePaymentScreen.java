@@ -2,7 +2,7 @@ package Frontend;
 
 import Backend.Item;
 import Backend.PaymentOptions;
-import Backend.StudentItemHandler;
+import Backend.ItemHandler;
 
 import javax.swing.*;
 import javax.swing.text.html.Option;

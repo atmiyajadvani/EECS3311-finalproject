@@ -1,15 +1,10 @@
 package Frontend;
 
 import Backend.Item;
-import Backend.StudentItemHandler;
+import Backend.ItemHandler;
 
 import javax.swing.*;
 import java.awt.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.text.NumberFormat;
 
 public class AddItem extends JFrame {
     private JTextField titleField;
@@ -18,12 +13,12 @@ public class AddItem extends JFrame {
     private JTextField priceField;
     private JButton addItemButton;
     private JButton backButton;
-    private StudentItemHandler itemHandler;
+    private ItemHandler itemHandler;
 
     public AddItem() { initializeUI(); }
 
     private void initializeUI() {
-        itemHandler = new StudentItemHandler();
+        itemHandler = new ItemHandler();
         setTitle("Manager Dashboard - Add Item");
         setSize(800, 600);
         setLocationRelativeTo(null);
