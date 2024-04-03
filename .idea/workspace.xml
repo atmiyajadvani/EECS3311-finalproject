@@ -5,13 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/TestCases/UserAndSubclassesTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Faculty.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Manager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Student.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Visitor.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/ItemHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/ItemHandlerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,13 +48,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.ItemHandlerTest.executor": "Run",
+    "git-widget-placeholder": "PD3",
+    "node.js.selected.package.tslint": "(autodetect)"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Database" />
       <recent name="$PROJECT_DIR$/src/Assets/newspaperPhotos" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserAndSubclassesTest">
+  <component name="RunManager">
     <configuration name="FacultyCourses" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Frontend.FacultyCourses" />
       <module name="EECS3311-finalproject" />
@@ -176,6 +179,26 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0">
@@ -198,26 +221,6 @@
                 </map>
               </option>
             </State>
-          </value>
-        </entry>
-      </map>
-    </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
           </value>
         </entry>
       </map>
