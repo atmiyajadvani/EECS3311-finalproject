@@ -11,7 +11,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class UserAuthenticator {
-    private static String csvFile = "src/Database/UserInfoSpreadsheet.csv";
+    private static String csvFile = "src/TestCases/CSV/UserInfoSpreadsheet2.csv";
     private static String username;
     private static String password;
 
@@ -45,6 +45,9 @@ public class UserAuthenticator {
                             new StudentDashboard(id).setVisible(true);
                             break;
                         case "Faculty":
+                            Faculty faculty1 = new Faculty(email1, pass1, "Faculty", id);
+                            new FacultyDashboard(id).setVisible(true);
+                            break;
                         case "Staff":
                             Faculty faculty = new Faculty(email1, pass1, "Faculty", id);
                             new FacultyDashboard(id).setVisible(true);

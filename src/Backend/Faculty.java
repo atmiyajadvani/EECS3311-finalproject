@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Faculty extends User {
     private static int facultyId;
-    private static final String filePath = "src/Database/UserInfoSpreadsheet.csv";
+    private static final String filePath = "src/TestCases/CSV/UserInfoSpreadsheet2.csv";
 
     public Faculty(String email, String password, String userType, int facultyId) {
         super(email, password, userType);

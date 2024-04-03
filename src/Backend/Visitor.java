@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Visitor extends User {
     private static int visitorId;
-    private static final String filePath = "src/Database/UserInfoSpreadsheet.csv";
+    private static final String filePath = "src/TestCases/CSV/UserInfoSpreadsheet2.csv";
 
     public Visitor(String email, String password, String userType, int visitorId) {
         super(email, password, userType);
