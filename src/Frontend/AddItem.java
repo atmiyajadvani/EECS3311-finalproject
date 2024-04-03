@@ -62,7 +62,7 @@ public class AddItem extends JFrame {
     }
 
     private void addItem() {
-        String id = String.valueOf(Item.getNextID());
+        String id = Item.getNextID("src/Database/ItemSpreadsheet.csv");
         String title = titleField.getText();
         String author = authorField.getText();
         String itemType = (String) itemTypeDropdown.getSelectedItem();
