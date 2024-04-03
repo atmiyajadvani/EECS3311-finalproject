@@ -1,20 +1,16 @@
 package Backend;
 
-import Backend.Item;
-
-import javax.swing.*;
 import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Objects;
 
-public class StudentItemHandler {
+public class ItemHandler {
     private final String CSV_ITEM = "src/Database/ItemSpreadsheet.csv";
     private final String CSV_CART = "src/Database/userIdtoCart.csv";
     private List<Item> csvData;
     private ArrayList<Item> cart;
 
-    public StudentItemHandler() {
+    public ItemHandler() {
         loadCSVData(CSV_ITEM);
     }
 

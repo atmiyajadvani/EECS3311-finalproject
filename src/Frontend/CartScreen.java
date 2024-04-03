@@ -1,6 +1,6 @@
 package Frontend;
 
-import Backend.StudentItemHandler;
+import Backend.ItemHandler;
 import Backend.Item;
 
 import javax.swing.*;

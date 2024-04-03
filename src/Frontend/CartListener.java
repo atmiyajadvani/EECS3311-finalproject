@@ -1,7 +1,7 @@
 package Frontend;
 
 import Backend.Item;
-import Backend.StudentItemHandler;
+import Backend.ItemHandler;
 
 public interface CartListener {
     void itemAddedToCart(Item item);

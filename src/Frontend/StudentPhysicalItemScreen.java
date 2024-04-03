@@ -1,7 +1,7 @@
 package Frontend;
 
 import Backend.Item;
-import Backend.StudentItemHandler;
+import Backend.ItemHandler;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,8 +10,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.io.*;
-import java.lang.reflect.Array;
-import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,11 +23,11 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
     private CartScreen cartScreen;
 
     private Item item;
-    private StudentItemHandler itemHandler;
+    private ItemHandler itemHandler;
 
     public StudentPhysicalItemScreen(int id) {
         this.userID = id;
-        this.itemHandler = new StudentItemHandler();
+        this.itemHandler = new ItemHandler();
         setTitle("Item Search");
         setSize(600, 400);
         setLocationRelativeTo(null);
