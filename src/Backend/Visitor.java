@@ -40,6 +40,7 @@ public class Visitor extends User {
     }
 
     public void setVisitorId(int visitorId) {
-        this.visitorId = visitorId;
+
+        if(visitorId>0){this. visitorId = visitorId;}
     }
 }
