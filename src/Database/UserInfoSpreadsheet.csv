@@ -49,3 +49,4 @@ UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverd
 1003,testwithstudent@gmail.com,123,Student,01/04/24,yes,0,0
 3001,checkingfac@gmail.com,123,Faculty,01/04/24,yes,0,0
 1004,checkingStudentAgain@gmail.com,123,Student,01/04/24,yes,1,0
+1005,test@example.com,password123,Student,03/04/24,yes,0,0

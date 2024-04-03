@@ -2,8 +2,10 @@
 package TestCases;
 
 import Backend.*;
-import org.junit.Test;
-import static org.junit.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+import org.junit.jupiter.api.Test;
+
 //User class test cases
 public class UserAndSubclassesTest {
 
@@ -128,7 +130,7 @@ public class UserAndSubclassesTest {
     public void testGetNextStudentIdNoRecords() {
         // Assuming the CSV file initially has no records
         int nextId = Student.getNextStudentId();
-        assertEquals(1005, nextId); // The next ID should be 1005 - according to the current UserInfoSpreadsheet.csv
+        assertEquals(1006, nextId); // The next ID should be 1005 - according to the current UserInfoSpreadsheet.csv
     }
 
     //manager

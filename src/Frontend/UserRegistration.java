@@ -1,5 +1,6 @@
 package Frontend;
 
+import Backend.RegistrationException;
 import Backend.UserManager;
 import javax.swing.*;
 import java.awt.*;
@@ -60,7 +61,11 @@ public class UserRegistration extends JFrame {
                 String retypePassword = new String(retypePasswordField.getPassword());
                 String userType = (String) userTypeComboBox.getSelectedItem();
 
-                UserManager.registerUser(email, password, retypePassword, userType);
+                try {
+                    UserManager.registerUser(email, password, retypePassword, userType);
+                } catch (RegistrationException ex) {
+                    ex.printStackTrace();
+                }
                 dispose();
             }
         });

@@ -5,15 +5,27 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/junit_jupiter.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Backend/RegistrationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/FacultyUsers2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/VirtualCopies2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/UserAuthenticatorTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/UserManagerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Backend/FacultyCoursesManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/FacultyCoursesManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/CheckedOutItems.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/CheckedOutItems.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Frontend/PayWithDebitScreen.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/PayWithDebitScreen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/FacultyCoursesManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/FacultyCoursesManagerTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/StudentTextbooksManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/StudentTextbooksManagerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EECS3311-finalproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EECS3311-finalproject.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/Faculty.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Faculty.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/Manager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Manager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/Student.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Student.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/UserAuthenticator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/UserAuthenticator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/UserManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/UserManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Backend/Visitor.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Backend/Visitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/userSubs.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userSubs.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/userToTextbook.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userToTextbook.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Frontend/UserRegistration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/UserLoginAndRegTest.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,7 +66,21 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.Annotations" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/TestCases/CSV" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+  </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\javeria\Documents\GitHub\EECS3311-finalproject\src\TestCases\CSV" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/Database" />
       <recent name="$PROJECT_DIR$/src/Assets/newspaperPhotos" />
@@ -70,7 +96,7 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.FacultyCoursesManagerTest" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.UserAuthenticatorTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -85,8 +111,9 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.StudentTextbooksManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.UserManagerTest" />
+      <option name="METHOD_NAME" value="testGetNextUserIdFaculty" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -114,13 +141,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.UserAndSubclassesTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.UserManagerTest" />
+      <option name="METHOD_NAME" value="testGetNextUserIdManager" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserAndSubclassesTesting" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="UserManagerTest.testGetNextUserIdStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
@@ -129,8 +157,25 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.UserAndSubclassesTesting" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.UserManagerTest" />
+      <option name="METHOD_NAME" value="testGetNextUserIdStudent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="UserManagerTest.testGetNextUserIdVisitor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EECS3311-finalproject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestCases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="TestCases" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.UserManagerTest" />
+      <option name="METHOD_NAME" value="testGetNextUserIdVisitor" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>

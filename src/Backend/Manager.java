@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class Manager extends User {
     private static int managerId;
-    private static final String filePath = "src/Database/UserInfoSpreadsheet.csv";
+    private static final String filePath = "src/TestCases/CSV/UserInfoSpreadsheet2.csv";
 
     public Manager(String email, String password, String userType, int managerId) {
         super(email, password, userType);

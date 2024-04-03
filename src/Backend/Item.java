@@ -87,9 +87,9 @@ public class Item {
     }
 
     // used in AddItem
-    public static int getNextID() {
+    public static String getNextID(String filePath) {
         int maxItemID = 0;
-        try (BufferedReader br = new BufferedReader(new FileReader("src/Database/ItemSpreadsheet.csv"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
             String line = "";
             while ((line = br.readLine()) != null) {
                 if (!line.trim().isEmpty()) {
@@ -105,7 +105,7 @@ public class Item {
             System.out.println("Error parsing item ID from the file: " + e.getMessage());
         }
 
-        return maxItemID + 1;
+        return "" + (maxItemID + 1);
     }
 
     // used in AddItem
