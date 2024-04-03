@@ -5,3 +5,4 @@ UserID,Email,Password,UserType,RegisteredDate,CanBorrow,ItemsBorrowed,ItemsOverd
 3000,staff@test.com,test,Staff,22/03/24,yes,0,0
 5000,visitor@gmail.com,test,Visitor,22/03/24,yes,0,0
 1001,test5@example.com,test,Student,22/03/24,yes,0,0
+5001,test1@example.com,password,Visitor,03/04/24,yes,0,0

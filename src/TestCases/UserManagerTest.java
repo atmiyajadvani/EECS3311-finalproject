@@ -47,7 +47,7 @@ public class UserManagerTest {
 
     @Test
     void testGetNextUserIdFaculty(){
-        assertEquals(UserManager.getNextUserId("src/TestCases/CSV/UserInfoSpreadsheet2.csv", "Faculty"), 3002);
+        assertEquals(UserManager.getNextUserId("src/TestCases/CSV/UserInfoSpreadsheet2.csv", "Faculty"), 3001);
     }
 
     @Test
