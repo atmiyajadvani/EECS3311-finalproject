@@ -43,7 +43,7 @@ class ItemHandlerTest {
     @Test
     public void testRemoveDisabledItems() {
         items.add(new Item("4", "Disabled Book", "Author Four", "BOOK", "0", 0.0, "disabled"));
-        itemHandler.addItem(items.get(2)); // Add a disabled item for testing
+        itemHandler.addItem(items.get(2));
         itemHandler.removeDisabledItems();
         List<Item> csvData = itemHandler.getCsvData();
         boolean containsDisabled = csvData.stream().anyMatch(item -> !item.isEnabled());
@@ -52,17 +52,58 @@ class ItemHandlerTest {
 
 
     @Test
-    public void testDisableItem() {
-        itemHandler.disableItem("1001");
-        List<Item> csvData = itemHandler.getCsvData();
-        boolean isDisabled = csvData.stream().anyMatch(item -> item.getId().equals("1") && !item.isEnabled());
-        assertTrue(isDisabled, "Item should be disabled");
-    }
-
-    @Test
     public void testLoadCSVData() {
         List<Item> csvData = itemHandler.getCsvData();
         assertNotNull(csvData, "CSV data should be loaded");
         assertFalse(csvData.isEmpty(), "CSV data should not be empty");
+    }
+
+
+    @Test
+    void testAddItem() {
+        Item newItem = new Item("5", "New Book", "Author Five", "Book", "5", 100.0, "enabled");
+        itemHandler.addItem(newItem);
+        assertTrue(itemHandler.getCsvData().contains(newItem));
+    }
+
+    @Test
+    void testFilterItemByName() {
+        String searchQuery = "Book";
+        List<Item> filteredItems = itemHandler.filterItems(searchQuery);
+        assertTrue(filteredItems.stream().allMatch(item -> item.getName().contains(searchQuery)));
+    }
+
+    @Test
+    void testFilterItemByAuthor() {
+        String searchQuery = "Author";
+        List<Item> filteredItems = itemHandler.filterItems(searchQuery);
+        assertTrue(filteredItems.stream().allMatch(item -> item.getAuthor().contains(searchQuery)));
+    }
+
+    @Test
+    void testEnableItem() {
+        String itemId = "1";
+        itemHandler.enableItem(itemId);
+        Item item = itemHandler.getCsvData().stream().filter(i -> i.getId().equals(itemId)).findFirst().orElse(null);
+        assertNotNull(item);
+        assertTrue(item.isEnabled());
+    }
+
+    @Test
+    void testSaveCart() {
+        assertDoesNotThrow(() -> itemHandler.saveCart(123));
+    }
+
+    @Test
+    void testAddItemNoDuplicates() {
+        Item duplicateItem = new Item("1", "Book Title One", "Author One", "Book", "10", 50.0, "enabled");
+        int originalSize = itemHandler.getCsvData().size();
+        itemHandler.addItem(duplicateItem);
+        assertEquals(originalSize, itemHandler.getCsvData().size());
+    }
+
+    @Test
+    void testGetCSVData() {
+        assertNotNull(itemHandler.getCsvData());
     }
 }

@@ -76,4 +76,60 @@ class ItemTest {
         writeTestItems(items);
         assertEquals("1004", Item.getNextID(CSV_FILE), "Next item ID should be 1004.");
     }
+
+    @Test
+    void testIsValidPriceWith$() {
+        assertTrue(Item.isValidPrice("$100.99"), "Price should be valid.");
+        assertTrue(Item.isValidPrice("$30.5"), "Price should be valid");
+        assertTrue(Item.isValidPrice("$5"), "Price should be valid.");
+        assertFalse(Item.isValidPrice("$77.555"), "Price should be invalid.");
+        assertFalse(Item.isValidPrice("$30."), "Price should be invalid.");
+        assertFalse(Item.isValidPrice("$.99"), "Price should be invalid.");
+    }
+
+    @Test
+    void testIsValidPriceWithout$() {
+        assertTrue(Item.isValidPrice("100.99"), "Price should be valid.");
+        assertTrue(Item.isValidPrice("30.5"), "Price should be valid");
+        assertTrue(Item.isValidPrice("5"), "Price should be valid.");
+        assertFalse(Item.isValidPrice("77.555"), "Price should be invalid.");
+        assertFalse(Item.isValidPrice("30."), "Price should be invalid.");
+        assertFalse(Item.isValidPrice(".99"), "Price should be invalid.");
+    }
+
+    @Test
+    void testFormatPriceNoDecimal1() {
+        String price = "$25";
+        assertEquals("25.00", Item.formatPrice(price), "Price is formatted incorrectly.");
+    }
+
+    @Test
+    void testFormatPriceNoDecimal2() {
+        String price = "25";
+        assertEquals("25.00", Item.formatPrice(price), "Price is formatted incorrectly.");
+    }
+
+    @Test
+    void testFormatPriceWithDecimal1() {
+        String price = "$10.5";
+        assertEquals("10.50", Item.formatPrice(price), "Price is formatted incorrectly.");
+    }
+
+    @Test
+    void testFormatPriceWithDecimal2() {
+        String price = "10.5";
+        assertEquals("10.50", Item.formatPrice(price), "Price is formatted incorrectly.");
+    }
+
+    @Test
+    void testFormatPriceWithDecimal3() {
+        String price = "$59.99";
+        assertEquals("59.99", Item.formatPrice(price), "Price is formatted incorrectly.");
+    }
+
+    @Test
+    void testFormatPriceWithDecimal4() {
+        String price = "59.99";
+        assertEquals("59.99", Item.formatPrice(price), "Price is formatted incorrectly.");
+    }
 }
