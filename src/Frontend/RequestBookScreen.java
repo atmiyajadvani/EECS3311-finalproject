@@ -9,13 +9,16 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import Backend.RequestBookBackend;
+import Backend.Item;
 
-
+import Backend.RequestBookBackend;
 public class RequestBookScreen extends JFrame implements ActionListener {
     private JButton btnBack, btnRequestBook;
-    private JTextField txtBookName, txtSearch;
+    private JTextField txtBookName;
     private JComboBox<String> purposeComboBox;
-    private static int userId;
+    private int userId;
+    private RequestBookBackend backend;
 
     public RequestBookScreen(int userId) {
         this.userId = userId;
@@ -26,13 +29,15 @@ public class RequestBookScreen extends JFrame implements ActionListener {
         setLayout(new BorderLayout());
 
         JPanel northPanel = new JPanel();
-        txtSearch = new JTextField(20);
         btnBack = new JButton("Back");
         btnBack.addActionListener(this::goBackToDashboard);
         northPanel.add(btnBack);
 
         add(northPanel, BorderLayout.NORTH);
         add(createMainPanel(), BorderLayout.CENTER);
+
+        // Initialize the backend
+        backend = new RequestBookBackend();
     }
 
     private JPanel createMainPanel() {
@@ -69,8 +74,6 @@ public class RequestBookScreen extends JFrame implements ActionListener {
         txtBookName = new JTextField(20);
         mainPanel.add(txtBookName, gbc);
 
-        JLabel courseP = new JLabel("Priority is given to course teaching.");
-
         gbc.gridy = 5;
         btnRequestBook = new JButton("Request Book");
         btnRequestBook.addActionListener(this::requestBook);
@@ -92,96 +95,19 @@ public class RequestBookScreen extends JFrame implements ActionListener {
             return;
         }
 
-        // Assuming the CSV file is in the same directory as the application
-        String csvFile = "src/Database/TextbookSpreadsheet.csv";
-        String line;
-        String cvsSplitBy = ",";
+        // Get the selected purpose
+        String purpose = (String) purposeComboBox.getSelectedItem();
 
-        try (BufferedReader br = new BufferedReader(new FileReader(csvFile))) {
-            while ((line = br.readLine()) != null) {
-                // use comma as separator
-                String[] book = line.split(cvsSplitBy);
-                if (book.length >= 2 && book[1].trim().equalsIgnoreCase(bookName)) {
-                    int choice = JOptionPane.showOptionDialog(this,
-                            "Item Added!\nItem priority is given to course teaching.\nPress Okay to continue.",
-                            "Confirmation",
-                            JOptionPane.DEFAULT_OPTION,
-                            JOptionPane.INFORMATION_MESSAGE,
-                            null,
-                            new Object[]{"Okay"},
-                            "Okay");
+        // Call the backend method to request the book
+        boolean bookRequested = backend.requestBook(bookName, purpose, userId);
 
-                    if (choice == 0) {
-                        // Continue with whatever action is needed
-                        int num = updatePriorityQueue(bookName);
-                        JOptionPane.showMessageDialog(this, "You are: " + num + " in line for this item", "Queue Information", JOptionPane.INFORMATION_MESSAGE);
-                        System.out.println("Okay button clicked + " + num);
-                    }
-                    return;
-                }
-            }
+        if (bookRequested) {
+            JOptionPane.showMessageDialog(this, "Item Added!\nItem priority is given to " + purpose + ".\nPress Okay to continue.", "Confirmation", JOptionPane.INFORMATION_MESSAGE);
+            // Continue with whatever action is needed
+        } else {
             JOptionPane.showMessageDialog(this, "Book not found in the database.", "Error", JOptionPane.ERROR_MESSAGE);
-        } catch (IOException ex) {
-            ex.printStackTrace();
         }
     }
-
-    private int updatePriorityQueue(String bookName) {
-        int num = 0; // Initialize the position to 0
-
-        try (BufferedReader br = new BufferedReader(new FileReader("src/Database/TextbookPriorityQueue.csv"))) {
-            StringBuilder updatedContent = new StringBuilder();
-            String line;
-            // Read each line from the CSV file
-            while ((line = br.readLine()) != null) {
-                // Split the line by comma (assuming CSV format)
-                String[] data = line.split(",");
-
-                // Extract the second column as a string
-                String bookNameInFile = data[1].trim();
-
-                // Check if the book name matches the target book name
-                if (bookNameInFile.equalsIgnoreCase(bookName)) {
-                    // check which dropdown option
-                    if (purposeComboBox.getSelectedItem().equals("Course Teaching")) {
-                        data[2] += userId + " ";
-                        // Count occurrences of the user's ID in the third column
-                        num = countOccurrences(data[2], Integer.toString(userId));
-                    } else {
-                        // else - add user id with a space after to the fourth column
-                        data[3] += userId + " ";
-                        // Count occurrences of the user's ID in the fourth column
-                        num = countOccurrences(data[3], Integer.toString(userId));
-                    }
-                }
-                // Reconstruct the line with updated data
-                String updatedLine = String.join(",", data);
-                // Append the updated line to the StringBuilder
-                updatedContent.append(updatedLine).append("\n");
-            }
-
-            // Write the updated content back to the CSV file
-            Files.write(Paths.get("src/Database/TextbookPriorityQueue.csv"), updatedContent.toString().getBytes());
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return num; // Return the position of the user in the queue
-    }
-
-    // Helper method to count occurrences of a substring in a string
-    private int countOccurrences(String str, String subStr) {
-        int count = 0;
-        int idx = 0;
-        while ((idx = str.indexOf(subStr, idx)) != -1) {
-            count++;
-            idx += subStr.length();
-        }
-        return count;
-    }
-
-
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -190,7 +116,9 @@ public class RequestBookScreen extends JFrame implements ActionListener {
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
-            new RequestBookScreen(userId).setVisible(true);
+            new RequestBookScreen(123).setVisible(true); // Replace 123 with the actual userId
         });
     }
+
+
 }
