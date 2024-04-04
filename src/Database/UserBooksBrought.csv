@@ -28,3 +28,10 @@ UserID,ItemID,Title,Author,ItemType,DaysBorrowed,IsLost
 120,1005,The Forgotten Garden,Sienna Blake,Book,0,no
 1004,1006,Echoes of the Storm,Julian Hawthorne,Book,0,no
 120,1004,Beneath the Silver Sky,Arthus Quinn,Book,0,no
+0,1002,The Last Ember,Marcus Reed,Book,0,no
+0,1003,Whispers of the Past,Lila Moreno,Book,0,no
+120,1002,The Last Ember,Marcus Reed,Book,0,no
+120,1003,Whispers of the Past,Lila Moreno,Book,0,no
+120,1007,The Sapphire Heist,Naomi K. Lewis,Book,0,no
+120,1008,A Time of Ashes,Connor Easton,Book,0,no
+120,1009,The Ninth Oracle,Gabriella Song,Book,0,no

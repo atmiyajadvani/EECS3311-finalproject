@@ -5,9 +5,14 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/Backend/RequestBookBackend.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/TestCases/RequestBackendTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/TextbookPriorityQueue.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/TextbookPriorityQueue.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/UserBooksBrought.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/UserBooksBrought.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Database/UserInfoSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/UserInfoSpreadsheet.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -41,6 +46,9 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 7
+}]]></component>
   <component name="ProjectId" id="2chMv9aD8AhPA9VtynvkfGGkPrU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -49,17 +57,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">
-    <property name="Downloaded.Files.Path.Enabled" value="false" />
-    <property name="Repository.Attach.Annotations" value="false" />
-    <property name="Repository.Attach.JavaDocs" value="false" />
-    <property name="Repository.Attach.Sources" value="false" />
-    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/TestCases/CSV" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.2" />
-  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.CartScreen.executor": "Run",
+    "Application.RequestBookScreen.executor": "Run",
+    "Application.StudentDashboard.executor": "Run",
+    "Application.StudentPhysicalItemScreen.executor": "Run",
+    "Application.UserRegistration.executor": "Run",
+    "JUnit.CartScreenTest.executor": "Coverage",
+    "JUnit.CartScreenTest.testCanRentMoreItems.executor": "Run",
+    "JUnit.CartScreenTest.testCanRentMoreItemsForUserWithNoRentals.executor": "Run",
+    "JUnit.CartScreenTest.testGetUserRole.executor": "Run",
+    "JUnit.CartScreenTest.testGetUserRoleNonExistingUser.executor": "Run",
+    "JUnit.CartScreenTest.testLoadCartItemsEmptyCart.executor": "Run",
+    "JUnit.CartScreenTest.testLoadCartItemsForExistingUser.executor": "Run",
+    "JUnit.CartScreenTest.testSaveCart.executor": "Run",
+    "JUnit.CartScreenTest.testSetCartItems.executor": "Run",
+    "JUnit.RequestBackendTest.executor": "Run",
+    "JUnit.RequestBackendTest.testRequestBook_BookNotFound.executor": "Run",
+    "JUnit.RequestBackendTest.testRequestBook_NullBookName.executor": "Run",
+    "JUnit.TestCases in EECS3311-finalproject.executor": "Coverage",
+    "JUnit.UserManagerTest.executor": "Coverage",
+    "git-widget-placeholder": "PD3"
+  }
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\javeria\Documents\GitHub\EECS3311-finalproject\src\TestCases\CSV" />
@@ -69,8 +90,8 @@
       <recent name="$PROJECT_DIR$/src/Assets/newspaperPhotos" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.TestCases in EECS3311-finalproject">
-    <configuration name="FacultyCoursesManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="JUnit.CartScreenTest">
+    <configuration name="CartScreenTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
@@ -79,13 +100,13 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.UserAuthenticatorTest" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.CartScreenTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="StudentTextbooksManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="RequestBackendTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
@@ -94,8 +115,23 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.UserManagerTest" />
-      <option name="METHOD_NAME" value="testGetNextUserIdFaculty" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.RequestBackendTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RequestBackendTest.testRequestBook_NullBookName" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EECS3311-finalproject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestCases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="TestCases" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.RequestBackendTest" />
+      <option name="METHOD_NAME" value="testRequestBook_NullBookName" />
       <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
@@ -148,6 +184,8 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.CartScreenTest" />
+        <item itemvalue="JUnit.RequestBackendTest" />
         <item itemvalue="JUnit.TestCases in EECS3311-finalproject" />
         <item itemvalue="JUnit.UserAndSubclassesTest (1)" />
         <item itemvalue="JUnit.UserAndSubclassesTest" />
@@ -183,6 +221,7 @@
       <workItem from="1711636849996" duration="306000" />
       <workItem from="1712001711146" duration="1755000" />
       <workItem from="1712149623415" duration="41000" />
+      <workItem from="1712183935704" duration="1882000" />
     </task>
     <servers />
   </component>
@@ -190,6 +229,26 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0">
@@ -216,30 +275,25 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="LAST_COMMIT_MESSAGE" value="" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/TestCases/CartScreenTest.java</url>
+          <line>39</line>
+          <properties class="TestCases.CartScreenTest" method="testGetUserRole">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/EECS3311_finalproject$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712194533370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
