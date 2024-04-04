@@ -176,6 +176,11 @@ public class StudentPhysicalItemScreen extends JFrame implements CartListener {
     }
 
     private void addToCart(Item item) {
+        if (Integer.parseInt(item.getAmountLeft()) <= 0) {
+            JOptionPane.showMessageDialog(this, "Item out of stock!");
+            return;
+        }
+
         if (cart.size() == 10) {
             JOptionPane.showMessageDialog(this, "You have reached your max amount of items.", "Limit Reached",
                     JOptionPane.ERROR_MESSAGE);
