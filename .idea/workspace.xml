@@ -9,11 +9,6 @@
       <change beforePath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/UserAndSubclassesTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/UserAndSubclassesTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/UserManagerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/UserManagerTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -120,6 +115,21 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="UserAndSubclassesTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EECS3311-finalproject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="TestCases.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="TestCases" />
+      <option name="MAIN_CLASS_NAME" value="TestCases.UserAndSubclassesTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="UserAndSubclassesTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
@@ -136,44 +146,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserManagerTest.testGetNextUserIdStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EECS3311-finalproject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="TestCases.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.UserManagerTest" />
-      <option name="METHOD_NAME" value="testGetNextUserIdStudent" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserManagerTest.testGetNextUserIdVisitor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EECS3311-finalproject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="TestCases.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.UserManagerTest" />
-      <option name="METHOD_NAME" value="testGetNextUserIdVisitor" />
-      <option name="TEST_OBJECT" value="method" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.TestCases in EECS3311-finalproject" />
+        <item itemvalue="JUnit.UserAndSubclassesTest (1)" />
+        <item itemvalue="JUnit.UserAndSubclassesTest" />
         <item itemvalue="JUnit.StudentTextbooksManagerTest" />
         <item itemvalue="JUnit.FacultyCoursesManagerTest" />
-        <item itemvalue="JUnit.UserAndSubclassesTest" />
       </list>
     </recent_temporary>
   </component>
@@ -263,10 +242,13 @@
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EECS3311_finalproject$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712183067425" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712194533370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>TestCases.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/EECS_3311_Project$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712179633223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>TestCases.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$UserAndSubclassesTest__1_.ic" NAME="UserAndSubclassesTest (1) Coverage Results" MODIFIED="1712194316405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>TestCases.*</FILTER>
     </SUITE>
   </component>
