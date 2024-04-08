@@ -5,15 +5,37 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bfd2882-f112-4d86-a185-59964ab40236" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/randoop-lib/covered-class-4.2.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/randoop-lib/randoop-all-4.2.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/randoop-lib/replacecall-4.2.1.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_CartScreenBackEnd.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_Faculty.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_FacultyCoursesManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_Item.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_ItemHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_ItemType.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_Manager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_PaymentOptions.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_RegistrationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_RequestBookBackend.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_Student.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_StudentTextbooksManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_User.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_UserManager.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/RegressionTest0_Visitor.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/EECS3311-finalproject.iml" beforeDir="false" afterPath="$PROJECT_DIR$/EECS3311-finalproject.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/FacultyUsers.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/ItemSpreadsheet.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/TextbookPriorityQueue.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/TextbookPriorityQueue.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/VirtualCopies.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Database/userIdtoCart.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/Database/userIdtoCart.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/UserInfoSpreadsheet2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/userSubs2.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CSV/userToTextbook2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/TestCases/CartScreenTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/TestCases/CartScreenTest.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -46,6 +68,10 @@
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 4
+}</component>
   <component name="ProjectId" id="2chMv9aD8AhPA9VtynvkfGGkPrU" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
@@ -54,16 +80,68 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JUnit.RegressionTest0 (1).executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.RegressionTest0.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.RegressionTest0_CartScreenBackEnd.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.TestCases in EECS3311-finalproject.executor&quot;: &quot;Coverage&quot;,
+    &quot;JUnit.test.java in EECS3311-finalproject.executor&quot;: &quot;Coverage&quot;,
+    &quot;Maven.EECS3311-finalproject [clean,install].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.EECS3311-finalproject [clean].executor&quot;: &quot;Run&quot;,
+    &quot;Maven.EECS3311-finalproject [compile].executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;PD3__Randoop&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Global Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2735632&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\javeria\Documents\GitHub\EECS3311-finalproject\src\TestCases\CSV" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/src/Database" />
       <recent name="$PROJECT_DIR$/src/Assets/newspaperPhotos" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.UserAndSubclassesTest">
+  <component name="RunManager" selected="JUnit.test.java in EECS3311-finalproject">
+    <configuration name="RegressionTest0_CartScreenBackEnd" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EECS3311-finalproject" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="RegressionTest0_CartScreenBackEnd" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="RegressionTest0_Faculty" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="EECS3311-finalproject" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.RegressionTest0_Faculty" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="TestCases in EECS3311-finalproject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
@@ -93,68 +171,29 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="UserAuthenticatorTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="test.java in EECS3311-finalproject" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EECS3311-finalproject" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="TestCases.*" />
+          <option name="PATTERN" value="test.java.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.UserAuthenticatorTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserManagerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EECS3311-finalproject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="TestCases.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.UserManagerTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="UserManagerTest.testGetNextUserIdStudent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="EECS3311-finalproject" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="TestCases.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="TestCases" />
-      <option name="MAIN_CLASS_NAME" value="TestCases.UserManagerTest" />
-      <option name="METHOD_NAME" value="testGetNextUserIdStudent" />
-      <option name="TEST_OBJECT" value="method" />
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="TEST_OBJECT" value="package" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.UserAndSubclassesTest" />
-        <item itemvalue="JUnit.UserAuthenticatorTest" />
-        <item itemvalue="JUnit.UserManagerTest" />
+        <item itemvalue="JUnit.test.java in EECS3311-finalproject" />
         <item itemvalue="JUnit.TestCases in EECS3311-finalproject" />
-        <item itemvalue="JUnit.UserManagerTest.testGetNextUserIdStudent" />
+        <item itemvalue="JUnit.RegressionTest0_CartScreenBackEnd" />
+        <item itemvalue="JUnit.RegressionTest0_Faculty" />
+        <item itemvalue="JUnit.UserAndSubclassesTest" />
       </list>
     </recent_temporary>
-  </component>
-  <component name="SharedIndexes">
-    <attachedChunks>
-      <set>
-        <option value="jdk-1.8.0_402-corretto-1.8.0_402-4caba194b151-995e55e7" />
-      </set>
-    </attachedChunks>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -177,6 +216,9 @@
       <workItem from="1712001711146" duration="1755000" />
       <workItem from="1712149623415" duration="41000" />
       <workItem from="1712183935704" duration="1882000" />
+      <workItem from="1712533036290" duration="3125000" />
+      <workItem from="1712537769403" duration="1649000" />
+      <workItem from="1712539426755" duration="871000" />
     </task>
     <servers />
   </component>
@@ -184,6 +226,26 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="RECENT_FILTERS">
+      <map>
+        <entry key="Branch">
+          <value>
+            <list>
+              <RecentGroup>
+                <option name="FILTER_VALUES">
+                  <option value="HEAD" />
+                </option>
+              </RecentGroup>
+            </list>
+          </value>
+        </entry>
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0">
@@ -210,55 +272,27 @@
         </entry>
       </map>
     </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="72be07d8-325c-4dc2-88fa-94c263db9ff0" value="TOOL_WINDOW" />
-      </map>
-    </option>
-    <option name="RECENT_FILTERS">
-      <map>
-        <entry key="Branch">
-          <value>
-            <list>
-              <RecentGroup>
-                <option name="FILTER_VALUES">
-                  <option value="HEAD" />
-                </option>
-              </RecentGroup>
-            </list>
-          </value>
-        </entry>
-      </map>
-    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <option name="LAST_COMMIT_MESSAGE" value="" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-method">
-          <url>file://$PROJECT_DIR$/src/TestCases/CartScreenTest.java</url>
-          <line>39</line>
-          <properties class="TestCases.CartScreenTest" method="testGetUserRole">
-            <option name="EMULATED" value="true" />
-            <option name="WATCH_EXIT" value="false" />
-          </properties>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/EECS3311_finalproject$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712194533370" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$UserAndSubclassesTest__1_.ic" NAME="UserAndSubclassesTest (1) Coverage Results" MODIFIED="1712194316405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>TestCases.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$RegressionTest0_CartScreenBackEnd.ic" NAME="RegressionTest0_CartScreenBackEnd Coverage Results" MODIFIED="1712538635155" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712539099295" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>TestCases.*</FILTER>
     </SUITE>
     <SUITE FILE_PATH="coverage/EECS_3311_Project$TestCases_in_EECS3311_finalproject.ic" NAME="TestCases in EECS3311-finalproject Coverage Results" MODIFIED="1712179633223" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>TestCases.*</FILTER>
     </SUITE>
-    <SUITE FILE_PATH="coverage/EECS3311_finalproject$UserAndSubclassesTest__1_.ic" NAME="UserAndSubclassesTest (1) Coverage Results" MODIFIED="1712194316405" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
-      <FILTER>TestCases.*</FILTER>
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$RegressionTest0__1_.ic" NAME="RegressionTest0 (1) Coverage Results" MODIFIED="1712538255658" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.java.*</FILTER>
+    </SUITE>
+    <SUITE FILE_PATH="coverage/EECS3311_finalproject$test_java_in_EECS3311_finalproject.ic" NAME="test.java in EECS3311-finalproject Coverage Results" MODIFIED="1712540156740" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>test.java.*</FILTER>
     </SUITE>
   </component>
 </project>

@@ -1,5 +1,4 @@
 1001,Shadows Over Mars,Evelyn Archer,Book,0,5.00,enabled
-1002,The Last Ember,Marcus Reed,Book,17,5.00,disabled
 1003,Whispers of the Past,Lila Moreno,Book,17,5.00,enabled
 1004,Beneath the Silver Sky,Arthus Quinn,Book,19,5.00,enabled
 1005,The Forgotten Garden,Sienna Blake,Book,19,5.00,enabled
@@ -268,6 +267,20 @@
 003,Effective Java,Author C,BOOK,5,55.00,enabled
 4,Disabled Book,Author Four,BOOK,0,0.00,enabled
 3,Filtered Book,Author Three,BOOK,20,60.00,enabled
+001,Java Programming,Author A,BOOK,5,50.00,enabled
+002,Python Programming,Author B,BOOK,5,45.00,enabled
+003,Effective Java,Author C,BOOK,5,55.00,enabled
+4,Disabled Book,Author Four,BOOK,0,0.00,enabled
+1,Book Title One,Author One,Book,10,50.00,enabled
+3,Filtered Book,Author Three,BOOK,20,60.00,enabled
+5,New Book,Author Five,Book,5,100.00,enabled
+001,Java Programming,Author A,BOOK,5,50.00,enabled
+002,Python Programming,Author B,BOOK,5,45.00,enabled
+003,Effective Java,Author C,BOOK,5,55.00,enabled
+4,Disabled Book,Author Four,BOOK,0,0.00,enabled
+1,Book Title One,Author One,Book,10,50.00,enabled
+3,Filtered Book,Author Three,BOOK,20,60.00,enabled
+5,New Book,Author Five,Book,5,100.00,enabled
 001,Java Programming,Author A,BOOK,5,50.00,enabled
 002,Python Programming,Author B,BOOK,5,45.00,enabled
 003,Effective Java,Author C,BOOK,5,55.00,enabled

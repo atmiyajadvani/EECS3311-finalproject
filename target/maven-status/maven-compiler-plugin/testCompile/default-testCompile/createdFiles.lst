@@ -1,0 +1,16 @@
+Backend/UserManager.class
+Backend/PaymentOptions.class
+Backend/Item.class
+Backend/Manager.class
+Backend/RegistrationException.class
+Backend/Student.class
+Backend/RequestBookBackend.class
+Backend/StudentTextbooksManager.class
+Backend/UserAuthenticator.class
+Backend/Faculty.class
+Backend/FacultyCoursesManager.class
+Backend/Visitor.class
+Backend/User.class
+Backend/ItemHandler.class
+Backend/CartScreenBackEnd.class
+Backend/ItemType.class
